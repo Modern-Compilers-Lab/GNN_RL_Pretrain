@@ -1,0 +1,39 @@
+tiramisu:
+    tiramisu_path: "/home/brouthen/ai/nyuad/tiramisu"
+    workspace: "/home/brouthen/ai/nyuad/gnn_rl/experiment_dir/workspace/"
+    experiment_dir: "/home/brouthen/ai/nyuad/gnn_rl/experiment_dir/"
+
+env_vars:
+    CXX: "/usr/bin/g++"
+    TIRAMISU_ROOT: "/home/brouthen/ai/nyuad/tiramisu"
+    CONDA_ENV: "/home/brouthen/anaconda3/envs/tiramisu-build-env/"
+    LD_LIBRARY_PATH: "/usr/lib/x86_64-linux-gnu:${TIRAMISU_ROOT}/3rdParty/Halide/build/src:${TIRAMISU_ROOT}/3rdParty/llvm/build/lib:${TIRAMISU_ROOT}/3rdParty/isl/build/lib:"
+    # LD_LIBRARY_PATH: "${CONDA_ENV}/lib:${TIRAMISU_ROOT}/3rdParty/Halide/build/src:${TIRAMISU_ROOT}/3rdParty/llvm/build/lib:${TIRAMISU_ROOT}/3rdParty/isl/build/lib:"
+
+dataset:
+    dataset_format: PICKLE
+    cpps_path: /home/brouthen/ai/nyuad/gnn_rl/dataset/cpps.pkl
+    dataset_path: /home/brouthen/ai/nyuad/gnn_rl/dataset/small_bench.pkl
+    save_path: /home/brouthen/ai/nyuad/gnn_rl/experiment_dir/save/
+    models_save_path: /home/brouthen/ai/nyuad/gnn_rl/experiment_dir/models/
+    results_save_path: /home/brouthen/ai/nyuad/gnn_rl/experiment_dir/results/
+    evaluation_save_path: /home/brouthen/ai/nyuad/gnn_rl/experiment_dir/evaluation/
+    shuffle: True
+    seed: 133
+    saving_frequency: 1000
+    is_benchmark: False
+    # benchmark_cpp_files: /home/brouthen/ai/nyuad/gnn_rl/dataset/old_benchmark_cpps.pkl
+    # benchmark_dataset_path: /home/brouthen/ai/nyuad/gnn_rl/dataset/old_benchmark.pkl
+
+experiment:
+    legality_speedup: 1.0
+    beam_search_order: True
+    max_time_in_minutes: 1
+    max_slowdown: 80
+    DYNAMIC_RUNS: 0
+    MAX_RUNS: 5
+    NB_EXEC: 3
+
+# test:
+    # skip_execute_schedules : False
+

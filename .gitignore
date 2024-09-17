@@ -1,0 +1,12 @@
+__pycache__/
+.vscode/
+.ipynb_checkpoints/
+experiment_dir
+mlruns
+dataset
+
+*.ipynb
+*.txt
+*.json
+*.sh
+*.pkl
