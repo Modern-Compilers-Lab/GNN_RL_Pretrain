@@ -1,13 +1,12 @@
 import numpy as np
 import pickle
-import json
 import re
 
 MAX_DEPTH = 5
 max_accesses = 15
 
-train_data_path = "pretrain/data/train_data_sample_500-programs_60k-schedules.pkl"
-val_data_path = "pretrain/data/val_data_sample_125-programs_20k-schedules.pkl"
+train_data_path = "./pretrain/data/train_data_sample_500-programs_60k-schedules.pkl"
+val_data_path = "./pretrain/data/val_data_sample_125-programs_20k-schedules.pkl"
 
 def pad_access_matrix(access_matrix):
     access_matrix = np.array(access_matrix)
