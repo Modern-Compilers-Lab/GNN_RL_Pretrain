@@ -2,6 +2,7 @@ tiramisu:
     tiramisu_path: "/home/brouthen/ai/nyuad/tiramisu"
     workspace: "/home/brouthen/ai/nyuad/gnn_rl/experiment_dir/workspace/"
     experiment_dir: "/home/brouthen/ai/nyuad/gnn_rl/experiment_dir/"
+    logs_dir: "/home/brouthen/ai/nyuad/gnn_rl/logs/"
 
 env_vars:
     CXX: "/usr/bin/g++"
@@ -34,6 +35,26 @@ experiment:
     MAX_RUNS: 5
     NB_EXEC: 3
 
+pretrain:
+    embed_access_matrices: True
+    embedding_type: final_hidden_state # final_hidden_state, final_cell_state, concat_final_hidden_cell_state, mean_pooling_output, max_pooling_output, flattened_output
+
+hyperparameters:
+    num_updates: 500
+    batch_size: 512
+    mini_batch_size: 64
+    num_epochs: 4
+    clip_epsilon: 0.3
+    gamma: 0.99
+    lambdaa: 0.95
+    value_coeff: 2
+    entropy_coeff_start: 0.5
+    entropy_coeff_finish: 0
+    max_grad_norm: 10
+    lr: 0.0001
+    start_lr: 0.0001
+    final_lr: 0.0001
+    weight_decay: 0.0001
+
 # test:
     # skip_execute_schedules : False
-
