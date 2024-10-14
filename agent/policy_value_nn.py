@@ -4,13 +4,11 @@ from torch_geometric.nn import (
     Linear,
     global_max_pool,
 )
+
+import numpy as np
 import torch
 import torch.nn as nn
-
 from torch.distributions import Categorical
-import numpy as np
-
-
 
 class GAT(nn.Module):
     def __init__(

@@ -297,7 +297,7 @@ Transition = namedtuple(
 
 @ray.remote
 class RolloutWorker:
-    def __init__(self, dataset_worker, config, encoder, worker_id=0):
+    def __init__(self, dataset_worker, config, worker_id=0):
 
         Config.config = config
         self.tiramisu_api = TiramisuEnvAPI(local_dataset=False)
@@ -330,7 +330,7 @@ class RolloutWorker:
         annotations = (
             self.tiramisu_api.scheduler_service.schedule_object.prog.annotations
         )
-        node_feats, edge_index, it_index, comp_index = build_graph(annotations, self.encoder)
+        node_feats, edge_index, it_index, comp_index = build_graph(annotations, Config.config.pretrain.embed_access_matrices, Config.config.pretrain.embedding_type)
 
         node_feats = focus_on_iterators(
             self.tiramisu_api.scheduler_service.branches[0].common_it,

@@ -37,4 +37,11 @@ class LSTMAutoencoder(nn.Module):
         
         return decoded.view(-1, self.max_seq_length, self.input_size)
 
-
+device = "cuda:0" if torch.cuda.is_available() else "cpu"
+autoencoder = LSTMAutoencoder(input_size=44, hidden_size=20, num_layers=2, max_seq_length=16)
+autoencoder.load_state_dict(torch.load('./models/lstm_autoencoder_perm100_005drop.pt', map_location = device))
+autoencoder.to(device)
+autoencoder.flatten_parameters()
+autoencoder.eval()
+encoder = autoencoder.encoder
+encoder.eval()

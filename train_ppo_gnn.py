@@ -1,79 +1,82 @@
+from config.config import Config
+
+import time
+import ray
 import mlflow
+import argparse as arg
+import json
+
+import math
+import numpy as np
 import torch
 import torch.nn as nn
-from agent.policy_value_nn import GAT
-from pretrain.lstm_autoencoder_modeling import LSTMAutoencoder
-from agent.rollout_worker import RolloutWorker, Transition
-from config.config import Config
-from utils.dataset_actor.dataset_actor import DatasetActor
-import numpy as np
-import ray
-import math
 from torch_geometric.data import Batch, Data
-import argparse as arg
-import time
 
-# num_updates = 2000
-# clip_epsilon = 0.3
-# gamma = 0.99
-# lambdaa = 0.95
-# value_coeff = 4
-# entropy_coeff_start = 0.001
-# entropy_coeff_finish = 0.0001
-# max_grad_norm = 10
-# batch_size = 1024
-# num_epochs = 5
-# mini_batch_size = 128
-# lr = 5e-4
-# start_lr = 1e-4
-# final_lr = 1e-4
-# weight_decay = 0.0001
-# total_steps = num_updates * batch_size
+from pretrain.embedding import get_embedding_size
+from pretrain.lstm_autoencoder_modeling import encoder
+from agent.policy_value_nn import GAT
 
-num_updates = 10
-clip_epsilon = 0.3
-gamma = 0.99
-lambdaa = 0.95
-value_coeff = 4
-entropy_coeff_start = 0.001
-entropy_coeff_finish = 0.0001
-max_grad_norm = 10
-batch_size = 32
-num_epochs = 2
-mini_batch_size = 8
-lr = 5e-4
-start_lr = 1e-4
-final_lr = 1e-4
-weight_decay = 0.0001
-total_steps = num_updates * batch_size
+from agent.rollout_worker import RolloutWorker, Transition
+from utils.dataset_actor.dataset_actor import DatasetActor
 
 if "__main__" == __name__:
     parser = arg.ArgumentParser() 
 
     parser.add_argument("--num-nodes", default=1, type=int)
+    
+    experiment_name = "final_hidden_state_u500_b500_ent0.5"
 
-    parser.add_argument("--name", type=str, default="experiment_100_pretrain")
+    parser.add_argument("--name", type=str, default=experiment_name)
 
     args = parser.parse_args()
 
     NUM_ROLLOUT_WORKERS = args.num_nodes
 
-    if NUM_ROLLOUT_WORKERS > 1 :
+    if NUM_ROLLOUT_WORKERS > 1:
         ray.init("auto")
-    else : 
+    else:
         ray.init()
+
     # Init global config to run the Tiramisu env
     Config.init()
+
+    record = []
+
+    # Hyperparameters
+    num_updates = Config.config.hyperparameters.num_updates
+    batch_size = Config.config.hyperparameters.batch_size
+    mini_batch_size = Config.config.hyperparameters.mini_batch_size
+    num_epochs = Config.config.hyperparameters.num_epochs
+    total_steps = num_updates * batch_size
+    
+    clip_epsilon = Config.config.hyperparameters.clip_epsilon
+    gamma = Config.config.hyperparameters.gamma
+    lambdaa = Config.config.hyperparameters.lambdaa
+    
+    value_coeff = Config.config.hyperparameters.value_coeff
+    entropy_coeff_start = Config.config.hyperparameters.entropy_coeff_start
+    entropy_coeff_finish = Config.config.hyperparameters.entropy_coeff_finish
+    max_grad_norm = Config.config.hyperparameters.max_grad_norm
+    lr = Config.config.hyperparameters.lr
+    start_lr = Config.config.hyperparameters.start_lr
+    final_lr = Config.config.hyperparameters.final_lr
+    weight_decay = Config.config.hyperparameters.weight_decay
 
     dataset_worker = DatasetActor.remote(Config.config.dataset)
     device = "cuda:0" if torch.cuda.is_available() else "cpu"
     print(f"TRAINING DEVICE: {device}")
 
-    ppo_agent = GAT(input_size=655, num_heads=4, hidden_size=128, num_outputs=56).to(
+    if Config.config.pretrain.embed_access_matrices:
+        input_size = 6 + get_embedding_size(Config.config.pretrain.embedding_type) + 9
+    else:
+        input_size = 718
+    
+    ppo_agent = GAT(input_size=input_size, num_heads=4, hidden_size=128, num_outputs=56).to(
         device
     )
+    
     optimizer = torch.optim.Adam(
-        ppo_agent.parameters(), lr=start_lr, weight_decay=weight_decay, eps=1e-5
+        ppo_agent.parameters(), lr=lr, weight_decay=weight_decay, eps=1e-5
     )
     value_loss = nn.MSELoss()
 
@@ -83,19 +86,11 @@ if "__main__" == __name__:
     #         map_location=torch.device(device)
     #     ),
     # )
-    
-    autoencoder = LSTMAutoencoder(input_size = 44, hidden_size = 20, num_layers = 2, max_seq_length = 16)
-    autoencoder.load_state_dict(torch.load('pretrain/model/lstm_autoencoder_perm100_005drop.pt', map_location = device))
-    autoencoder.to(device)
-    autoencoder.flatten_parameters()
-    autoencoder.eval()
-    encoder = autoencoder.encoder.to(device)
-    encoder.eval()
 
     rollout_workers = [
         RolloutWorker.options(
             num_cpus=12, num_gpus=1, scheduling_strategy="SPREAD"
-        ).remote(dataset_worker, Config.config, encoder, worker_id=i)
+        ).remote(dataset_worker, Config.config, worker_id=i)
         for i in range(NUM_ROLLOUT_WORKERS)
     ]
 
@@ -107,21 +102,21 @@ if "__main__" == __name__:
     ) as run:
         mlflow.log_params(
             {
+                "total_steps": total_steps,
                 "num_updates": num_updates,
-                "clip_epsilon": clip_epsilon,
+                "num_epochs": num_epochs,
+                "batch_size": batch_size,
+                "mini_batch_size": mini_batch_size,
+                "lr": lr,
                 "gamma": gamma,
                 "lambdaa": lambdaa,
+                "weight_decay": weight_decay,
+                "clip_epsilon": clip_epsilon,
+                "max_grad_norm": max_grad_norm,
                 "value_coeff": value_coeff,
                 "entropy_coeff_start": entropy_coeff_start,
                 "entropy_coeff_finish": entropy_coeff_finish,
-                "max_grad_norm": max_grad_norm,
-                "batch_size": batch_size,
-                "num_epochs": num_epochs,
-                "mini_batch_size": mini_batch_size,
-                "start_lr": start_lr,
-                "final_lr": final_lr,
-                "weight_decay": weight_decay,
-                "NUM_ROLLOUT_WORKERS": NUM_ROLLOUT_WORKERS,
+                "NUM_ROLLOUT_WORKERS": NUM_ROLLOUT_WORKERS
             }
         )
         best_performance = 0
@@ -134,6 +129,8 @@ if "__main__" == __name__:
             # optimizer.param_groups[0]["lr"] = final_lr - (final_lr - start_lr) * np.exp(
             #     -2 * u / num_updates
             # )
+            
+            optimizer.param_groups[0]["lr"] = optimizer.param_groups[0]["lr"] - (lr/(num_updates+100))
 
             # entropy_coeff = entropy_coeff_finish
             entropy_coeff = entropy_coeff_finish - (
@@ -286,7 +283,7 @@ if "__main__" == __name__:
                     )
                     s += 1
                 end_e = time.time()
-                print(f"Epoch Time: {(end_e - start_e):.1f} Seconds")
+                # print(f"Epoch Time: {(end_e - start_e):.1f} Seconds")
 
             global_steps += num_steps
 
@@ -297,22 +294,27 @@ if "__main__" == __name__:
                 best_performance = speedups_mean
 
             infos = {
-                "Total Loss": total_loss_mean,
-                "Value Loss": v_loss_mean,
+                "Entropy": b_entropy.mean().item(),
+                "Episode Length Mean": avg_episode_length,
                 "Policy Loss": policy_loss_mean,
-                "Entropy ": b_entropy.mean().item(),
-                "Reward average": speedups_mean,
-                "Reward min": b_speedups.min().item(),
-                "Reward max": b_speedups.max().item(),
-                "Episode length mean": avg_episode_length,
+                "Value Loss": v_loss_mean,
+                "Total Loss": total_loss_mean,
+                "Reward Min": b_speedups.min().item(),
+                "Reward Average": speedups_mean,
+                "Reward Max": b_speedups.max().item(),
             }
-            print(infos)
+            record.append(infos)
             mlflow.log_metrics(
                 infos,
                 step=global_steps,
             )
+            for k,v in infos.items():
+                print(f"{k}: {v:.2f}")
             end_u = time.time()
             print(f"Update Time: {(end_u - start_u)/60:.1f} Minutes")
         mlflow.end_run()
+
+    with open(Config.config.tiramisu.logs_dir + f"/{experiment_name}.json", "w") as f:
+        json.dump(record, f, indent=4)
 
     ray.shutdown()

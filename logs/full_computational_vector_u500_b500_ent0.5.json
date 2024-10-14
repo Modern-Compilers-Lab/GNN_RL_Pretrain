@@ -1,0 +1,5002 @@
+[
+    {
+        "Entropy": 3.1106345653533936,
+        "Episode Length Mean": 7.686567164179101,
+        "Policy Loss": 1.8228038200177255,
+        "Value Loss": 5.564316827803849,
+        "Total Loss": 11.032179903239015,
+        "Reward Min": -2.665473461151123,
+        "Reward Average": -0.3478032350540161,
+        "Reward Max": 0.6334330439567566
+    },
+    {
+        "Entropy": 3.033247947692871,
+        "Episode Length Mean": 4.621621621621625,
+        "Policy Loss": 0.15000998225877987,
+        "Value Loss": 0.5695339934900403,
+        "Total Loss": -0.42048571817576874,
+        "Reward Min": -1.4430137872695923,
+        "Reward Average": -0.26890769600868225,
+        "Reward Max": 0.6001772284507751
+    },
+    {
+        "Entropy": 2.9577343463897705,
+        "Episode Length Mean": 4.4521739130434765,
+        "Policy Loss": 0.5357442828826607,
+        "Value Loss": 0.49648278392851347,
+        "Total Loss": -0.20105879008769992,
+        "Reward Min": -2.2055859565734863,
+        "Reward Average": -0.2063429355621338,
+        "Reward Max": 0.6001772284507751
+    },
+    {
+        "Entropy": 3.083935022354126,
+        "Episode Length Mean": 3.773722627737225,
+        "Policy Loss": 0.19929026532918212,
+        "Value Loss": 0.33781994972378027,
+        "Total Loss": -0.9156953282654285,
+        "Reward Min": -4.104953289031982,
+        "Reward Average": -0.20960880815982819,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 3.2005627155303955,
+        "Episode Length Mean": 5.565217391304349,
+        "Policy Loss": 0.35881086159497505,
+        "Value Loss": 0.534106697421521,
+        "Total Loss": -0.33039783872663986,
+        "Reward Min": -3.5347793102264404,
+        "Reward Average": -0.3026539385318756,
+        "Reward Max": 0.6001772284507751
+    },
+    {
+        "Entropy": 3.1012868881225586,
+        "Episode Length Mean": 4.031007751937983,
+        "Policy Loss": 0.16612967365654183,
+        "Value Loss": 0.5018342798575761,
+        "Total Loss": -0.5026093907654284,
+        "Reward Min": -3.822695255279541,
+        "Reward Average": -0.3186264932155609,
+        "Reward Max": 0.6001772284507751
+    },
+    {
+        "Entropy": 3.111551284790039,
+        "Episode Length Mean": 3.999999999999999,
+        "Policy Loss": 0.33273005578666925,
+        "Value Loss": 0.7637117025442424,
+        "Total Loss": 0.18537824973464,
+        "Reward Min": -2.570462942123413,
+        "Reward Average": -0.260395884513855,
+        "Reward Max": 0.6001772284507751
+    },
+    {
+        "Entropy": 3.140723705291748,
+        "Episode Length Mean": 4.616071428571426,
+        "Policy Loss": 0.5126488259993495,
+        "Value Loss": 0.3746759521309287,
+        "Total Loss": -0.4196806736290454,
+        "Reward Min": -4.551176071166992,
+        "Reward Average": -0.3522312045097351,
+        "Reward Max": 0.6001772284507751
+    },
+    {
+        "Entropy": 3.209584951400757,
+        "Episode Length Mean": 5.744444444444448,
+        "Policy Loss": 0.44059490133076906,
+        "Value Loss": 1.5289920847862957,
+        "Total Loss": 1.8160035423934462,
+        "Reward Min": -3.548699140548706,
+        "Reward Average": -0.39972203969955444,
+        "Reward Max": 0.8670122623443604
+    },
+    {
+        "Entropy": 3.2056386470794678,
+        "Episode Length Mean": 6.192771084337351,
+        "Policy Loss": 0.21759402309544384,
+        "Value Loss": 0.4208923536352814,
+        "Total Loss": -0.5984416026622058,
+        "Reward Min": -3.548699140548706,
+        "Reward Average": -0.3980797529220581,
+        "Reward Max": 0.9703387022018433
+    },
+    {
+        "Entropy": 3.294205665588379,
+        "Episode Length Mean": 6.649350649350649,
+        "Policy Loss": 0.2996678372728638,
+        "Value Loss": 0.2611484411172568,
+        "Total Loss": -0.7523521445691588,
+        "Reward Min": -3.5347793102264404,
+        "Reward Average": -0.37878337502479553,
+        "Reward Max": 0.6334330439567566
+    },
+    {
+        "Entropy": 3.072066307067871,
+        "Episode Length Mean": 4.885714285714287,
+        "Policy Loss": 0.06002035873825663,
+        "Value Loss": 0.31179033825173963,
+        "Total Loss": -0.8602514509111643,
+        "Reward Min": -3.5150303840637207,
+        "Reward Average": -0.3294174075126648,
+        "Reward Max": 0.6001772284507751
+    },
+    {
+        "Entropy": 3.2374894618988037,
+        "Episode Length Mean": 4.274999999999998,
+        "Policy Loss": 0.12408072326797993,
+        "Value Loss": 0.09021971130277959,
+        "Total Loss": -1.2182270735502239,
+        "Reward Min": -4.34678840637207,
+        "Reward Average": -0.2294619232416153,
+        "Reward Max": 0.5074549317359924
+    },
+    {
+        "Entropy": 3.112363338470459,
+        "Episode Length Mean": 4.6486486486486465,
+        "Policy Loss": 0.17335473012644792,
+        "Value Loss": 0.39673862152267253,
+        "Total Loss": -0.49937924183905125,
+        "Reward Min": -4.559864044189453,
+        "Reward Average": -0.3610830307006836,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 3.0160133838653564,
+        "Episode Length Mean": 3.580419580419578,
+        "Policy Loss": 0.1256337070371955,
+        "Value Loss": 0.2055475790984928,
+        "Total Loss": -0.8902023192495108,
+        "Reward Min": -1.0633188486099243,
+        "Reward Average": -0.20742079615592957,
+        "Reward Max": 0.9625716209411621
+    },
+    {
+        "Entropy": 3.058107614517212,
+        "Episode Length Mean": 3.9689922480620163,
+        "Policy Loss": 0.547281404491514,
+        "Value Loss": 1.0537233809009197,
+        "Total Loss": 1.222589442506432,
+        "Reward Min": -3.5347793102264404,
+        "Reward Average": -0.21189382672309875,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 3.3373358249664307,
+        "Episode Length Mean": 6.180722891566265,
+        "Policy Loss": 0.4449740694835782,
+        "Value Loss": 0.29999154747929424,
+        "Total Loss": -0.3860869612544774,
+        "Reward Min": -4.104953289031982,
+        "Reward Average": -0.38984984159469604,
+        "Reward Max": 0.4795784056186676
+    },
+    {
+        "Entropy": 3.265484094619751,
+        "Episode Length Mean": 5.576086956521738,
+        "Policy Loss": 0.1832542009651661,
+        "Value Loss": 0.42738908552564686,
+        "Total Loss": -0.35014422982931137,
+        "Reward Min": -3.5347793102264404,
+        "Reward Average": -0.29516786336898804,
+        "Reward Max": 0.7034370303153992
+    },
+    {
+        "Entropy": 3.283463478088379,
+        "Episode Length Mean": 4.885714285714284,
+        "Policy Loss": 0.1698266864841571,
+        "Value Loss": 0.11303834710270165,
+        "Total Loss": -0.9860994331538679,
+        "Reward Min": -4.551176071166992,
+        "Reward Average": -0.3240831792354584,
+        "Reward Max": 0.6001772284507751
+    },
+    {
+        "Entropy": 3.313253879547119,
+        "Episode Length Mean": 5.548387096774196,
+        "Policy Loss": 0.2366484059020877,
+        "Value Loss": 0.25331240822561085,
+        "Total Loss": -0.6037609688937664,
+        "Reward Min": -3.548699140548706,
+        "Reward Average": -0.25964316725730896,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 3.253300905227661,
+        "Episode Length Mean": 3.5170068027210846,
+        "Policy Loss": 0.09767116981674917,
+        "Value Loss": 0.13658680196385822,
+        "Total Loss": -0.9278700370341543,
+        "Reward Min": -2.474729299545288,
+        "Reward Average": -0.20079605281352997,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 3.2533109188079834,
+        "Episode Length Mean": 5.139999999999997,
+        "Policy Loss": 0.21409885864704847,
+        "Value Loss": 0.1778095723129808,
+        "Total Loss": -0.7247793320566417,
+        "Reward Min": -3.1683576107025146,
+        "Reward Average": -0.26454633474349976,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 3.291811943054199,
+        "Episode Length Mean": 6.180722891566261,
+        "Policy Loss": 0.14998015831224618,
+        "Value Loss": 0.16511345363687724,
+        "Total Loss": -0.7741003762930632,
+        "Reward Min": -3.5347793102264404,
+        "Reward Average": -0.3107158839702606,
+        "Reward Max": 0.9625716209411621
+    },
+    {
+        "Entropy": 3.089172124862671,
+        "Episode Length Mean": 4.720720720720721,
+        "Policy Loss": 0.034141384705435526,
+        "Value Loss": 0.10566935851238665,
+        "Total Loss": -0.9666309393942356,
+        "Reward Min": -1.096820592880249,
+        "Reward Average": -0.19948069751262665,
+        "Reward Max": 0.6001772284507751
+    },
+    {
+        "Entropy": 2.6929714679718018,
+        "Episode Length Mean": 4.063492063492064,
+        "Policy Loss": 0.13333170450641774,
+        "Value Loss": 0.20217334828339517,
+        "Total Loss": -0.6157578974962236,
+        "Reward Min": -0.985344648361206,
+        "Reward Average": -0.1955217868089676,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 3.0635454654693604,
+        "Episode Length Mean": 4.134920634920637,
+        "Policy Loss": 0.34247907204553496,
+        "Value Loss": 0.20864633517339823,
+        "Total Loss": -0.41706742718815815,
+        "Reward Min": -3.5347793102264404,
+        "Reward Average": -0.21746762096881866,
+        "Reward Max": 1.0375701189041138
+    },
+    {
+        "Entropy": 3.228015661239624,
+        "Episode Length Mean": 6.02325581395349,
+        "Policy Loss": 0.28353739576414244,
+        "Value Loss": 0.3606234208564274,
+        "Total Loss": -0.17683462612330908,
+        "Reward Min": -4.34678840637207,
+        "Reward Average": -0.506482720375061,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 3.219109535217285,
+        "Episode Length Mean": 5.33333333333333,
+        "Policy Loss": 0.06054956687148656,
+        "Value Loss": 0.38105642376467574,
+        "Total Loss": -0.3109524287283421,
+        "Reward Min": -4.551176071166992,
+        "Reward Average": -0.26347115635871887,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 3.1174817085266113,
+        "Episode Length Mean": 4.177419354838709,
+        "Policy Loss": 0.32737648440524947,
+        "Value Loss": 0.28586609615013003,
+        "Total Loss": -0.15123018994927406,
+        "Reward Min": -1.9425058364868164,
+        "Reward Average": -0.138177290558815,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 3.0575547218322754,
+        "Episode Length Mean": 3.2000000000000006,
+        "Policy Loss": 0.2145800595171749,
+        "Value Loss": 0.1883786648977548,
+        "Total Loss": -0.4853449407964946,
+        "Reward Min": -4.551176071166992,
+        "Reward Average": -0.20102787017822266,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 3.351555109024048,
+        "Episode Length Mean": 7.536231884057968,
+        "Policy Loss": 0.30942505504935974,
+        "Value Loss": 0.27786370960529894,
+        "Total Loss": -0.22510685771703717,
+        "Reward Min": -4.551176071166992,
+        "Reward Average": -0.4698943495750427,
+        "Reward Max": 1.0375701189041138
+    },
+    {
+        "Entropy": 3.267256259918213,
+        "Episode Length Mean": 5.597826086956522,
+        "Policy Loss": 0.3824871396645904,
+        "Value Loss": 0.2038730177446269,
+        "Total Loss": -0.2717907018959523,
+        "Reward Min": -3.5150303840637207,
+        "Reward Average": -0.2987273037433624,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 3.264198064804077,
+        "Episode Length Mean": 5.3298969072164954,
+        "Policy Loss": 0.06432597507955509,
+        "Value Loss": 0.2545020757243037,
+        "Total Loss": -0.4502022564411162,
+        "Reward Min": -3.9646389484405518,
+        "Reward Average": -0.3097153604030609,
+        "Reward Max": 0.6706329584121704
+    },
+    {
+        "Entropy": 3.178536891937256,
+        "Episode Length Mean": 5.399999999999999,
+        "Policy Loss": 0.06501808765460737,
+        "Value Loss": 0.15099317068234086,
+        "Total Loss": -0.5878210039809346,
+        "Reward Min": -1.4510903358459473,
+        "Reward Average": -0.13734795153141022,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 3.0845415592193604,
+        "Episode Length Mean": 3.7999999999999994,
+        "Policy Loss": 0.12296357989544049,
+        "Value Loss": 0.3433260847814381,
+        "Total Loss": -0.15415384806692597,
+        "Reward Min": -3.822695255279541,
+        "Reward Average": -0.2401270568370819,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 3.174004077911377,
+        "Episode Length Mean": 5.333333333333331,
+        "Policy Loss": 0.1035998121951708,
+        "Value Loss": 0.18634288350585848,
+        "Total Loss": -0.46866730228066444,
+        "Reward Min": -3.5150303840637207,
+        "Reward Average": -0.23073948919773102,
+        "Reward Max": 1.0375701189041138
+    },
+    {
+        "Entropy": 3.0419092178344727,
+        "Episode Length Mean": 5.3333333333333295,
+        "Policy Loss": 0.2938732644543051,
+        "Value Loss": 0.22046099114231765,
+        "Total Loss": -0.18716370314359668,
+        "Reward Min": -4.34678840637207,
+        "Reward Average": -0.1253386288881302,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 3.2701992988586426,
+        "Episode Length Mean": 5.319587628865975,
+        "Policy Loss": 0.14689260469458532,
+        "Value Loss": 0.21769486970151777,
+        "Total Loss": -0.35730975307524204,
+        "Reward Min": -3.548699140548706,
+        "Reward Average": -0.24889928102493286,
+        "Reward Max": 0.6787844896316528
+    },
+    {
+        "Entropy": 3.288606643676758,
+        "Episode Length Mean": 4.830188679245282,
+        "Policy Loss": 0.23739542067050934,
+        "Value Loss": 0.21244987740647048,
+        "Total Loss": -0.2530969865620136,
+        "Reward Min": -3.5347793102264404,
+        "Reward Average": -0.27667978405952454,
+        "Reward Max": 0.6001772284507751
+    },
+    {
+        "Entropy": 3.2556819915771484,
+        "Episode Length Mean": 5.079207920792076,
+        "Policy Loss": 0.16780192148871717,
+        "Value Loss": 0.19513957900926468,
+        "Total Loss": -0.3397864047437908,
+        "Reward Min": -3.5347793102264404,
+        "Reward Average": -0.2598315477371216,
+        "Reward Max": 0.9625716209411621
+    },
+    {
+        "Entropy": 3.2456297874450684,
+        "Episode Length Mean": 5.019417475728153,
+        "Policy Loss": 0.14995001559145743,
+        "Value Loss": 0.3244925956241786,
+        "Total Loss": -0.04356373287737371,
+        "Reward Min": -3.862828493118286,
+        "Reward Average": -0.38522109389305115,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 3.066265106201172,
+        "Episode Length Mean": 3.579310344827587,
+        "Policy Loss": 0.19072403153404596,
+        "Value Loss": 0.304560981108807,
+        "Total Loss": 0.013155005872249586,
+        "Reward Min": -4.551176071166992,
+        "Reward Average": -0.23907986283302307,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 3.1390204429626465,
+        "Episode Length Mean": 3.601398601398601,
+        "Policy Loss": 0.12202224112115799,
+        "Value Loss": 0.09241867461241782,
+        "Total Loss": -0.5057581663131714,
+        "Reward Min": -2.582462787628174,
+        "Reward Average": -0.12888610363006592,
+        "Reward Max": 0.6334330439567566
+    },
+    {
+        "Entropy": 3.2677600383758545,
+        "Episode Length Mean": 4.547826086956518,
+        "Policy Loss": 0.17946627113269642,
+        "Value Loss": 0.3250985769554973,
+        "Total Loss": 0.006243615411222009,
+        "Reward Min": -3.5783135890960693,
+        "Reward Average": -0.3802909553050995,
+        "Reward Max": 0.8670122623443604
+    },
+    {
+        "Entropy": 3.2512733936309814,
+        "Episode Length Mean": 5.608695652173914,
+        "Policy Loss": 0.34715383872389793,
+        "Value Loss": 0.4300758731551466,
+        "Total Loss": 0.39972870796918863,
+        "Reward Min": -3.5347793102264404,
+        "Reward Average": -0.3515164256095886,
+        "Reward Max": 1.0375701189041138
+    },
+    {
+        "Entropy": 3.2866971492767334,
+        "Episode Length Mean": 5.058823529411767,
+        "Policy Loss": 0.1323525060433894,
+        "Value Loss": 0.14857188647147268,
+        "Total Loss": -0.35817343369126314,
+        "Reward Min": -2.5268497467041016,
+        "Reward Average": -0.21106667816638947,
+        "Reward Max": 0.8897557854652405
+    },
+    {
+        "Entropy": 3.2401046752929688,
+        "Episode Length Mean": 4.914285714285715,
+        "Policy Loss": 0.13220879659638743,
+        "Value Loss": 0.6926440042443577,
+        "Total Loss": 0.7590027824044225,
+        "Reward Min": -4.34678840637207,
+        "Reward Average": -0.2431129813194275,
+        "Reward Max": 0.6334330439567566
+    },
+    {
+        "Entropy": 3.245865821838379,
+        "Episode Length Mean": 5.670329670329671,
+        "Policy Loss": 0.23053893819451335,
+        "Value Loss": 0.15929906960809606,
+        "Total Loss": -0.19985690712928772,
+        "Reward Min": -3.18491792678833,
+        "Reward Average": -0.31218281388282776,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 3.273280620574951,
+        "Episode Length Mean": 5.343750000000001,
+        "Policy Loss": 0.23170686583034694,
+        "Value Loss": 0.3554583084769547,
+        "Total Loss": 0.19604181032627813,
+        "Reward Min": -2.554896116256714,
+        "Reward Average": -0.2092379778623581,
+        "Reward Max": 0.8670122623443604
+    },
+    {
+        "Entropy": 3.215862512588501,
+        "Episode Length Mean": 4.796296296296299,
+        "Policy Loss": 0.0032822221983224,
+        "Value Loss": 0.876420022221282,
+        "Total Loss": 1.072830172255635,
+        "Reward Min": -3.5347793102264404,
+        "Reward Average": -0.28507938981056213,
+        "Reward Max": 0.6001772284507751
+    },
+    {
+        "Entropy": 3.0504510402679443,
+        "Episode Length Mean": 4.768518518518515,
+        "Policy Loss": 0.2725880295038224,
+        "Value Loss": 0.36839962424710404,
+        "Total Loss": 0.3428001366555691,
+        "Reward Min": -3.5347793102264404,
+        "Reward Average": -0.3167426586151123,
+        "Reward Max": 0.834736168384552
+    },
+    {
+        "Entropy": 2.9141077995300293,
+        "Episode Length Mean": 2.743315508021389,
+        "Policy Loss": -0.031087232579011474,
+        "Value Loss": 0.29419152170885354,
+        "Total Loss": -0.08918383251875645,
+        "Reward Min": -4.551176071166992,
+        "Reward Average": -0.19555366039276123,
+        "Reward Max": 0.6706329584121704
+    },
+    {
+        "Entropy": 3.153503656387329,
+        "Episode Length Mean": 3.6126760563380262,
+        "Policy Loss": 0.14282220043241972,
+        "Value Loss": 0.26050656009465445,
+        "Total Loss": -0.0007099024951458255,
+        "Reward Min": -3.9280614852905273,
+        "Reward Average": -0.19150277972221375,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 3.159017324447632,
+        "Episode Length Mean": 4.499999999999996,
+        "Policy Loss": 0.09315397831960581,
+        "Value Loss": 0.29386655474081635,
+        "Total Loss": 0.024208672344684615,
+        "Reward Min": -4.551176071166992,
+        "Reward Average": -0.37197622656822205,
+        "Reward Max": 0.6001772284507751
+    },
+    {
+        "Entropy": 3.2542552947998047,
+        "Episode Length Mean": 3.6293706293706283,
+        "Policy Loss": 0.6600197325460613,
+        "Value Loss": 1.2048068605363371,
+        "Total Loss": 2.422157445922495,
+        "Reward Min": -4.551176071166992,
+        "Reward Average": -0.21224552392959595,
+        "Reward Max": 0.834736168384552
+    },
+    {
+        "Entropy": 3.1596548557281494,
+        "Episode Length Mean": 3.9461538461538455,
+        "Policy Loss": 0.2358413686743007,
+        "Value Loss": 0.5772849610075357,
+        "Total Loss": 0.7847262462601068,
+        "Reward Min": -3.1683576107025146,
+        "Reward Average": -0.17818041145801544,
+        "Reward Max": 0.6334330439567566
+    },
+    {
+        "Entropy": 2.9936604499816895,
+        "Episode Length Mean": 3.309677419354839,
+        "Policy Loss": 0.10620999615639445,
+        "Value Loss": 0.13116235588677227,
+        "Total Loss": -0.22111544199287891,
+        "Reward Min": -1.164892315864563,
+        "Reward Average": -0.11916432529687881,
+        "Reward Max": 0.834736168384552
+    },
+    {
+        "Entropy": 3.2463834285736084,
+        "Episode Length Mean": 4.69724770642202,
+        "Policy Loss": 0.26117278449237347,
+        "Value Loss": 0.11800219630822542,
+        "Total Loss": -0.11445636209100482,
+        "Reward Min": -1.542906641960144,
+        "Reward Average": -0.16836825013160706,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 3.1729342937469482,
+        "Episode Length Mean": 4.548672566371681,
+        "Policy Loss": 0.11942536858259702,
+        "Value Loss": 0.28581358696101233,
+        "Total Loss": 0.10003798268735395,
+        "Reward Min": -4.34678840637207,
+        "Reward Average": -0.3004717528820038,
+        "Reward Max": 0.8306924700737
+    },
+    {
+        "Entropy": 3.163330316543579,
+        "Episode Length Mean": 4.031496062992123,
+        "Policy Loss": 0.11474351181823289,
+        "Value Loss": 0.13852053438313303,
+        "Total Loss": -0.18328765686601406,
+        "Reward Min": -3.5347793102264404,
+        "Reward Average": -0.25983351469039917,
+        "Reward Max": 0.4795784056186676
+    },
+    {
+        "Entropy": 3.0898327827453613,
+        "Episode Length Mean": 3.6642857142857137,
+        "Policy Loss": 0.2383303493261337,
+        "Value Loss": 0.16790343541651967,
+        "Total Loss": 6.813276559114493e-05,
+        "Reward Min": -4.34678840637207,
+        "Reward Average": -0.2967104911804199,
+        "Reward Max": 0.4795784056186676
+    },
+    {
+        "Entropy": 3.122546911239624,
+        "Episode Length Mean": 4.2644628099173545,
+        "Policy Loss": 0.325411815661937,
+        "Value Loss": 0.2794580426998437,
+        "Total Loss": 0.32379828672856104,
+        "Reward Min": -2.665473461151123,
+        "Reward Average": -0.24470776319503784,
+        "Reward Max": 0.8670122623443604
+    },
+    {
+        "Entropy": 3.1188244819641113,
+        "Episode Length Mean": 3.946153846153845,
+        "Policy Loss": 0.08085583976935591,
+        "Value Loss": 0.1500037531368434,
+        "Total Loss": -0.16699677612632513,
+        "Reward Min": -4.551176071166992,
+        "Reward Average": -0.24886004626750946,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 3.150160312652588,
+        "Episode Length Mean": 4.612612612612609,
+        "Policy Loss": 0.3297859597951173,
+        "Value Loss": 0.27605383447371423,
+        "Total Loss": 0.3402479123324157,
+        "Reward Min": -3.5347793102264404,
+        "Reward Average": -0.24449394643306732,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 3.168124198913574,
+        "Episode Length Mean": 4.8317757009345765,
+        "Policy Loss": 0.16754412138834596,
+        "Value Loss": 0.21735316864214826,
+        "Total Loss": 0.07233549002557993,
+        "Reward Min": -2.6688222885131836,
+        "Reward Average": -0.2495346963405609,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 3.120802164077759,
+        "Episode Length Mean": 3.6453900709219846,
+        "Policy Loss": 0.18147901713382456,
+        "Value Loss": 0.8124940418638288,
+        "Total Loss": 1.3142568469047546,
+        "Reward Min": -4.551176071166992,
+        "Reward Average": -0.1852153241634369,
+        "Reward Max": 0.4795784056186676
+    },
+    {
+        "Entropy": 2.98508620262146,
+        "Episode Length Mean": 2.9942196531791896,
+        "Policy Loss": 0.38898514816537505,
+        "Value Loss": 0.24374587595229966,
+        "Total Loss": 0.38977221399545664,
+        "Reward Min": -4.551176071166992,
+        "Reward Average": -0.10098771750926971,
+        "Reward Max": 0.6334330439567566
+    },
+    {
+        "Entropy": 3.197474241256714,
+        "Episode Length Mean": 4.491228070175435,
+        "Policy Loss": 0.31894913129508484,
+        "Value Loss": 0.1370205112034455,
+        "Total Loss": 0.08711891435086724,
+        "Reward Min": -3.18491792678833,
+        "Reward Average": -0.14886945486068726,
+        "Reward Max": 1.0375701189041138
+    },
+    {
+        "Entropy": 3.2272274494171143,
+        "Episode Length Mean": 6.023529411764704,
+        "Policy Loss": 0.26962893363088386,
+        "Value Loss": 0.2839957794640213,
+        "Total Loss": 0.3336706096306441,
+        "Reward Min": -3.2880501747131348,
+        "Reward Average": -0.2584604322910309,
+        "Reward Max": 0.9625716209411621
+    },
+    {
+        "Entropy": 3.2196404933929443,
+        "Episode Length Mean": 6.493670886075953,
+        "Policy Loss": 0.14817631500773126,
+        "Value Loss": 0.1592761380306911,
+        "Total Loss": -0.017435700632631806,
+        "Reward Min": -3.548699140548706,
+        "Reward Average": -0.28506019711494446,
+        "Reward Max": 0.6787844896316528
+    },
+    {
+        "Entropy": 3.2233216762542725,
+        "Episode Length Mean": 5.775280898876405,
+        "Policy Loss": 0.12819178705103698,
+        "Value Loss": 0.06704300642013548,
+        "Total Loss": -0.20047233579680324,
+        "Reward Min": -1.459671974182129,
+        "Reward Average": -0.21695806086063385,
+        "Reward Max": 0.6334330439567566
+    },
+    {
+        "Entropy": 3.1864192485809326,
+        "Episode Length Mean": 4.571428571428567,
+        "Policy Loss": 0.21934283897280696,
+        "Value Loss": 0.4251053775660696,
+        "Total Loss": 0.6055974839255214,
+        "Reward Min": -3.5347793102264404,
+        "Reward Average": -0.19716645777225494,
+        "Reward Max": 1.0030591487884521
+    },
+    {
+        "Entropy": 3.2124695777893066,
+        "Episode Length Mean": 4.452173913043477,
+        "Policy Loss": 0.1315938493935391,
+        "Value Loss": 0.17563121160492304,
+        "Total Loss": 0.025399335660040413,
+        "Reward Min": -3.18491792678833,
+        "Reward Average": -0.17594289779663086,
+        "Reward Max": 0.4795784056186676
+    },
+    {
+        "Entropy": 3.2742085456848145,
+        "Episode Length Mean": 6.1666666666666625,
+        "Policy Loss": 0.34224047604948266,
+        "Value Loss": 0.3351945658214391,
+        "Total Loss": 0.568828598596156,
+        "Reward Min": -3.5208029747009277,
+        "Reward Average": -0.2584260404109955,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 3.191740036010742,
+        "Episode Length Mean": 3.976744186046512,
+        "Policy Loss": 0.37237775558605785,
+        "Value Loss": 0.3401141418144107,
+        "Total Loss": 0.6256700046360494,
+        "Reward Min": -1.8014609813690186,
+        "Reward Average": -0.21922039985656738,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 3.122274160385132,
+        "Episode Length Mean": 3.820895522388059,
+        "Policy Loss": 0.15030588343506684,
+        "Value Loss": 0.23005469969939443,
+        "Total Loss": 0.20493886992335314,
+        "Reward Min": -2.781763792037964,
+        "Reward Average": -0.21480488777160645,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 3.0690367221832275,
+        "Episode Length Mean": 3.2820512820512784,
+        "Policy Loss": 0.044274555111769566,
+        "Value Loss": 0.1123587974580005,
+        "Total Loss": -0.11731384368613364,
+        "Reward Min": -1.0799930095672607,
+        "Reward Average": -0.13132168352603912,
+        "Reward Max": 0.9625716209411621
+    },
+    {
+        "Entropy": 2.9016497135162354,
+        "Episode Length Mean": 3.186335403726707,
+        "Policy Loss": 0.12042865244438872,
+        "Value Loss": 0.11452234181342649,
+        "Total Loss": -0.027606165502220392,
+        "Reward Min": -2.474729299545288,
+        "Reward Average": -0.12339023500680923,
+        "Reward Max": 0.6334330439567566
+    },
+    {
+        "Entropy": 3.174698829650879,
+        "Episode Length Mean": 4.136000000000001,
+        "Policy Loss": 0.3740155859850348,
+        "Value Loss": 0.3348640149924906,
+        "Total Loss": 0.6466754516586662,
+        "Reward Min": -3.822695255279541,
+        "Reward Average": -0.2851414978504181,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 3.2466530799865723,
+        "Episode Length Mean": 4.504347826086954,
+        "Policy Loss": 0.3293514889664948,
+        "Value Loss": 0.38174708862788986,
+        "Total Loss": 0.6978820972144604,
+        "Reward Min": -3.18491792678833,
+        "Reward Average": -0.16384969651699066,
+        "Reward Max": 0.8670122623443604
+    },
+    {
+        "Entropy": 3.229780435562134,
+        "Episode Length Mean": 5.4680851063829765,
+        "Policy Loss": 0.15604296035598966,
+        "Value Loss": 0.277165774255991,
+        "Total Loss": 0.343546023592353,
+        "Reward Min": -2.6688222885131836,
+        "Reward Average": -0.2355973720550537,
+        "Reward Max": 0.6334330439567566
+    },
+    {
+        "Entropy": 3.0195353031158447,
+        "Episode Length Mean": 3.3464052287581687,
+        "Policy Loss": 0.14749570633284753,
+        "Value Loss": 0.1606125854887068,
+        "Total Loss": 0.10503310989588499,
+        "Reward Min": -1.158633828163147,
+        "Reward Average": -0.07473226636648178,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 3.1864676475524902,
+        "Episode Length Mean": 4.112000000000002,
+        "Policy Loss": 0.22069943067617712,
+        "Value Loss": 0.3856866634450854,
+        "Total Loss": 0.6361600523814561,
+        "Reward Min": -3.5347793102264404,
+        "Reward Average": -0.18270635604858398,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 3.1256442070007324,
+        "Episode Length Mean": 3.4697986577181212,
+        "Policy Loss": -0.0343118331511505,
+        "Value Loss": 0.11721037959796382,
+        "Total Loss": -0.10377330752089621,
+        "Reward Min": -2.474729299545288,
+        "Reward Average": -0.12140987068414688,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 2.673788547515869,
+        "Episode Length Mean": 2.1244813278008263,
+        "Policy Loss": 0.03677591690211556,
+        "Value Loss": 0.04883837592205966,
+        "Total Loss": -0.18498713057488206,
+        "Reward Min": -1.245230793952942,
+        "Reward Average": -0.04876977950334549,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 2.99721622467041,
+        "Episode Length Mean": 3.4829931972789123,
+        "Policy Loss": 0.11687803629320109,
+        "Value Loss": 0.2755304590100423,
+        "Total Loss": 0.33575993636623014,
+        "Reward Min": -4.551176071166992,
+        "Reward Average": -0.11651798337697983,
+        "Reward Max": 1.0433666706085205
+    },
+    {
+        "Entropy": 3.1621060371398926,
+        "Episode Length Mean": 5.306122448979587,
+        "Policy Loss": 0.24982142541557548,
+        "Value Loss": 0.27637434285134077,
+        "Total Loss": 0.46815055515617127,
+        "Reward Min": -3.2107903957366943,
+        "Reward Average": -0.2537706792354584,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 3.1795032024383545,
+        "Episode Length Mean": 4.364406779661016,
+        "Policy Loss": 0.20930993114598095,
+        "Value Loss": 0.5173379390616902,
+        "Total Loss": 0.9219763940200207,
+        "Reward Min": -4.124204158782959,
+        "Reward Average": -0.14138558506965637,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 3.171429395675659,
+        "Episode Length Mean": 4.3025210084033585,
+        "Policy Loss": 0.1183382850576891,
+        "Value Loss": 0.28731130994856335,
+        "Total Loss": 0.40911147184669966,
+        "Reward Min": -2.474729299545288,
+        "Reward Average": -0.11162415891885757,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 2.693268060684204,
+        "Episode Length Mean": 2.544554455445545,
+        "Policy Loss": 0.04785005991288926,
+        "Value Loss": 0.10394700046163056,
+        "Total Loss": 0.0067402590066194465,
+        "Reward Min": -4.559864044189453,
+        "Reward Average": -0.08300941437482834,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 2.2464709281921387,
+        "Episode Length Mean": 1.9768339768339769,
+        "Policy Loss": 0.17973989853635436,
+        "Value Loss": 0.18902682140469543,
+        "Total Loss": 0.2907134513370692,
+        "Reward Min": -2.6128602027893066,
+        "Reward Average": -0.011907967738807201,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 3.10638427734375,
+        "Episode Length Mean": 4.452173913043479,
+        "Policy Loss": 0.0799365668790415,
+        "Value Loss": 0.25254546455107624,
+        "Total Loss": 0.3049752386286854,
+        "Reward Min": -2.793062448501587,
+        "Reward Average": -0.09594915062189102,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 2.47048020362854,
+        "Episode Length Mean": 3.710144927536235,
+        "Policy Loss": 0.13152382627595216,
+        "Value Loss": 0.12169822532450782,
+        "Total Loss": 0.13236958906054497,
+        "Reward Min": -1.0525556802749634,
+        "Reward Average": 0.08325706422328949,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 2.9851059913635254,
+        "Episode Length Mean": 5.222222222222221,
+        "Policy Loss": 0.19448213884606957,
+        "Value Loss": 0.1913711932720616,
+        "Total Loss": 0.29241134086623793,
+        "Reward Min": -3.18491792678833,
+        "Reward Average": -0.1818670779466629,
+        "Reward Max": 0.9625716209411621
+    },
+    {
+        "Entropy": 3.0511016845703125,
+        "Episode Length Mean": 3.772058823529411,
+        "Policy Loss": 0.11765582184307281,
+        "Value Loss": 0.12814370216801757,
+        "Total Loss": 0.10736275976523761,
+        "Reward Min": -3.1683576107025146,
+        "Reward Average": -0.07947836071252823,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 2.9978373050689697,
+        "Episode Length Mean": 2.959537572254332,
+        "Policy Loss": 0.0392412534856703,
+        "Value Loss": 0.14350581413600594,
+        "Total Loss": 0.07455879962071778,
+        "Reward Min": -4.551176071166992,
+        "Reward Average": -0.03327551484107971,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 2.9143247604370117,
+        "Episode Length Mean": 3.5763888888888875,
+        "Policy Loss": 0.16629833960905668,
+        "Value Loss": 0.13407435617409638,
+        "Total Loss": 0.18080224609002468,
+        "Reward Min": -1.245230793952942,
+        "Reward Average": 0.01814771629869938,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 2.9830331802368164,
+        "Episode Length Mean": 4.196721311475408,
+        "Policy Loss": -0.08817089337389918,
+        "Value Loss": 0.3946614274755121,
+        "Total Loss": 0.4492253065109251,
+        "Reward Min": -3.507725715637207,
+        "Reward Average": -0.07643531262874603,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 2.747178077697754,
+        "Episode Length Mean": 5.688888888888885,
+        "Policy Loss": 0.2798868706449867,
+        "Value Loss": 0.18841763958334926,
+        "Total Loss": 0.4342743442393838,
+        "Reward Min": -0.7965518236160278,
+        "Reward Average": 0.08690747618675232,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 2.9364442825317383,
+        "Episode Length Mean": 3.5068493150684943,
+        "Policy Loss": 0.08970334078185262,
+        "Value Loss": 0.0748853910481557,
+        "Total Loss": 0.007378007285296908,
+        "Reward Min": -1.245230793952942,
+        "Reward Average": -0.03560813516378403,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 2.855164051055908,
+        "Episode Length Mean": 3.3161290322580648,
+        "Policy Loss": 0.09205163596197963,
+        "Value Loss": 0.08241448318585755,
+        "Total Loss": 0.0253226205240935,
+        "Reward Min": -1.5528925657272339,
+        "Reward Average": -0.06354878097772598,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 3.0372915267944336,
+        "Episode Length Mean": 4.13709677419355,
+        "Policy Loss": 0.14073006785474715,
+        "Value Loss": 0.20492608367931092,
+        "Total Loss": 0.31762006646022195,
+        "Reward Min": -2.1514265537261963,
+        "Reward Average": -0.03170570731163025,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 2.9452342987060547,
+        "Episode Length Mean": 3.303225806451612,
+        "Policy Loss": 0.04918368009384723,
+        "Value Loss": 0.1095083347754553,
+        "Total Loss": 0.03639602521434425,
+        "Reward Min": -1.0525556802749634,
+        "Reward Average": -0.027749614790081978,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 3.1086511611938477,
+        "Episode Length Mean": 5.169999999999995,
+        "Policy Loss": 0.34888985939323913,
+        "Value Loss": 0.1639835234964267,
+        "Total Loss": 0.44405033672228456,
+        "Reward Min": -3.5150303840637207,
+        "Reward Average": -0.062401991337537766,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 3.1546432971954346,
+        "Episode Length Mean": 4.566371681415926,
+        "Policy Loss": 0.175229717977345,
+        "Value Loss": 0.19685678230598574,
+        "Total Loss": 0.33936952566727996,
+        "Reward Min": -3.5347793102264404,
+        "Reward Average": -0.1713310033082962,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 3.174121141433716,
+        "Episode Length Mean": 4.145161290322577,
+        "Policy Loss": 0.010935310390777893,
+        "Value Loss": 0.13604037661571056,
+        "Total Loss": 0.07693045306950812,
+        "Reward Min": -3.5347793102264404,
+        "Reward Average": -0.08840525895357132,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 2.3636698722839355,
+        "Episode Length Mean": 2.1603375527426145,
+        "Policy Loss": 0.08405868874979205,
+        "Value Loss": 0.0955209438689053,
+        "Total Loss": 0.10246424679644403,
+        "Reward Min": -4.551176071166992,
+        "Reward Average": -0.12304753810167313,
+        "Reward Max": 1.0375701189041138
+    },
+    {
+        "Entropy": 2.497041940689087,
+        "Episode Length Mean": 2.064516129032258,
+        "Policy Loss": 0.11445323086809367,
+        "Value Loss": 0.15705958675243886,
+        "Total Loss": 0.2381429271772504,
+        "Reward Min": -4.551176071166992,
+        "Reward Average": -0.07078766822814941,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 3.095165491104126,
+        "Episode Length Mean": 3.6013986013985995,
+        "Policy Loss": 0.08375189185608178,
+        "Value Loss": 0.07194118329789487,
+        "Total Loss": 0.017448451835662102,
+        "Reward Min": -3.5347793102264404,
+        "Reward Average": -0.10416733473539352,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 3.131126642227173,
+        "Episode Length Mean": 3.8646616541353387,
+        "Policy Loss": 0.2064957702532411,
+        "Value Loss": 0.17020557483192542,
+        "Total Loss": 0.3462626799009742,
+        "Reward Min": -4.551176071166992,
+        "Reward Average": -0.12276694178581238,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 3.035525321960449,
+        "Episode Length Mean": 3.346405228758169,
+        "Policy Loss": -0.014411427109735076,
+        "Value Loss": 0.12052631285041572,
+        "Total Loss": 0.0415881089866161,
+        "Reward Min": -1.245230793952942,
+        "Reward Average": -0.05686366185545921,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 2.822117328643799,
+        "Episode Length Mean": 2.8876404494381993,
+        "Policy Loss": 0.10278623551130299,
+        "Value Loss": 0.12726047873729843,
+        "Total Loss": 0.19113417807966473,
+        "Reward Min": -1.4414737224578857,
+        "Reward Average": 0.06392138451337814,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 2.725489616394043,
+        "Episode Length Mean": 2.779569892473117,
+        "Policy Loss": -0.010234205750748508,
+        "Value Loss": 0.1358399498276412,
+        "Total Loss": 0.10828792466782035,
+        "Reward Min": -4.551176071166992,
+        "Reward Average": 0.000540451321285218,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 2.479368209838867,
+        "Episode Length Mean": 3.4133333333333353,
+        "Policy Loss": 0.16455943719483906,
+        "Value Loss": 0.14379298919811845,
+        "Total Loss": 0.29218790633603947,
+        "Reward Min": -1.5528925657272339,
+        "Reward Average": 0.05737895146012306,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 2.9388349056243896,
+        "Episode Length Mean": 3.887218045112782,
+        "Policy Loss": 0.28040288807824243,
+        "Value Loss": 0.18545052944682533,
+        "Total Loss": 0.47519467677921057,
+        "Reward Min": -1.245230793952942,
+        "Reward Average": 0.021964063867926598,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 3.0138044357299805,
+        "Episode Length Mean": 4.047244094488187,
+        "Policy Loss": 0.08884355988993778,
+        "Value Loss": 0.19782903732266277,
+        "Total Loss": 0.30969951697625225,
+        "Reward Min": -3.5150303840637207,
+        "Reward Average": -0.08361031115055084,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 2.82468843460083,
+        "Episode Length Mean": 2.666666666666667,
+        "Policy Loss": 0.038938692829106,
+        "Value Loss": 0.047604589315596975,
+        "Total Loss": -0.020094028208404783,
+        "Reward Min": -1.1764311790466309,
+        "Reward Average": -0.018068434670567513,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 2.584700107574463,
+        "Episode Length Mean": 2.142259414225939,
+        "Policy Loss": 0.08760253462241963,
+        "Value Loss": 0.21812276495620606,
+        "Total Loss": 0.3705932451412082,
+        "Reward Min": -1.5932378768920898,
+        "Reward Average": -0.016132939606904984,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 2.7711079120635986,
+        "Episode Length Mean": 3.3012820512820484,
+        "Policy Loss": 0.09687030952773056,
+        "Value Loss": 0.14592719078063957,
+        "Total Loss": 0.24035702436231082,
+        "Reward Min": -1.5528925657272339,
+        "Reward Average": -0.05799349769949913,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 2.618530511856079,
+        "Episode Length Mean": 2.7795698924731167,
+        "Policy Loss": 0.07305624103173614,
+        "Value Loss": 0.09273130283690988,
+        "Total Loss": 0.12198833958245814,
+        "Reward Min": -1.245230793952942,
+        "Reward Average": -0.019109932705760002,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 2.7542152404785156,
+        "Episode Length Mean": 2.9825581395348837,
+        "Policy Loss": 0.048372489356552265,
+        "Value Loss": 0.06043107120785861,
+        "Total Loss": 0.025054897414520383,
+        "Reward Min": -1.1764311790466309,
+        "Reward Average": -0.02313079498708248,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 2.742443084716797,
+        "Episode Length Mean": 2.9152542372881323,
+        "Policy Loss": 0.038714810965757344,
+        "Value Loss": 0.10357857588678601,
+        "Total Loss": 0.09775169985368846,
+        "Reward Min": -3.18491792678833,
+        "Reward Average": -0.08086999505758286,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 2.9547863006591797,
+        "Episode Length Mean": 3.065868263473055,
+        "Policy Loss": 0.1429004238452763,
+        "Value Loss": 0.07353669876465571,
+        "Total Loss": 0.1344706350937486,
+        "Reward Min": -3.5150303840637207,
+        "Reward Average": -0.0923667773604393,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 3.1569664478302,
+        "Episode Length Mean": 4.822429906542061,
+        "Policy Loss": 0.1357419033301994,
+        "Value Loss": 0.19104595389217144,
+        "Total Loss": 0.3630825350992382,
+        "Reward Min": -1.1859331130981445,
+        "Reward Average": -0.056313566863536835,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 2.9263479709625244,
+        "Episode Length Mean": 3.4078947368421018,
+        "Policy Loss": 0.3338063182309269,
+        "Value Loss": 0.3760740438010545,
+        "Total Loss": 0.9416835824958976,
+        "Reward Min": -4.551176071166992,
+        "Reward Average": -0.061271511018276215,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 3.0328989028930664,
+        "Episode Length Mean": 4.971153846153848,
+        "Policy Loss": 0.15353541821241382,
+        "Value Loss": 0.1286280814092606,
+        "Total Loss": 0.2716560312546789,
+        "Reward Min": -3.18491792678833,
+        "Reward Average": -0.05072344094514847,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 2.8235061168670654,
+        "Episode Length Mean": 2.8397790055248597,
+        "Policy Loss": 0.11271373467752711,
+        "Value Loss": 0.1299778666580095,
+        "Total Loss": 0.24560716073028738,
+        "Reward Min": -3.822695255279541,
+        "Reward Average": -0.10004889965057373,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 2.238508701324463,
+        "Episode Length Mean": 1.86861313868613,
+        "Policy Loss": 0.03244652712601237,
+        "Value Loss": 0.0432203151867725,
+        "Total Loss": 0.023457548813894395,
+        "Reward Min": -1.0222643613815308,
+        "Reward Average": -0.00779061671346426,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 2.423499584197998,
+        "Episode Length Mean": 2.0157480314960625,
+        "Policy Loss": 0.08138509216951206,
+        "Value Loss": 0.11919838609173894,
+        "Total Loss": 0.19262499501928682,
+        "Reward Min": -4.34678840637207,
+        "Reward Average": -0.056608524173498154,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 2.939354658126831,
+        "Episode Length Mean": 3.822222222222223,
+        "Policy Loss": 0.15226350841112435,
+        "Value Loss": 0.062461387424264096,
+        "Total Loss": 0.1427767225541174,
+        "Reward Min": -1.5528925657272339,
+        "Reward Average": -0.061583131551742554,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 2.9469857215881348,
+        "Episode Length Mean": 3.857142857142856,
+        "Policy Loss": 0.2646694737486541,
+        "Value Loss": 0.0784691401058808,
+        "Total Loss": 0.2854376826435328,
+        "Reward Min": -3.548699140548706,
+        "Reward Average": -0.0947863757610321,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 2.9713001251220703,
+        "Episode Length Mean": 4.452173913043478,
+        "Policy Loss": 0.17546839010901746,
+        "Value Loss": 0.20442220999393612,
+        "Total Loss": 0.4580088132061064,
+        "Reward Min": -4.124204158782959,
+        "Reward Average": -0.16842378675937653,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 2.724768877029419,
+        "Episode Length Mean": 3.1341463414634143,
+        "Policy Loss": 0.12894990714266896,
+        "Value Loss": 0.09574860183056443,
+        "Total Loss": 0.20951478136703372,
+        "Reward Min": -1.5528925657272339,
+        "Reward Average": -0.06208861619234085,
+        "Reward Max": 1.018707513809204
+    },
+    {
+        "Entropy": 2.499121904373169,
+        "Episode Length Mean": 2.1554621848739473,
+        "Policy Loss": 0.09744018455967306,
+        "Value Loss": 0.08269394107628611,
+        "Total Loss": 0.1570692416280509,
+        "Reward Min": -2.554457187652588,
+        "Reward Average": -0.03669295459985733,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 2.7510576248168945,
+        "Episode Length Mean": 2.639175257731957,
+        "Policy Loss": 0.10241055901860815,
+        "Value Loss": 0.16061258409172297,
+        "Total Loss": 0.32559968670830125,
+        "Reward Min": -4.551176071166992,
+        "Reward Average": -0.0903497114777565,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 2.4895408153533936,
+        "Episode Length Mean": 2.245614035087718,
+        "Policy Loss": -0.13181117532076314,
+        "Value Loss": 0.16679401043802503,
+        "Total Loss": 0.10940228262916209,
+        "Reward Min": -2.474729299545288,
+        "Reward Average": 0.017889751121401787,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 2.397462844848633,
+        "Episode Length Mean": 2.627551020408163,
+        "Policy Loss": 0.13755912099441053,
+        "Value Loss": 0.13566833338700232,
+        "Total Loss": 0.32471445156261325,
+        "Reward Min": -3.18491792678833,
+        "Reward Average": 0.05761491134762764,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 1.9374457597732544,
+        "Episode Length Mean": 1.8933823529411744,
+        "Policy Loss": 0.19398118043318388,
+        "Value Loss": 0.7650503509212284,
+        "Total Loss": 1.6636946510989217,
+        "Reward Min": -4.551176071166992,
+        "Reward Average": 0.07616327702999115,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 2.36639404296875,
+        "Episode Length Mean": 2.71052631578947,
+        "Policy Loss": 0.07404219318414107,
+        "Value Loss": 0.23338502319529653,
+        "Total Loss": 0.4756438136100769,
+        "Reward Min": -1.5528925657272339,
+        "Reward Average": 0.0901230052113533,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 2.1571857929229736,
+        "Episode Length Mean": 2.076612903225805,
+        "Policy Loss": 0.03671562531962992,
+        "Value Loss": 0.14024610398337248,
+        "Total Loss": 0.2515714004402979,
+        "Reward Min": -1.245230793952942,
+        "Reward Average": 0.0979662835597992,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 1.9302774667739868,
+        "Episode Length Mean": 2.160337552742615,
+        "Policy Loss": 0.06866035616258157,
+        "Value Loss": 0.09737225179560481,
+        "Total Loss": 0.21160772419534613,
+        "Reward Min": -1.245230793952942,
+        "Reward Average": 0.051794372498989105,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 1.3375458717346191,
+        "Episode Length Mean": 1.4132231404958657,
+        "Policy Loss": -0.03153794672107325,
+        "Value Loss": 0.0682601978769526,
+        "Total Loss": 0.04903366346843539,
+        "Reward Min": -1.1764311790466309,
+        "Reward Average": 0.0387611985206604,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 2.0754451751708984,
+        "Episode Length Mean": 2.3750000000000004,
+        "Policy Loss": 0.17301096138544372,
+        "Value Loss": 0.12887981720268726,
+        "Total Loss": 0.3553262297064066,
+        "Reward Min": -1.245230793952942,
+        "Reward Average": 0.021053137257695198,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 2.6359691619873047,
+        "Episode Length Mean": 3.2611464968152855,
+        "Policy Loss": 0.09966906841145833,
+        "Value Loss": 0.15565951797179875,
+        "Total Loss": 0.33067104197107244,
+        "Reward Min": -1.5565025806427002,
+        "Reward Average": 0.04740481451153755,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 2.687289237976074,
+        "Episode Length Mean": 2.893854748603349,
+        "Policy Loss": -0.025292958234786053,
+        "Value Loss": 0.11603590128652289,
+        "Total Loss": 0.12613097508437932,
+        "Reward Min": -1.5565025806427002,
+        "Reward Average": 0.09618241339921951,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 2.8950507640838623,
+        "Episode Length Mean": 3.3907284768211916,
+        "Policy Loss": 0.10014646488707514,
+        "Value Loss": 0.08071200945414603,
+        "Total Loss": 0.1830719017889351,
+        "Reward Min": -1.245230793952942,
+        "Reward Average": 0.03966912627220154,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 2.585150957107544,
+        "Episode Length Mean": 2.8241758241758252,
+        "Policy Loss": 0.026650077430531355,
+        "Value Loss": 0.12864506780169907,
+        "Total Loss": 0.208135484252125,
+        "Reward Min": -1.1764311790466309,
+        "Reward Average": 0.043646976351737976,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 2.76503324508667,
+        "Episode Length Mean": 3.6549295774647867,
+        "Policy Loss": 0.16628488391143045,
+        "Value Loss": 0.17610959071316762,
+        "Total Loss": 0.43985011859331263,
+        "Reward Min": -1.1764311790466309,
+        "Reward Average": 0.020173929631710052,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 2.9865052700042725,
+        "Episode Length Mean": 4.347457627118644,
+        "Policy Loss": 0.030942023731768124,
+        "Value Loss": 0.12499240064062182,
+        "Total Loss": 0.2005481544183567,
+        "Reward Min": -1.0885108709335327,
+        "Reward Average": 0.012660290114581585,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 2.783754825592041,
+        "Episode Length Mean": 3.107784431137725,
+        "Policy Loss": -0.01482552124070935,
+        "Value Loss": 0.0761390851112083,
+        "Total Loss": 0.06150489090941852,
+        "Reward Min": -1.1764311790466309,
+        "Reward Average": 0.021717600524425507,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 2.663572311401367,
+        "Episode Length Mean": 2.403755868544599,
+        "Policy Loss": 0.046483711637847605,
+        "Value Loss": 0.0605083909176756,
+        "Total Loss": 0.09429379785433417,
+        "Reward Min": -1.245230793952942,
+        "Reward Average": -0.023168761283159256,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 2.5201833248138428,
+        "Episode Length Mean": 2.2787610619469,
+        "Policy Loss": 0.25058093038387597,
+        "Value Loss": 0.11602521967142822,
+        "Total Loss": 0.4088618345558643,
+        "Reward Min": -1.245230793952942,
+        "Reward Average": 0.0007115697371773422,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 2.7069625854492188,
+        "Episode Length Mean": 3.141104294478527,
+        "Policy Loss": 0.04938665253575892,
+        "Value Loss": 0.10621749295387417,
+        "Total Loss": 0.18433955870568755,
+        "Reward Min": -1.542906641960144,
+        "Reward Average": 0.017638280987739563,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 2.6709532737731934,
+        "Episode Length Mean": 2.5098039215686314,
+        "Policy Loss": -0.055025450768880546,
+        "Value Loss": 0.15764120966196066,
+        "Total Loss": 0.19632944208569822,
+        "Reward Min": -1.1764311790466309,
+        "Reward Average": 0.04657752811908722,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 2.5151517391204834,
+        "Episode Length Mean": 3.923664122137404,
+        "Policy Loss": 0.38689697440713633,
+        "Value Loss": 0.2544559333473444,
+        "Total Loss": 0.8296975893899796,
+        "Reward Min": -1.245230793952942,
+        "Reward Average": 0.15536445379257202,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 2.637352228164673,
+        "Episode Length Mean": 3.6906474820143886,
+        "Policy Loss": 0.06528316574986094,
+        "Value Loss": 0.203777541872114,
+        "Total Loss": 0.4157339879311622,
+        "Reward Min": -1.245230793952942,
+        "Reward Average": 0.0786038264632225,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 2.2116973400115967,
+        "Episode Length Mean": 2.5196078431372535,
+        "Policy Loss": 0.10495822783559558,
+        "Value Loss": 0.08314882416743784,
+        "Total Loss": 0.2216026359237729,
+        "Reward Min": -1.245230793952942,
+        "Reward Average": 0.14263419806957245,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 2.22976016998291,
+        "Episode Length Mean": 2.6666666666666634,
+        "Policy Loss": 0.10645330860279496,
+        "Value Loss": 0.14481078484095633,
+        "Total Loss": 0.3531962800770999,
+        "Reward Min": -1.0525556802749634,
+        "Reward Average": 0.1941177099943161,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 2.2281076908111572,
+        "Episode Length Mean": 3.0,
+        "Policy Loss": 0.1897722705034539,
+        "Value Loss": 0.10424242133740338,
+        "Total Loss": 0.3506327223731205,
+        "Reward Min": -3.1965858936309814,
+        "Reward Average": 0.16852588951587677,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 2.4330878257751465,
+        "Episode Length Mean": 3.0476190476190457,
+        "Policy Loss": 0.11523752007633448,
+        "Value Loss": 0.08951382630039008,
+        "Total Loss": 0.23556726495735342,
+        "Reward Min": -1.5292209386825562,
+        "Reward Average": 0.14078772068023682,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 2.3151943683624268,
+        "Episode Length Mean": 2.569999999999998,
+        "Policy Loss": 0.037454818935657386,
+        "Value Loss": 0.0626324500772171,
+        "Total Loss": 0.11078261618968102,
+        "Reward Min": -1.245230793952942,
+        "Reward Average": 0.11052554845809937,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 2.2792775630950928,
+        "Episode Length Mean": 2.598984771573603,
+        "Policy Loss": 0.05668637284543364,
+        "Value Loss": 0.08245451765833424,
+        "Total Loss": 0.16698216565418994,
+        "Reward Min": -1.245230793952942,
+        "Reward Average": 0.11549112200737,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 2.425185441970825,
+        "Episode Length Mean": 2.865921787709496,
+        "Policy Loss": 0.09688348253257573,
+        "Value Loss": 0.07289455656427893,
+        "Total Loss": 0.1913062391104176,
+        "Reward Min": -1.5565025806427002,
+        "Reward Average": 0.12090708315372467,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 2.416123390197754,
+        "Episode Length Mean": 3.844444444444441,
+        "Policy Loss": 0.1287641692906618,
+        "Value Loss": 0.10108600871171802,
+        "Total Loss": 0.2770210513845086,
+        "Reward Min": -1.697053074836731,
+        "Reward Average": 0.09596898406744003,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 2.53593111038208,
+        "Episode Length Mean": 3.5379310344827593,
+        "Policy Loss": 0.07188254583161326,
+        "Value Loss": 0.17809882643632596,
+        "Total Loss": 0.38190555898472667,
+        "Reward Min": -1.245230793952942,
+        "Reward Average": 0.1159094050526619,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 2.2510039806365967,
+        "Episode Length Mean": 3.3594771241830084,
+        "Policy Loss": 0.2017089084256441,
+        "Value Loss": 0.19789896742440763,
+        "Total Loss": 0.5582776679657397,
+        "Reward Min": -1.5314466953277588,
+        "Reward Average": 0.15798087418079376,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 2.084127187728882,
+        "Episode Length Mean": 2.547263681592039,
+        "Policy Loss": 0.10173431562725457,
+        "Value Loss": 0.13827908626990387,
+        "Total Loss": 0.3361418102867902,
+        "Reward Min": -1.510945200920105,
+        "Reward Average": 0.17337492108345032,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 2.0509047508239746,
+        "Episode Length Mean": 2.485436893203879,
+        "Policy Loss": 0.0486183469329262,
+        "Value Loss": 0.0794715031224769,
+        "Total Loss": 0.16906145127723,
+        "Reward Min": -1.245230793952942,
+        "Reward Average": 0.08905815333127975,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 1.9106048345565796,
+        "Episode Length Mean": 2.408450704225354,
+        "Policy Loss": 0.05347943818196654,
+        "Value Loss": 0.11119326110929251,
+        "Total Loss": 0.23623103345744317,
+        "Reward Min": -1.245230793952942,
+        "Reward Average": 0.1600860208272934,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 2.0941648483276367,
+        "Episode Length Mean": 3.08433734939759,
+        "Policy Loss": 0.19186977390199908,
+        "Value Loss": 0.104057848919183,
+        "Total Loss": 0.3627789444290102,
+        "Reward Min": -1.245230793952942,
+        "Reward Average": 0.2148313671350479,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 2.2790420055389404,
+        "Episode Length Mean": 4.418803418803419,
+        "Policy Loss": 0.2209007111378014,
+        "Value Loss": 0.1363910576910712,
+        "Total Loss": 0.4530505416914821,
+        "Reward Min": -1.697053074836731,
+        "Reward Average": 0.10301414132118225,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 2.527069568634033,
+        "Episode Length Mean": 4.7592592592592595,
+        "Policy Loss": 0.11814317852258684,
+        "Value Loss": 0.2900625057518482,
+        "Total Loss": 0.6529655768536028,
+        "Reward Min": -0.9205557107925415,
+        "Reward Average": 0.09897555410861969,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 2.449113607406616,
+        "Episode Length Mean": 3.2611464968152877,
+        "Policy Loss": 0.022807880624895974,
+        "Value Loss": 0.30365997552871693,
+        "Total Loss": 0.5881802674848587,
+        "Reward Min": -3.5347793102264404,
+        "Reward Average": 0.08657752722501755,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 1.9567856788635254,
+        "Episode Length Mean": 2.3971962616822435,
+        "Policy Loss": 0.024750783573836085,
+        "Value Loss": 0.0777084775327239,
+        "Total Loss": 0.14951322751585394,
+        "Reward Min": -1.042223334312439,
+        "Reward Average": 0.024041853845119476,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 1.6911611557006836,
+        "Episode Length Mean": 2.1737288135593187,
+        "Policy Loss": -0.09443341294536364,
+        "Value Loss": 0.10724118666257709,
+        "Total Loss": 0.08783696615137157,
+        "Reward Min": -1.1764311790466309,
+        "Reward Average": 0.05596858263015747,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 2.1168432235717773,
+        "Episode Length Mean": 3.035294117647057,
+        "Policy Loss": 0.05682482769771011,
+        "Value Loss": 0.059773154614958905,
+        "Total Loss": 0.146970905654598,
+        "Reward Min": -1.542906641960144,
+        "Reward Average": 0.1478595733642578,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 1.9135847091674805,
+        "Episode Length Mean": 3.1024096385542146,
+        "Policy Loss": 0.07283203641418369,
+        "Value Loss": 0.21117298211902372,
+        "Total Loss": 0.4697857950814069,
+        "Reward Min": -0.565969705581665,
+        "Reward Average": 0.19780468940734863,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 2.016338348388672,
+        "Episode Length Mean": 3.4362416107382554,
+        "Policy Loss": 0.19647901691496375,
+        "Value Loss": 0.12253920943476265,
+        "Total Loss": 0.410932393744588,
+        "Reward Min": -3.5347793102264404,
+        "Reward Average": 0.11995376646518707,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 2.2132585048675537,
+        "Episode Length Mean": 3.359477124183005,
+        "Policy Loss": 0.0789555129886139,
+        "Value Loss": 0.07346707869146486,
+        "Total Loss": 0.19147103780414906,
+        "Reward Min": -1.5314466953277588,
+        "Reward Average": 0.14065955579280853,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 2.2805731296539307,
+        "Episode Length Mean": 3.413333333333331,
+        "Policy Loss": 0.06596636254107582,
+        "Value Loss": 0.08154243160970508,
+        "Total Loss": 0.1990521738189273,
+        "Reward Min": -1.0525556802749634,
+        "Reward Average": 0.18386653065681458,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 2.2340731620788574,
+        "Episode Length Mean": 3.938461538461535,
+        "Policy Loss": 0.17564877588301894,
+        "Value Loss": 0.1504177267197519,
+        "Total Loss": 0.45409378129988914,
+        "Reward Min": -1.0885108709335327,
+        "Reward Average": 0.20474600791931152,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 2.157789707183838,
+        "Episode Length Mean": 3.7941176470588243,
+        "Policy Loss": 0.06250668596476316,
+        "Value Loss": 0.11563520750496539,
+        "Total Loss": 0.26822820294182737,
+        "Reward Min": -1.425661325454712,
+        "Reward Average": 0.17078731954097748,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 1.964951753616333,
+        "Episode Length Mean": 3.30128205128205,
+        "Policy Loss": 0.10893770609982312,
+        "Value Loss": 0.08078518864931543,
+        "Total Loss": 0.2475899877026676,
+        "Reward Min": -0.48222312331199646,
+        "Reward Average": 0.25648319721221924,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 2.018125295639038,
+        "Episode Length Mean": 3.645390070921984,
+        "Policy Loss": 0.19053148850798599,
+        "Value Loss": 0.15588823030702764,
+        "Total Loss": 0.4774517845362424,
+        "Reward Min": -2.016191005706787,
+        "Reward Average": 0.24903504550457,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 1.962594985961914,
+        "Episode Length Mean": 3.240506329113925,
+        "Policy Loss": 0.09610107861226423,
+        "Value Loss": 0.13271074811927971,
+        "Total Loss": 0.33911933196941396,
+        "Reward Min": -1.245230793952942,
+        "Reward Average": 0.190893292427063,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 1.8274983167648315,
+        "Episode Length Mean": 3.398692810457514,
+        "Policy Loss": 0.12411962857004252,
+        "Value Loss": 0.07835169456666337,
+        "Total Loss": 0.2611090634018182,
+        "Reward Min": -2.016191005706787,
+        "Reward Average": 0.1805100440979004,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 1.7668535709381104,
+        "Episode Length Mean": 3.5202702702702684,
+        "Policy Loss": 0.14834212308051067,
+        "Value Loss": 0.10294107778463515,
+        "Total Loss": 0.33258364838547994,
+        "Reward Min": -3.5347793102264404,
+        "Reward Average": 0.20850689709186554,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 1.5817145109176636,
+        "Episode Length Mean": 2.6580310880829012,
+        "Policy Loss": 0.1679604575037956,
+        "Value Loss": 0.09581543697277085,
+        "Total Loss": 0.33814788609743135,
+        "Reward Min": -1.0525556802749634,
+        "Reward Average": 0.16811661422252655,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 1.5782657861709595,
+        "Episode Length Mean": 3.089820359281434,
+        "Policy Loss": 0.1289288112893701,
+        "Value Loss": 0.17813923442736268,
+        "Total Loss": 0.46401665825396776,
+        "Reward Min": -0.7210246920585632,
+        "Reward Average": 0.19624683260917664,
+        "Reward Max": 1.073842167854309
+    },
+    {
+        "Entropy": 1.6853529214859009,
+        "Episode Length Mean": 2.714285714285713,
+        "Policy Loss": 0.09495844988850875,
+        "Value Loss": 0.2207565242424607,
+        "Total Loss": 0.5178043292835357,
+        "Reward Min": -1.245230793952942,
+        "Reward Average": 0.182405486702919,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 1.4335711002349854,
+        "Episode Length Mean": 2.2599118942731242,
+        "Policy Loss": 0.13210752117447555,
+        "Value Loss": 0.08969624119345099,
+        "Total Loss": 0.2944804853759706,
+        "Reward Min": -1.0525556802749634,
+        "Reward Average": 0.1924322247505188,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 1.4420280456542969,
+        "Episode Length Mean": 2.5221674876847233,
+        "Policy Loss": 0.07523866783594714,
+        "Value Loss": 0.16064117173664272,
+        "Total Loss": 0.37917782226577396,
+        "Reward Min": -1.245230793952942,
+        "Reward Average": 0.2492503821849823,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 1.4413461685180664,
+        "Episode Length Mean": 2.876404494382018,
+        "Policy Loss": 0.07411350877373478,
+        "Value Loss": 0.07901233341544865,
+        "Total Loss": 0.21758262254297744,
+        "Reward Min": -0.5242061018943787,
+        "Reward Average": 0.22625385224819183,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 1.199507474899292,
+        "Episode Length Mean": 2.708994708994707,
+        "Policy Loss": 0.08754581736866385,
+        "Value Loss": 0.1139743310632184,
+        "Total Loss": 0.30264006904326385,
+        "Reward Min": -1.5314466953277588,
+        "Reward Average": 0.302289217710495,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 1.3314316272735596,
+        "Episode Length Mean": 2.982758620689654,
+        "Policy Loss": 0.17441981867887085,
+        "Value Loss": 0.14619489852339015,
+        "Total Loss": 0.4517274564132095,
+        "Reward Min": -0.6103169918060303,
+        "Reward Average": 0.2017841935157776,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 1.5912915468215942,
+        "Episode Length Mean": 3.4276315789473655,
+        "Policy Loss": 0.15132390125654638,
+        "Value Loss": 0.10374018724542107,
+        "Total Loss": 0.3421051008626819,
+        "Reward Min": -1.1764311790466309,
+        "Reward Average": 0.20431199669837952,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 1.4764289855957031,
+        "Episode Length Mean": 2.8926553672316397,
+        "Policy Loss": 0.1125806012423709,
+        "Value Loss": 0.17841094988398257,
+        "Total Loss": 0.45216159988194704,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.22668159008026123,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 1.6638845205307007,
+        "Episode Length Mean": 3.090361445783135,
+        "Policy Loss": 0.11717730545206,
+        "Value Loss": 0.15675910445861518,
+        "Total Loss": 0.412743119522929,
+        "Reward Min": -0.4361996352672577,
+        "Reward Average": 0.23194701969623566,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 1.7089965343475342,
+        "Episode Length Mean": 3.42,
+        "Policy Loss": 0.13332160655409098,
+        "Value Loss": 0.1744865463115275,
+        "Total Loss": 0.4661487974226474,
+        "Reward Min": -1.0525556802749634,
+        "Reward Average": 0.2788057327270508,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 1.6456815004348755,
+        "Episode Length Mean": 3.664285714285714,
+        "Policy Loss": 0.29618359310552483,
+        "Value Loss": 0.13553633344417904,
+        "Total Loss": 0.5547539591789248,
+        "Reward Min": -0.7965518236160278,
+        "Reward Average": 0.27349212765693665,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 1.6334073543548584,
+        "Episode Length Mean": 3.0352941176470583,
+        "Policy Loss": 0.14303785399533803,
+        "Value Loss": 0.1289228962268681,
+        "Total Loss": 0.388360084965825,
+        "Reward Min": -0.7210246920585632,
+        "Reward Average": 0.2550274431705475,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 1.3332608938217163,
+        "Episode Length Mean": 2.51219512195122,
+        "Policy Loss": 0.11017130676191306,
+        "Value Loss": 0.1230089698219673,
+        "Total Loss": 0.34468720201402897,
+        "Reward Min": -1.0525556802749634,
+        "Reward Average": 0.31002676486968994,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 1.243972897529602,
+        "Episode Length Mean": 2.5778894472361777,
+        "Policy Loss": 0.0972540026923525,
+        "Value Loss": 0.12724238412920383,
+        "Total Loss": 0.343841432564659,
+        "Reward Min": -1.245230793952942,
+        "Reward Average": 0.2811260521411896,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.9883038997650146,
+        "Episode Length Mean": 2.098360655737704,
+        "Policy Loss": 0.1476419989485293,
+        "Value Loss": 0.13502047513611612,
+        "Total Loss": 0.413308615796268,
+        "Reward Min": -1.0525556802749634,
+        "Reward Average": 0.2878129184246063,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 1.1014916896820068,
+        "Episode Length Mean": 2.4198113207547145,
+        "Policy Loss": 0.06730160786537454,
+        "Value Loss": 0.13596492790384218,
+        "Total Loss": 0.3305191143881528,
+        "Reward Min": -1.245230793952942,
+        "Reward Average": 0.22250358760356903,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 1.196021318435669,
+        "Episode Length Mean": 2.9314285714285737,
+        "Policy Loss": 0.13908530701883132,
+        "Value Loss": 0.1371543759014457,
+        "Total Loss": 0.4057576470077038,
+        "Reward Min": -1.245230793952942,
+        "Reward Average": 0.22970589995384216,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 1.2041149139404297,
+        "Episode Length Mean": 3.147239263803682,
+        "Policy Loss": 0.12305034021846954,
+        "Value Loss": 0.09449569054413591,
+        "Total Loss": 0.30561304092407227,
+        "Reward Min": -0.5851438641548157,
+        "Reward Average": 0.2408180683851242,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 1.0968341827392578,
+        "Episode Length Mean": 2.7526881720430096,
+        "Policy Loss": 0.09133118612226099,
+        "Value Loss": 0.17576914944220343,
+        "Total Loss": 0.43590952781960374,
+        "Reward Min": -1.018707513809204,
+        "Reward Average": 0.3426237404346466,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 1.1659687757492065,
+        "Episode Length Mean": 2.3348416289592757,
+        "Policy Loss": 0.07601354835787785,
+        "Value Loss": 0.10710625821957366,
+        "Total Loss": 0.28035733546130354,
+        "Reward Min": -1.0525556802749634,
+        "Reward Average": 0.2627027928829193,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 1.108324646949768,
+        "Episode Length Mean": 2.2543859649122795,
+        "Policy Loss": 0.06306356907589361,
+        "Value Loss": 0.07633733539842069,
+        "Total Loss": 0.20666505000554025,
+        "Reward Min": -1.0525556802749634,
+        "Reward Average": 0.25105971097946167,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 1.2016538381576538,
+        "Episode Length Mean": 2.7446808510638294,
+        "Policy Loss": 0.07117336650844663,
+        "Value Loss": 0.12251390039455147,
+        "Total Loss": 0.3078257280867547,
+        "Reward Min": -0.4361996352672577,
+        "Reward Average": 0.37426018714904785,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 1.1930896043777466,
+        "Episode Length Mean": 2.808743169398909,
+        "Policy Loss": 0.12518548837397248,
+        "Value Loss": 0.11491872265469283,
+        "Total Loss": 0.3477532563265414,
+        "Reward Min": -1.0525556802749634,
+        "Reward Average": 0.29356858134269714,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 1.316942811012268,
+        "Episode Length Mean": 2.855555555555551,
+        "Policy Loss": 0.0888698936032597,
+        "Value Loss": 0.08841981698060408,
+        "Total Loss": 0.258310925681144,
+        "Reward Min": -1.0525556802749634,
+        "Reward Average": 0.3320308327674866,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 1.0539729595184326,
+        "Episode Length Mean": 2.155462184873952,
+        "Policy Loss": -0.010944315174128878,
+        "Value Loss": 0.17126804043073207,
+        "Total Loss": 0.3252981440164148,
+        "Reward Min": -1.245230793952942,
+        "Reward Average": 0.2760389447212219,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.9709259271621704,
+        "Episode Length Mean": 2.564999999999998,
+        "Policy Loss": 0.14589334325864908,
+        "Value Loss": 0.08864088280824944,
+        "Total Loss": 0.31762399291619675,
+        "Reward Min": -0.4361996352672577,
+        "Reward Average": 0.2823408246040344,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.8577157855033875,
+        "Episode Length Mean": 2.1880341880341856,
+        "Policy Loss": 0.05322424357291311,
+        "Value Loss": 0.1011780152330175,
+        "Total Loss": 0.2502075782977046,
+        "Reward Min": -1.0525556802749634,
+        "Reward Average": 0.2837361991405487,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 1.042365312576294,
+        "Episode Length Mean": 2.920454545454543,
+        "Policy Loss": 0.14415063220076257,
+        "Value Loss": 0.09343563194852322,
+        "Total Loss": 0.32439694064669317,
+        "Reward Min": -0.4361996352672577,
+        "Reward Average": 0.21853522956371307,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.9828437566757202,
+        "Episode Length Mean": 2.855555555555555,
+        "Policy Loss": 0.10440676438156518,
+        "Value Loss": 0.10940276610199363,
+        "Total Loss": 0.31654887902550394,
+        "Reward Min": -1.0525556802749634,
+        "Reward Average": 0.3854634463787079,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.9666897654533386,
+        "Episode Length Mean": 3.011695906432747,
+        "Policy Loss": 0.20548371598124504,
+        "Value Loss": 0.18818439356982708,
+        "Total Loss": 0.5758097302168608,
+        "Reward Min": -1.245230793952942,
+        "Reward Average": 0.276972234249115,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.9745681285858154,
+        "Episode Length Mean": 3.029411764705879,
+        "Policy Loss": 0.14995175297372043,
+        "Value Loss": 0.13533821504097435,
+        "Total Loss": 0.4156547477468848,
+        "Reward Min": -0.4361996352672577,
+        "Reward Average": 0.28040751814842224,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.9820353388786316,
+        "Episode Length Mean": 2.8603351955307277,
+        "Policy Loss": 0.062433140847133486,
+        "Value Loss": 0.06175214966060592,
+        "Total Loss": 0.18146297510247672,
+        "Reward Min": -0.9205557107925415,
+        "Reward Average": 0.2803248465061188,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.8592569231987,
+        "Episode Length Mean": 2.6122448979591817,
+        "Policy Loss": 0.1261725639924407,
+        "Value Loss": 0.11099122453015296,
+        "Total Loss": 0.3436822169460356,
+        "Reward Min": -1.0525556802749634,
+        "Reward Average": 0.2678263187408447,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.7772079110145569,
+        "Episode Length Mean": 2.12396694214876,
+        "Policy Loss": 0.04643290824606082,
+        "Value Loss": 0.0571882672375068,
+        "Total Loss": 0.15695944346953192,
+        "Reward Min": -0.5851438641548157,
+        "Reward Average": 0.3244134187698364,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.7408361434936523,
+        "Episode Length Mean": 2.160337552742615,
+        "Policy Loss": 0.08201392699265855,
+        "Value Loss": 0.09186885226517917,
+        "Total Loss": 0.2597668732050806,
+        "Reward Min": -1.0525556802749634,
+        "Reward Average": 0.37465009093284607,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.8509701490402222,
+        "Episode Length Mean": 2.285714285714288,
+        "Policy Loss": 0.06812454311875626,
+        "Value Loss": 0.06844187300885093,
+        "Total Loss": 0.20100164739415055,
+        "Reward Min": -1.139621376991272,
+        "Reward Average": 0.356656551361084,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.8550369739532471,
+        "Episode Length Mean": 2.708994708994706,
+        "Policy Loss": 0.09787421929650009,
+        "Value Loss": 0.10472233861219138,
+        "Total Loss": 0.3041146174073219,
+        "Reward Min": -0.4361996352672577,
+        "Reward Average": 0.36476537585258484,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.813802182674408,
+        "Episode Length Mean": 2.604060913705583,
+        "Policy Loss": 0.07782044884515925,
+        "Value Loss": 0.11626418586820367,
+        "Total Loss": 0.3059565275907516,
+        "Reward Min": -0.8124513030052185,
+        "Reward Average": 0.3410525321960449,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.8971732258796692,
+        "Episode Length Mean": 2.557213930348259,
+        "Policy Loss": 0.12463572132401167,
+        "Value Loss": 0.1314274272881448,
+        "Total Loss": 0.3836844740435482,
+        "Reward Min": -0.4361996352672577,
+        "Reward Average": 0.3602164387702942,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.6792923808097839,
+        "Episode Length Mean": 2.442857142857142,
+        "Policy Loss": 0.16657596849836412,
+        "Value Loss": 0.06583772093290466,
+        "Total Loss": 0.29457122879102826,
+        "Reward Min": -0.4361996352672577,
+        "Reward Average": 0.27590009570121765,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.6093994975090027,
+        "Episode Length Mean": 2.2358078602620077,
+        "Policy Loss": 0.0728613742394373,
+        "Value Loss": 0.06649668241152541,
+        "Total Loss": 0.20220187725499272,
+        "Reward Min": -0.4361996352672577,
+        "Reward Average": 0.28741025924682617,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.7156445980072021,
+        "Episode Length Mean": 2.359447004608296,
+        "Policy Loss": 0.02828050487005384,
+        "Value Loss": 0.05308734776917848,
+        "Total Loss": 0.13068324435153042,
+        "Reward Min": -0.4361996352672577,
+        "Reward Average": 0.36588987708091736,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.7113317251205444,
+        "Episode Length Mean": 2.3486238532110075,
+        "Policy Loss": 0.08314842823892833,
+        "Value Loss": 0.081154947518371,
+        "Total Loss": 0.24163052951917058,
+        "Reward Min": -0.4361996352672577,
+        "Reward Average": 0.40123629570007324,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.7392978668212891,
+        "Episode Length Mean": 2.5989847715736034,
+        "Policy Loss": 0.06347102191648447,
+        "Value Loss": 0.14315423124935472,
+        "Total Loss": 0.3469683462753893,
+        "Reward Min": -0.4361996352672577,
+        "Reward Average": 0.38145020604133606,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.7528855800628662,
+        "Episode Length Mean": 2.3640552995391686,
+        "Policy Loss": 0.1012382825138047,
+        "Value Loss": 0.09267219231696798,
+        "Total Loss": 0.2830205215141177,
+        "Reward Min": -0.4361996352672577,
+        "Reward Average": 0.35798725485801697,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.7421495914459229,
+        "Episode Length Mean": 2.1694915254237284,
+        "Policy Loss": 0.10016621981048955,
+        "Value Loss": 0.06907362409401685,
+        "Total Loss": 0.23469885042868546,
+        "Reward Min": -1.0525556802749634,
+        "Reward Average": 0.3672443926334381,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.7326903939247131,
+        "Episode Length Mean": 2.124481327800829,
+        "Policy Loss": 0.09273483091965315,
+        "Value Loss": 0.12075637548696248,
+        "Total Loss": 0.3308747401461005,
+        "Reward Min": -1.0525556802749634,
+        "Reward Average": 0.2903614044189453,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.6986638903617859,
+        "Episode Length Mean": 1.928571428571429,
+        "Policy Loss": 0.09700278262607752,
+        "Value Loss": 0.21036847005598247,
+        "Total Loss": 0.5146789171267301,
+        "Reward Min": -1.0525556802749634,
+        "Reward Average": 0.2894325852394104,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.6300386190414429,
+        "Episode Length Mean": 1.8823529411764697,
+        "Policy Loss": 0.006835683278040967,
+        "Value Loss": 0.07274699202389459,
+        "Total Loss": 0.1495855660032248,
+        "Reward Min": -1.0525556802749634,
+        "Reward Average": 0.2529282867908478,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.5650610327720642,
+        "Episode Length Mean": 2.0039062500000018,
+        "Policy Loss": 0.07349333912134168,
+        "Value Loss": 0.04904296132735909,
+        "Total Loss": 0.16940683033317327,
+        "Reward Min": -0.2593764364719391,
+        "Reward Average": 0.3748020827770233,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.5746700167655945,
+        "Episode Length Mean": 2.2112068965517206,
+        "Policy Loss": 0.11796850478276612,
+        "Value Loss": 0.06888039247132838,
+        "Total Loss": 0.25377159379422654,
+        "Reward Min": -1.0525556802749634,
+        "Reward Average": 0.3767424523830414,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.5719325542449951,
+        "Episode Length Mean": 2.5098039215686274,
+        "Policy Loss": 0.12879054597578943,
+        "Value Loss": 0.08383862767368559,
+        "Total Loss": 0.2944523582700639,
+        "Reward Min": -1.0525556802749634,
+        "Reward Average": 0.38151493668556213,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.5487282872200012,
+        "Episode Length Mean": 2.3318181818181825,
+        "Policy Loss": 0.06556994223501536,
+        "Value Loss": 0.02528019215969835,
+        "Total Loss": 0.11395998753141613,
+        "Reward Min": -0.4361996352672577,
+        "Reward Average": 0.3710693418979645,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.5110470056533813,
+        "Episode Length Mean": 2.0725806451612883,
+        "Policy Loss": 0.03518957889173179,
+        "Value Loss": 0.03106079190911261,
+        "Total Loss": 0.09553352993680163,
+        "Reward Min": -1.0525556802749634,
+        "Reward Average": 0.41414713859558105,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.5771329402923584,
+        "Episode Length Mean": 2.2164502164502142,
+        "Policy Loss": 0.07510355679551142,
+        "Value Loss": 0.0588426992762834,
+        "Total Loss": 0.1909675505012274,
+        "Reward Min": -1.0525556802749634,
+        "Reward Average": 0.3977946639060974,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.5336509346961975,
+        "Episode Length Mean": 2.196581196581193,
+        "Policy Loss": 0.05727578792721032,
+        "Value Loss": 0.03832484429585748,
+        "Total Loss": 0.13157363166101282,
+        "Reward Min": -1.0525556802749634,
+        "Reward Average": 0.4429593086242676,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.6541522145271301,
+        "Episode Length Mean": 1.9883720930232553,
+        "Policy Loss": 0.08807324094232172,
+        "Value Loss": 0.04076295690902044,
+        "Total Loss": 0.16684848070144662,
+        "Reward Min": -1.0525556802749634,
+        "Reward Average": 0.39450663328170776,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.49577978253364563,
+        "Episode Length Mean": 2.051999999999998,
+        "Policy Loss": 0.028860546954092563,
+        "Value Loss": 0.028598313045222326,
+        "Total Loss": 0.08409120769647413,
+        "Reward Min": -0.22412846982479095,
+        "Reward Average": 0.4415819048881531,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.5721310377120972,
+        "Episode Length Mean": 1.9176029962546817,
+        "Policy Loss": 0.06300389682292007,
+        "Value Loss": 0.06724313617451116,
+        "Total Loss": 0.1956709106452763,
+        "Reward Min": -0.14718207716941833,
+        "Reward Average": 0.34914490580558777,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.5147101879119873,
+        "Episode Length Mean": 2.1787234042553165,
+        "Policy Loss": 0.04926791897742079,
+        "Value Loss": 0.0481675555347465,
+        "Total Loss": 0.14385251537896696,
+        "Reward Min": -0.4361996352672577,
+        "Reward Average": 0.42804351449012756,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.5007133483886719,
+        "Episode Length Mean": 2.089795918367346,
+        "Policy Loss": 0.03267436972237191,
+        "Value Loss": 0.026119029585970566,
+        "Total Loss": 0.08300349174533037,
+        "Reward Min": -1.0525556802749634,
+        "Reward Average": 0.46441450715065,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.4739859998226166,
+        "Episode Length Mean": 2.0766129032258056,
+        "Policy Loss": 0.041379551112186184,
+        "Value Loss": 0.027087812399258827,
+        "Total Loss": 0.09387104434426874,
+        "Reward Min": -0.22412846982479095,
+        "Reward Average": 0.4162042438983917,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.4642322063446045,
+        "Episode Length Mean": 2.064516129032258,
+        "Policy Loss": 0.04837027308531105,
+        "Value Loss": 0.03472394897835329,
+        "Total Loss": 0.11597791733220218,
+        "Reward Min": -0.22412846982479095,
+        "Reward Average": 0.43403831124305725,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.4671193063259125,
+        "Episode Length Mean": 1.950570342205324,
+        "Policy Loss": 0.06150146052823404,
+        "Value Loss": 0.061630825250176706,
+        "Total Loss": 0.18308578513097026,
+        "Reward Min": -0.22412846982479095,
+        "Reward Average": 0.3497075140476227,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.51691073179245,
+        "Episode Length Mean": 2.269911504424779,
+        "Policy Loss": 0.08063115586992355,
+        "Value Loss": 0.05934391621849502,
+        "Total Loss": 0.19705362466629595,
+        "Reward Min": -1.0525556802749634,
+        "Reward Average": 0.43395617604255676,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.5225623250007629,
+        "Episode Length Mean": 2.285714285714286,
+        "Policy Loss": 0.048824922298081185,
+        "Value Loss": 0.04072738479590043,
+        "Total Loss": 0.1282932540634647,
+        "Reward Min": -1.0525556802749634,
+        "Reward Average": 0.4193302094936371,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.47201359272003174,
+        "Episode Length Mean": 2.3318181818181776,
+        "Policy Loss": 0.08526732830796391,
+        "Value Loss": 0.028497133142082028,
+        "Total Loss": 0.1402484318241477,
+        "Reward Min": -1.0525556802749634,
+        "Reward Average": 0.46677905321121216,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.46072888374328613,
+        "Episode Length Mean": 2.0938775510204084,
+        "Policy Loss": 0.04450074280612171,
+        "Value Loss": 0.04010752972681077,
+        "Total Loss": 0.1229843428009189,
+        "Reward Min": -1.1764311790466309,
+        "Reward Average": 0.3391510546207428,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.549393892288208,
+        "Episode Length Mean": 2.220779220779219,
+        "Policy Loss": 0.11528854817152027,
+        "Value Loss": 0.10589091177098456,
+        "Total Loss": 0.32521481951698666,
+        "Reward Min": -1.0525556802749634,
+        "Reward Average": 0.4264858365058899,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.480991005897522,
+        "Episode Length Mean": 2.068548387096773,
+        "Policy Loss": 0.022617554568569162,
+        "Value Loss": 0.04320667077263351,
+        "Total Loss": 0.10741723288083453,
+        "Reward Min": -1.0525556802749634,
+        "Reward Average": 0.42254897952079773,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.49140873551368713,
+        "Episode Length Mean": 2.0853658536585344,
+        "Policy Loss": 0.12379428325220941,
+        "Value Loss": 0.04943468447891064,
+        "Total Loss": 0.22094362461939457,
+        "Reward Min": -0.4361996352672577,
+        "Reward Average": 0.4190436601638794,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.5023952126502991,
+        "Episode Length Mean": 2.123966942148759,
+        "Policy Loss": 0.05648641719017177,
+        "Value Loss": 0.046372145967325196,
+        "Total Loss": 0.14797107235062865,
+        "Reward Min": -0.04131818190217018,
+        "Reward Average": 0.44799888134002686,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.450863242149353,
+        "Episode Length Mean": 2.1506276150627603,
+        "Policy Loss": 0.06706037290859966,
+        "Value Loss": 0.043379820417612805,
+        "Total Loss": 0.15213737555313853,
+        "Reward Min": -0.4361996352672577,
+        "Reward Average": 0.4340178072452545,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.39961326122283936,
+        "Episode Length Mean": 2.0725806451612887,
+        "Policy Loss": 0.08675196877447885,
+        "Value Loss": 0.04173056676518172,
+        "Total Loss": 0.16875364258885386,
+        "Reward Min": -0.4361996352672577,
+        "Reward Average": 0.42803454399108887,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.47997409105300903,
+        "Episode Length Mean": 2.3640552995391713,
+        "Policy Loss": 0.048056652914965525,
+        "Value Loss": 0.022893027329700995,
+        "Total Loss": 0.09279439342208205,
+        "Reward Min": -1.0525556802749634,
+        "Reward Average": 0.49176859855651855,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.30058789253234863,
+        "Episode Length Mean": 2.124481327800829,
+        "Policy Loss": 0.04020059172762557,
+        "Value Loss": 0.014849371102172887,
+        "Total Loss": 0.0688291133265011,
+        "Reward Min": -0.22412846982479095,
+        "Reward Average": 0.49683111906051636,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.3008924722671509,
+        "Episode Length Mean": 1.988372093023256,
+        "Policy Loss": 0.14447824994567782,
+        "Value Loss": 0.03616329132637475,
+        "Total Loss": 0.2159337699413299,
+        "Reward Min": -0.22412846982479095,
+        "Reward Average": 0.405855655670166,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.309893935918808,
+        "Episode Length Mean": 2.137499999999997,
+        "Policy Loss": 0.062437235901597915,
+        "Value Loss": 0.022679430279822558,
+        "Total Loss": 0.10632178199011835,
+        "Reward Min": -0.5851438641548157,
+        "Reward Average": 0.505693256855011,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.3637528121471405,
+        "Episode Length Mean": 2.1645569620253147,
+        "Policy Loss": 0.04121888941153883,
+        "Value Loss": 0.023869466138421558,
+        "Total Loss": 0.08795655891299248,
+        "Reward Min": -0.4361996352672577,
+        "Reward Average": 0.4249960482120514,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.2668329179286957,
+        "Episode Length Mean": 2.182978723404255,
+        "Policy Loss": 0.06900191737804562,
+        "Value Loss": 0.031244935118593272,
+        "Total Loss": 0.13051165279466656,
+        "Reward Min": -1.0525556802749634,
+        "Reward Average": 0.506644606590271,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.21792373061180115,
+        "Episode Length Mean": 2.1512605042016784,
+        "Policy Loss": 0.023476221605960742,
+        "Value Loss": 0.010797393511893466,
+        "Total Loss": 0.04427020222647115,
+        "Reward Min": -0.22412846982479095,
+        "Reward Average": 0.5170771479606628,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.23420247435569763,
+        "Episode Length Mean": 2.068548387096774,
+        "Policy Loss": 0.09891233022790397,
+        "Value Loss": 0.042896727594779804,
+        "Total Loss": 0.1841130782850087,
+        "Reward Min": -0.22412846982479095,
+        "Reward Average": 0.45612964034080505,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.2216402292251587,
+        "Episode Length Mean": 2.1603375527426127,
+        "Policy Loss": 0.11735370568931101,
+        "Value Loss": 0.032822489112732,
+        "Total Loss": 0.18207583809271446,
+        "Reward Min": -1.0525556802749634,
+        "Reward Average": 0.5206137895584106,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.32314756512641907,
+        "Episode Length Mean": 2.1069958847736605,
+        "Policy Loss": 0.10442651645280425,
+        "Value Loss": 0.037899608461884775,
+        "Total Loss": 0.17936448473483327,
+        "Reward Min": -0.14718207716941833,
+        "Reward Average": 0.42204925417900085,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.35706761479377747,
+        "Episode Length Mean": 2.23478260869565,
+        "Policy Loss": 0.13563805673038593,
+        "Value Loss": 0.0421748149965424,
+        "Total Loss": 0.2189749414101243,
+        "Reward Min": -1.0525556802749634,
+        "Reward Average": 0.49671506881713867,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.3516198992729187,
+        "Episode Length Mean": 2.2555066079295165,
+        "Policy Loss": 0.07304119688342325,
+        "Value Loss": 0.07405614299932493,
+        "Total Loss": 0.2200057040899992,
+        "Reward Min": -1.0525556802749634,
+        "Reward Average": 0.4795747399330139,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.5421851277351379,
+        "Episode Length Mean": 2.6947368421052604,
+        "Policy Loss": 0.10871478472836313,
+        "Value Loss": 0.08058300893753768,
+        "Total Loss": 0.26859275903552776,
+        "Reward Min": -0.4361996352672577,
+        "Reward Average": 0.4549936056137085,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.3388654887676239,
+        "Episode Length Mean": 2.4407582938388632,
+        "Policy Loss": -0.00225842019426637,
+        "Value Loss": 0.08102918282384053,
+        "Total Loss": 0.15881985169653495,
+        "Reward Min": -0.22412846982479095,
+        "Reward Average": 0.5395934581756592,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.263369619846344,
+        "Episode Length Mean": 2.4084507042253507,
+        "Policy Loss": 0.16126403550151736,
+        "Value Loss": 0.03968551702564581,
+        "Total Loss": 0.2398985188920051,
+        "Reward Min": -0.22412846982479095,
+        "Reward Average": 0.5517841577529907,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.36916446685791016,
+        "Episode Length Mean": 2.19742489270386,
+        "Policy Loss": 0.06262144749052821,
+        "Value Loss": 0.017144250479759655,
+        "Total Loss": 0.09623029234353452,
+        "Reward Min": -1.0525556802749634,
+        "Reward Average": 0.487568199634552,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.34028854966163635,
+        "Episode Length Mean": 2.1596638655462166,
+        "Policy Loss": 0.025389545568032183,
+        "Value Loss": 0.008440500943834191,
+        "Total Loss": 0.041717878426425166,
+        "Reward Min": -1.0525556802749634,
+        "Reward Average": 0.5064520239830017,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.3492561876773834,
+        "Episode Length Mean": 2.2017167381974225,
+        "Policy Loss": 0.03162950680416542,
+        "Value Loss": 0.023844886221922938,
+        "Total Loss": 0.0786346705281176,
+        "Reward Min": -0.22412846982479095,
+        "Reward Average": 0.5169143080711365,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.3246341049671173,
+        "Episode Length Mean": 2.31081081081081,
+        "Policy Loss": 0.057918157952371985,
+        "Value Loss": 0.03766197434742935,
+        "Total Loss": 0.13207567867357284,
+        "Reward Min": -1.0525556802749634,
+        "Reward Average": 0.46876704692840576,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.32181695103645325,
+        "Episode Length Mean": 2.2401746724890836,
+        "Policy Loss": 0.019260161847341806,
+        "Value Loss": 0.013838689255862851,
+        "Total Loss": 0.0462983416946372,
+        "Reward Min": -0.22412846982479095,
+        "Reward Average": 0.4985811114311218,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.27074238657951355,
+        "Episode Length Mean": 2.2901785714285685,
+        "Policy Loss": 0.04283102886984124,
+        "Value Loss": 0.006396368142304706,
+        "Total Loss": 0.054739845101721585,
+        "Reward Min": -0.4361996352672577,
+        "Reward Average": 0.515832781791687,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.3075801432132721,
+        "Episode Length Mean": 2.4084507042253507,
+        "Policy Loss": -0.00540539139183238,
+        "Value Loss": 0.01267734608700266,
+        "Total Loss": 0.019282796086372404,
+        "Reward Min": -0.4361996352672577,
+        "Reward Average": 0.5387183427810669,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.19023483991622925,
+        "Episode Length Mean": 2.544554455445544,
+        "Policy Loss": 0.04757055040681733,
+        "Value Loss": 0.03077900031348691,
+        "Total Loss": 0.10859989200253041,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.5684308409690857,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.16366693377494812,
+        "Episode Length Mean": 2.495145631067961,
+        "Policy Loss": 0.04165930062299597,
+        "Value Loss": 0.013856086305167988,
+        "Total Loss": 0.06884644494857643,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.5831606984138489,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.24121755361557007,
+        "Episode Length Mean": 2.4037558685446014,
+        "Policy Loss": 0.028824771172367047,
+        "Value Loss": 0.02085114918008913,
+        "Total Loss": 0.06995548057602718,
+        "Reward Min": -1.0525556802749634,
+        "Reward Average": 0.5395161509513855,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.2643198072910309,
+        "Episode Length Mean": 2.300448430493275,
+        "Policy Loss": 0.04731837147846819,
+        "Value Loss": 0.012274941320356447,
+        "Total Loss": 0.07143350772093982,
+        "Reward Min": -0.4361996352672577,
+        "Reward Average": 0.522164523601532,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.22592401504516602,
+        "Episode Length Mean": 2.4198113207547145,
+        "Policy Loss": 0.014012339044711553,
+        "Value Loss": 0.006759192398021698,
+        "Total Loss": 0.02709363533358556,
+        "Reward Min": -0.4361996352672577,
+        "Reward Average": 0.575642466545105,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.17591020464897156,
+        "Episode Length Mean": 2.5221674876847313,
+        "Policy Loss": 0.0064105046913027755,
+        "Value Loss": 0.005076205844488869,
+        "Total Loss": 0.016158367521711615,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.5961458086967468,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.16341295838356018,
+        "Episode Length Mean": 2.495145631067958,
+        "Policy Loss": 0.005102279636048479,
+        "Value Loss": 0.003428246312296324,
+        "Total Loss": 0.011520254411152567,
+        "Reward Min": -0.14718207716941833,
+        "Reward Average": 0.5900612473487854,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.14976097643375397,
+        "Episode Length Mean": 2.527093596059113,
+        "Policy Loss": 0.027237993519520394,
+        "Value Loss": 0.020973752965801392,
+        "Total Loss": 0.06884109519887716,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.6031333208084106,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.1596524864435196,
+        "Episode Length Mean": 2.478260869565215,
+        "Policy Loss": 0.013011109665512777,
+        "Value Loss": 0.021361295919632536,
+        "Total Loss": 0.0554375532810809,
+        "Reward Min": -1.0525556802749634,
+        "Reward Average": 0.5618659257888794,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.1416814625263214,
+        "Episode Length Mean": 2.5024390243902426,
+        "Policy Loss": 0.011414951051847318,
+        "Value Loss": 0.006778033745831634,
+        "Total Loss": 0.02466873439698248,
+        "Reward Min": -1.0525556802749634,
+        "Reward Average": 0.5836977362632751,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.11863577365875244,
+        "Episode Length Mean": 2.514705882352942,
+        "Policy Loss": 0.013115333917085081,
+        "Value Loss": 0.012125118639232825,
+        "Total Loss": 0.03706585233157966,
+        "Reward Min": -1.0525556802749634,
+        "Reward Average": 0.6023846864700317,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.12558022141456604,
+        "Episode Length Mean": 2.5024390243902404,
+        "Policy Loss": 0.004046326307616255,
+        "Value Loss": 0.0010537954426581564,
+        "Total Loss": 0.00587893956071639,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.6017190217971802,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.11711295694112778,
+        "Episode Length Mean": 2.5320197044334964,
+        "Policy Loss": 0.022383490635547787,
+        "Value Loss": 0.019368556248082317,
+        "Total Loss": 0.06084086987539194,
+        "Reward Min": -0.38052666187286377,
+        "Reward Average": 0.6071120500564575,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.1245727688074112,
+        "Episode Length Mean": 2.4854368932038806,
+        "Policy Loss": 0.020864354573859586,
+        "Value Loss": 0.018649977380846394,
+        "Total Loss": 0.05790701429941692,
+        "Reward Min": -1.0525556802749634,
+        "Reward Average": 0.5826238989830017,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.20074310898780823,
+        "Episode Length Mean": 2.438095238095238,
+        "Policy Loss": 0.018368945279689797,
+        "Value Loss": 0.016134345225509612,
+        "Total Loss": 0.05043912895416725,
+        "Reward Min": -0.22412846982479095,
+        "Reward Average": 0.565201997756958,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.1143697202205658,
+        "Episode Length Mean": 2.4975609756097525,
+        "Policy Loss": 0.01761003668070771,
+        "Value Loss": 0.009675590703409393,
+        "Total Loss": 0.036743750097230084,
+        "Reward Min": -0.7545337080955505,
+        "Reward Average": 0.5845039486885071,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.11241491138935089,
+        "Episode Length Mean": 2.4951456310679587,
+        "Policy Loss": 0.005141019646544009,
+        "Value Loss": 0.003122632755548692,
+        "Total Loss": 0.011208367301151158,
+        "Reward Min": 0.0,
+        "Reward Average": 0.607964813709259,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.10596011579036713,
+        "Episode Length Mean": 2.5147058823529416,
+        "Policy Loss": 0.0797414729895536,
+        "Value Loss": 0.03847250207400066,
+        "Total Loss": 0.1564283996121958,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.5962221026420593,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.1616201400756836,
+        "Episode Length Mean": 2.4545454545454515,
+        "Policy Loss": 0.022109403871581893,
+        "Value Loss": 0.022626305300946115,
+        "Total Loss": 0.06706667458638546,
+        "Reward Min": -0.22412846982479095,
+        "Reward Average": 0.5813947319984436,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.200235977768898,
+        "Episode Length Mean": 2.424528301886792,
+        "Policy Loss": 0.012536814357872572,
+        "Value Loss": 0.008088592437161424,
+        "Total Loss": 0.028550541024742415,
+        "Reward Min": -0.22412846982479095,
+        "Reward Average": 0.5701600313186646,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.10597170889377594,
+        "Episode Length Mean": 2.485436893203883,
+        "Policy Loss": 0.020029866071126886,
+        "Value Loss": 0.009568639507051552,
+        "Total Loss": 0.038999617507215596,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.5879747867584229,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.1174737885594368,
+        "Episode Length Mean": 2.490291262135921,
+        "Policy Loss": 0.025680143560748544,
+        "Value Loss": 0.008720573154278105,
+        "Total Loss": 0.04289500985760243,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.5921392440795898,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.10475528240203857,
+        "Episode Length Mean": 2.4975609756097525,
+        "Policy Loss": 0.024486669281031943,
+        "Value Loss": 0.005806209683214542,
+        "Total Loss": 0.03592302493052557,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.6023264527320862,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.08420810103416443,
+        "Episode Length Mean": 2.485436893203881,
+        "Policy Loss": 0.024990249621623647,
+        "Value Loss": 0.00887316948137595,
+        "Total Loss": 0.04260288619843777,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.5797727108001709,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.11608593165874481,
+        "Episode Length Mean": 2.4975609756097557,
+        "Policy Loss": 0.02633011748548597,
+        "Value Loss": 0.01424878205943969,
+        "Total Loss": 0.05467858430347402,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.5850099325180054,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.10828258842229843,
+        "Episode Length Mean": 2.50731707317073,
+        "Policy Loss": 0.008344594833033629,
+        "Value Loss": 0.0024120765410771136,
+        "Total Loss": 0.013023086081375364,
+        "Reward Min": -0.12303397059440613,
+        "Reward Average": 0.6055852770805359,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.08725783973932266,
+        "Episode Length Mean": 2.4975609756097534,
+        "Policy Loss": 0.0027387816298869443,
+        "Value Loss": 0.0011365288630713615,
+        "Total Loss": 0.00486591432490968,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.6046441793441772,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.08291409909725189,
+        "Episode Length Mean": 2.5270935960591094,
+        "Policy Loss": 0.004874939208093563,
+        "Value Loss": 0.00013032549099989413,
+        "Total Loss": 0.004956400465744083,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.59779953956604,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.08652572333812714,
+        "Episode Length Mean": 2.4975609756097534,
+        "Policy Loss": 0.003417229283513735,
+        "Value Loss": 0.0021303174462730104,
+        "Total Loss": 0.007545616677816726,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.5978451371192932,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.09084278345108032,
+        "Episode Length Mean": 2.519607843137253,
+        "Policy Loss": 0.06778746112831867,
+        "Value Loss": 0.04842268986976705,
+        "Total Loss": 0.16445298847975204,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.5936283469200134,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.11380614340305328,
+        "Episode Length Mean": 2.497560975609757,
+        "Policy Loss": 0.009747679350766704,
+        "Value Loss": 0.01828199920419138,
+        "Total Loss": 0.04616312740836291,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.5830273032188416,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.08546070009469986,
+        "Episode Length Mean": 2.502439024390244,
+        "Policy Loss": 0.032554716701270074,
+        "Value Loss": 0.011186587493284605,
+        "Total Loss": 0.05477671287371777,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.6046274900436401,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.08877423405647278,
+        "Episode Length Mean": 2.5024390243902443,
+        "Policy Loss": 0.015249066957039759,
+        "Value Loss": 0.002346840749851253,
+        "Total Loss": 0.019785260956268765,
+        "Reward Min": -0.38052666187286377,
+        "Reward Average": 0.6022454500198364,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.07972054183483124,
+        "Episode Length Mean": 2.5024390243902443,
+        "Policy Loss": 0.007686869408644273,
+        "Value Loss": 0.0009547866043249088,
+        "Total Loss": 0.009441699337912725,
+        "Reward Min": -0.14718207716941833,
+        "Reward Average": 0.6108613014221191,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.08849559724330902,
+        "Episode Length Mean": 2.5320197044334964,
+        "Policy Loss": 0.004772528693138156,
+        "Value Loss": 0.0003616965711330523,
+        "Total Loss": 0.005355241090001071,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.6088100075721741,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.07550477981567383,
+        "Episode Length Mean": 2.5221674876847313,
+        "Policy Loss": 0.002909232985985001,
+        "Value Loss": 0.0008369807189296808,
+        "Total Loss": 0.0044703638377541184,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.6064956188201904,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.07527019828557968,
+        "Episode Length Mean": 2.50731707317073,
+        "Policy Loss": 0.001808536728276522,
+        "Value Loss": 7.338100166975893e-05,
+        "Total Loss": 0.0018198805755673677,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.6087026596069336,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.075220987200737,
+        "Episode Length Mean": 2.5024390243902452,
+        "Policy Loss": 0.0022566594525414993,
+        "Value Loss": 0.0008264928706012141,
+        "Total Loss": 0.0037868066119699493,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.6068361401557922,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.08063407987356186,
+        "Episode Length Mean": 2.5196078431372544,
+        "Policy Loss": 0.0016464250820718003,
+        "Value Loss": 0.0001643171645895336,
+        "Total Loss": 0.0018182849398726832,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.6081517934799194,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.08208411186933517,
+        "Episode Length Mean": 2.51470588235294,
+        "Policy Loss": 0.0029883117176723317,
+        "Value Loss": 0.0010424934695834056,
+        "Total Loss": 0.004943415143770836,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.5998939871788025,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.07775317877531052,
+        "Episode Length Mean": 2.509803921568626,
+        "Policy Loss": 0.0013255163776193513,
+        "Value Loss": 0.00038781814589583524,
+        "Total Loss": 0.0019638491394289304,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.608262300491333,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.07710319757461548,
+        "Episode Length Mean": 2.5221674876847278,
+        "Policy Loss": 0.020572264606016702,
+        "Value Loss": 0.01906696484093118,
+        "Total Loss": 0.058542433675029315,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.5840287804603577,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.08593597263097763,
+        "Episode Length Mean": 2.5196078431372575,
+        "Policy Loss": 0.006184786900121252,
+        "Value Loss": 0.004860974788243767,
+        "Total Loss": 0.015800610301084816,
+        "Reward Min": -0.12303397059440613,
+        "Reward Average": 0.6118737459182739,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.09353866428136826,
+        "Episode Length Mean": 2.4975609756097574,
+        "Policy Loss": 0.0053565674243145605,
+        "Value Loss": 0.0010633229474024122,
+        "Total Loss": 0.007393253581540194,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.6004518270492554,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.08102890104055405,
+        "Episode Length Mean": 2.502439024390242,
+        "Policy Loss": 0.005651833742376766,
+        "Value Loss": 0.0028182735959489955,
+        "Total Loss": 0.011197200899914604,
+        "Reward Min": -0.14718207716941833,
+        "Reward Average": 0.6074236035346985,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.08559200167655945,
+        "Episode Length Mean": 2.4854368932038815,
+        "Policy Loss": 0.011450916616013274,
+        "Value Loss": 0.001726585520373192,
+        "Total Loss": 0.014828714934992611,
+        "Reward Min": -0.18285813927650452,
+        "Reward Average": 0.5954450368881226,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.07586342841386795,
+        "Episode Length Mean": 2.4975609756097557,
+        "Policy Loss": 0.014927864336641504,
+        "Value Loss": 0.0019180557881099953,
+        "Total Loss": 0.018691800418309864,
+        "Reward Min": -0.12303397059440613,
+        "Reward Average": 0.6018120646476746,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.07329092174768448,
+        "Episode Length Mean": 2.514705882352937,
+        "Policy Loss": 0.011973657601629384,
+        "Value Loss": 0.002329693517481247,
+        "Total Loss": 0.016553096807911057,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.602970540523529,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.07591478526592255,
+        "Episode Length Mean": 2.485436893203883,
+        "Policy Loss": 0.013881153543479746,
+        "Value Loss": 0.006286949967034159,
+        "Total Loss": 0.026375575282145288,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.6012166142463684,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.08525104820728302,
+        "Episode Length Mean": 2.5147058823529385,
+        "Policy Loss": 0.007717755666817538,
+        "Value Loss": 0.011278785482318197,
+        "Total Loss": 0.030184479408490002,
+        "Reward Min": -1.245230793952942,
+        "Reward Average": 0.5858916640281677,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.07482525706291199,
+        "Episode Length Mean": 2.5098039215686248,
+        "Policy Loss": 0.011525976668053772,
+        "Value Loss": 0.006761700374227075,
+        "Total Loss": 0.024969332274849883,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.6018774509429932,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.07257050275802612,
+        "Episode Length Mean": 2.4902912621359183,
+        "Policy Loss": 0.0030986882013621644,
+        "Value Loss": 0.0024082260351860904,
+        "Total Loss": 0.00783969103031268,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.6022327542304993,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.06788648664951324,
+        "Episode Length Mean": 2.5024390243902443,
+        "Policy Loss": 0.013415226184463336,
+        "Value Loss": 0.02168591844747425,
+        "Total Loss": 0.05669487649720396,
+        "Reward Min": -1.0525556802749634,
+        "Reward Average": 0.5954206585884094,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.08114580810070038,
+        "Episode Length Mean": 2.4975609756097557,
+        "Policy Loss": 0.04037236477597617,
+        "Value Loss": 0.016716439524316236,
+        "Total Loss": 0.07372711077914573,
+        "Reward Min": -0.13388073444366455,
+        "Reward Average": 0.6074414849281311,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.08195186406373978,
+        "Episode Length Mean": 2.4902912621359183,
+        "Policy Loss": 0.03126460016937928,
+        "Value Loss": 0.005324539340108461,
+        "Total Loss": 0.04182007221970708,
+        "Reward Min": -0.12303397059440613,
+        "Reward Average": 0.6059724688529968,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.07123085111379623,
+        "Episode Length Mean": 2.5098039215686256,
+        "Policy Loss": 0.01647947631863644,
+        "Value Loss": 0.007602575549753962,
+        "Total Loss": 0.031565650322590955,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.5879688262939453,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.07289610803127289,
+        "Episode Length Mean": 2.5098039215686283,
+        "Policy Loss": 0.008888107797247358,
+        "Value Loss": 0.0019980955180471925,
+        "Total Loss": 0.012822900462197142,
+        "Reward Min": 0.0,
+        "Reward Average": 0.6121343970298767,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.06313718110322952,
+        "Episode Length Mean": 2.5098039215686248,
+        "Policy Loss": 0.013144634576747194,
+        "Value Loss": 0.004211719920476753,
+        "Total Loss": 0.021499508817214526,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.5991739630699158,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.0625353530049324,
+        "Episode Length Mean": 2.4951456310679614,
+        "Policy Loss": 0.0021449281430250267,
+        "Value Loss": 0.001100362037391278,
+        "Total Loss": 0.004281088286006706,
+        "Reward Min": -0.22412846982479095,
+        "Reward Average": 0.6046267747879028,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.06497979909181595,
+        "Episode Length Mean": 2.5098039215686265,
+        "Policy Loss": 0.0035423509198153616,
+        "Value Loss": 0.0029007602688579924,
+        "Total Loss": 0.009286037009587746,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.602509081363678,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.0594027116894722,
+        "Episode Length Mean": 2.5024390243902404,
+        "Policy Loss": 0.010289357742294667,
+        "Value Loss": 0.00012111782736212712,
+        "Total Loss": 0.010474113427335398,
+        "Reward Min": 0.0,
+        "Reward Average": 0.6130291819572449,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.060287654399871826,
+        "Episode Length Mean": 2.5320197044334973,
+        "Policy Loss": 0.022345996811054637,
+        "Value Loss": 0.02097855957981665,
+        "Total Loss": 0.06423266658384819,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.6027466058731079,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.13667267560958862,
+        "Episode Length Mean": 2.44285714285714,
+        "Policy Loss": 0.043974071100819856,
+        "Value Loss": 0.02423506414925214,
+        "Total Loss": 0.09237785288132729,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.5634483695030212,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.15106740593910217,
+        "Episode Length Mean": 2.4265402843601893,
+        "Policy Loss": 0.012222041747008914,
+        "Value Loss": 0.012859652648330666,
+        "Total Loss": 0.03787536807067227,
+        "Reward Min": -0.22412846982479095,
+        "Reward Average": 0.5698407888412476,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.05663184076547623,
+        "Episode Length Mean": 2.5024390243902452,
+        "Policy Loss": 0.03010918622021563,
+        "Value Loss": 0.029167534332373186,
+        "Total Loss": 0.08839129639090969,
+        "Reward Min": -1.542906641960144,
+        "Reward Average": 0.5880712270736694,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.07869653403759003,
+        "Episode Length Mean": 2.51470588235294,
+        "Policy Loss": 0.05557087203487754,
+        "Value Loss": 0.04045849441899919,
+        "Total Loss": 0.1364089542767033,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.589876651763916,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.09547343850135803,
+        "Episode Length Mean": 2.5098039215686283,
+        "Policy Loss": 0.011817769387562294,
+        "Value Loss": 0.012976374166555612,
+        "Total Loss": 0.0377175379107939,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.6001111268997192,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.05550015717744827,
+        "Episode Length Mean": 2.502439024390243,
+        "Policy Loss": 0.005422279284175598,
+        "Value Loss": 0.003920352852446741,
+        "Total Loss": 0.01322976777373697,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.6062890887260437,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.04278108850121498,
+        "Episode Length Mean": 2.5073170731707304,
+        "Policy Loss": 0.007873747876146808,
+        "Value Loss": 0.0006977751778549644,
+        "Total Loss": 0.009241056628525252,
+        "Reward Min": 0.0,
+        "Reward Average": 0.6136963367462158,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.045841529965400696,
+        "Episode Length Mean": 2.5098039215686256,
+        "Policy Loss": 0.009379634750075638,
+        "Value Loss": 6.340083900724378e-05,
+        "Total Loss": 0.00947336643002928,
+        "Reward Min": 0.0,
+        "Reward Average": 0.6130972504615784,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.0447615347802639,
+        "Episode Length Mean": 2.4951456310679587,
+        "Policy Loss": 0.0009289938425354196,
+        "Value Loss": 3.175943772859568e-06,
+        "Total Loss": 0.0009010333724290832,
+        "Reward Min": -1.0525556802749634,
+        "Reward Average": 0.6081945896148682,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.04573429375886917,
+        "Episode Length Mean": 2.4975609756097557,
+        "Policy Loss": 0.00020939998807989466,
+        "Value Loss": 8.198258047986684e-06,
+        "Total Loss": 0.00019455122128420046,
+        "Reward Min": 0.0,
+        "Reward Average": 0.6114966869354248,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.0460137277841568,
+        "Episode Length Mean": 2.5270935960591125,
+        "Policy Loss": 0.0012800414664866364,
+        "Value Loss": 0.00011260477442931463,
+        "Total Loss": 0.0014736776993231615,
+        "Reward Min": 0.0,
+        "Reward Average": 0.6165225505828857,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.04669947922229767,
+        "Episode Length Mean": 2.5024390243902435,
+        "Policy Loss": 0.0011152620386383205,
+        "Value Loss": 8.925204743803757e-05,
+        "Total Loss": 0.0012616955193038846,
+        "Reward Min": -0.14718207716941833,
+        "Reward Average": 0.6089802980422974,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.046713557094335556,
+        "Episode Length Mean": 2.5147058823529416,
+        "Policy Loss": 0.00638040231569903,
+        "Value Loss": 0.004299080507735196,
+        "Total Loss": 0.014949497297493517,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.6063666939735413,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.04711207002401352,
+        "Episode Length Mean": 2.490291262135919,
+        "Policy Loss": 0.008570343746214343,
+        "Value Loss": 0.02038988552521914,
+        "Total Loss": 0.0493153912066191,
+        "Reward Min": -1.0525556802749634,
+        "Reward Average": 0.5969156622886658,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.04968074709177017,
+        "Episode Length Mean": 2.4975609756097574,
+        "Policy Loss": 0.001853057828157034,
+        "Value Loss": 0.00043313839512393315,
+        "Total Loss": 0.0026900643715634933,
+        "Reward Min": 0.0,
+        "Reward Average": 0.609548807144165,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.048250917345285416,
+        "Episode Length Mean": 2.5098039215686248,
+        "Policy Loss": 0.0017683125838630076,
+        "Value Loss": 0.0007630448303643791,
+        "Total Loss": 0.003272243680839892,
+        "Reward Min": -0.12303397059440613,
+        "Reward Average": 0.6081358790397644,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.04594019055366516,
+        "Episode Length Mean": 2.502439024390242,
+        "Policy Loss": 0.015062922859215178,
+        "Value Loss": 0.005102509292555625,
+        "Total Loss": 0.025244723176001575,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.606334388256073,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.04727359116077423,
+        "Episode Length Mean": 2.507317073170732,
+        "Policy Loss": 0.011698292073560882,
+        "Value Loss": 0.0018878734676945892,
+        "Total Loss": 0.015447527985088524,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.6078352332115173,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.043420325964689255,
+        "Episode Length Mean": 2.490291262135921,
+        "Policy Loss": 0.003704594388182159,
+        "Value Loss": 0.004731460979201073,
+        "Total Loss": 0.013142909305315684,
+        "Reward Min": -1.245230793952942,
+        "Reward Average": 0.5971842408180237,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.04492931067943573,
+        "Episode Length Mean": 2.4902912621359232,
+        "Policy Loss": 0.007569499821329378,
+        "Value Loss": 0.007493919500120686,
+        "Total Loss": 0.022530375259520945,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.6034466624259949,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.04557303711771965,
+        "Episode Length Mean": 2.514705882352943,
+        "Policy Loss": 0.010355992350014272,
+        "Value Loss": 0.003166774691408136,
+        "Total Loss": 0.01666403860724586,
+        "Reward Min": -0.38052666187286377,
+        "Reward Average": 0.6088215112686157,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.045215949416160583,
+        "Episode Length Mean": 2.5098039215686248,
+        "Policy Loss": 0.018604631477501247,
+        "Value Loss": 0.009879149733933449,
+        "Total Loss": 0.03833774360828101,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.6080776453018188,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.039739929139614105,
+        "Episode Length Mean": 2.4975609756097557,
+        "Policy Loss": 0.017912238094140776,
+        "Value Loss": 0.011995960725471377,
+        "Total Loss": 0.041877662268234424,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.6024278998374939,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.042918868362903595,
+        "Episode Length Mean": 2.5073170731707317,
+        "Policy Loss": 0.001867757174295547,
+        "Value Loss": 0.0006773635205945537,
+        "Total Loss": 0.0031962824241418275,
+        "Reward Min": -0.12303397059440613,
+        "Reward Average": 0.6156956553459167,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.05180629342794418,
+        "Episode Length Mean": 2.495145631067963,
+        "Policy Loss": 0.003356462846568321,
+        "Value Loss": 0.000148378204116284,
+        "Total Loss": 0.00363131656558835,
+        "Reward Min": -0.12303397059440613,
+        "Reward Average": 0.6103265881538391,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.04981253296136856,
+        "Episode Length Mean": 2.4902912621359183,
+        "Policy Loss": 0.001837939904362429,
+        "Value Loss": 0.000633761905476149,
+        "Total Loss": 0.003085753789491718,
+        "Reward Min": 0.0,
+        "Reward Average": 0.6085473895072937,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.047669343650341034,
+        "Episode Length Mean": 2.509803921568626,
+        "Policy Loss": 0.000710402619006345,
+        "Value Loss": 1.0454335253484711e-05,
+        "Total Loss": 0.0007065018116918508,
+        "Reward Min": 0.0,
+        "Reward Average": 0.6158602237701416,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.04621324688196182,
+        "Episode Length Mean": 2.4854368932038855,
+        "Policy Loss": 0.0002991233318425657,
+        "Value Loss": 5.812359240575664e-07,
+        "Total Loss": 0.00028529077917482937,
+        "Reward Min": 0.0,
+        "Reward Average": 0.6109963059425354,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.046674128621816635,
+        "Episode Length Mean": 2.4902912621359232,
+        "Policy Loss": 0.003937205688089306,
+        "Value Loss": 0.005325141468492944,
+        "Total Loss": 0.014569215290975993,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.6011740565299988,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.046644099056720734,
+        "Episode Length Mean": 2.4951456310679587,
+        "Policy Loss": 0.000488039960146125,
+        "Value Loss": 0.00041513168105211673,
+        "Total Loss": 0.00129785909120983,
+        "Reward Min": 0.0,
+        "Reward Average": 0.6088749170303345,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.044567517936229706,
+        "Episode Length Mean": 2.4902912621359197,
+        "Policy Loss": 0.0019226333897677242,
+        "Value Loss": 0.00042249817258266376,
+        "Total Loss": 0.00275523065647576,
+        "Reward Min": -0.14718207716941833,
+        "Reward Average": 0.6056457757949829,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.04480784013867378,
+        "Episode Length Mean": 2.497560975609757,
+        "Policy Loss": 0.0013265647257867381,
+        "Value Loss": 0.0001508732768940036,
+        "Total Loss": 0.0016100535704026704,
+        "Reward Min": -0.12303397059440613,
+        "Reward Average": 0.6079254150390625,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.04429195821285248,
+        "Episode Length Mean": 2.507317073170732,
+        "Policy Loss": 0.0005648217788802867,
+        "Value Loss": 0.00039779885680957244,
+        "Total Loss": 0.001339788365839923,
+        "Reward Min": -0.22412846982479095,
+        "Reward Average": 0.607822835445404,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.046209655702114105,
+        "Episode Length Mean": 2.497560975609757,
+        "Policy Loss": 0.003145676557323896,
+        "Value Loss": 0.000656093682778192,
+        "Total Loss": 0.004441574437805683,
+        "Reward Min": -0.22412846982479095,
+        "Reward Average": 0.6084059476852417,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.04706732928752899,
+        "Episode Length Mean": 2.4975609756097574,
+        "Policy Loss": 0.03040774238183985,
+        "Value Loss": 0.012121398229282931,
+        "Total Loss": 0.0546309526762343,
+        "Reward Min": -0.12303397059440613,
+        "Reward Average": 0.6023529767990112,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.055290304124355316,
+        "Episode Length Mean": 2.4975609756097557,
+        "Policy Loss": 0.01699084768188186,
+        "Value Loss": 0.005071814824987087,
+        "Total Loss": 0.027105324785225104,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.6013661623001099,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.0478527657687664,
+        "Episode Length Mean": 2.4951456310679587,
+        "Policy Loss": 0.02501815235882531,
+        "Value Loss": 0.013498416279617235,
+        "Total Loss": 0.051988978098961525,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.592654824256897,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.04818994924426079,
+        "Episode Length Mean": 2.4902912621359206,
+        "Policy Loss": 0.009668627026258036,
+        "Value Loss": 0.0077891118307888965,
+        "Total Loss": 0.02522341531584971,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.6009631752967834,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.04581226408481598,
+        "Episode Length Mean": 2.5098039215686287,
+        "Policy Loss": 0.03596344200195743,
+        "Value Loss": 0.014310178345112955,
+        "Total Loss": 0.06456089549465106,
+        "Reward Min": -1.245230793952942,
+        "Reward Average": 0.6061142683029175,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.04964718222618103,
+        "Episode Length Mean": 2.4951456310679587,
+        "Policy Loss": 0.03284568511298856,
+        "Value Loss": 0.019416176408412866,
+        "Total Loss": 0.07165967661421745,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.5942176580429077,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.04616350308060646,
+        "Episode Length Mean": 2.5024390243902435,
+        "Policy Loss": 0.003576185426936717,
+        "Value Loss": 0.0021227178153822024,
+        "Total Loss": 0.00780599099016399,
+        "Reward Min": -0.38052666187286377,
+        "Reward Average": 0.60225909948349,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.04449900612235069,
+        "Episode Length Mean": 2.5147058823529407,
+        "Policy Loss": 0.0012981254676560638,
+        "Value Loss": 0.00011741323561409442,
+        "Total Loss": 0.0015179988786258036,
+        "Reward Min": 0.0,
+        "Reward Average": 0.6147710680961609,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.04231148585677147,
+        "Episode Length Mean": 2.4951456310679614,
+        "Policy Loss": 0.0028237176702532456,
+        "Value Loss": 0.0018931212197230694,
+        "Total Loss": 0.006596214545425025,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.6056093573570251,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.04415641725063324,
+        "Episode Length Mean": 2.485436893203883,
+        "Policy Loss": 0.011378667128155938,
+        "Value Loss": 0.0030616508113325835,
+        "Total Loss": 0.017488634068286043,
+        "Reward Min": 0.0,
+        "Reward Average": 0.6104001402854919,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.04007190465927124,
+        "Episode Length Mean": 2.5147058823529385,
+        "Policy Loss": 0.0005497473653122142,
+        "Value Loss": 0.0009971270769142393,
+        "Total Loss": 0.0025323291310996856,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.610672652721405,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.03745082765817642,
+        "Episode Length Mean": 2.4951456310679623,
+        "Policy Loss": 0.001968741226846759,
+        "Value Loss": 0.001229268641338877,
+        "Total Loss": 0.004416150972247122,
+        "Reward Min": 0.0,
+        "Reward Average": 0.6076422929763794,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.03823908418416977,
+        "Episode Length Mean": 2.5098039215686287,
+        "Policy Loss": 0.0020307813597035796,
+        "Value Loss": 0.000592378027974405,
+        "Total Loss": 0.003202163048854345,
+        "Reward Min": 0.0,
+        "Reward Average": 0.612046480178833,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.038109853863716125,
+        "Episode Length Mean": 2.4902912621359197,
+        "Policy Loss": 0.0017194919273606504,
+        "Value Loss": 0.0002474269918764094,
+        "Total Loss": 0.002204165724833728,
+        "Reward Min": 0.0,
+        "Reward Average": 0.6082085967063904,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.03981833532452583,
+        "Episode Length Mean": 2.497560975609753,
+        "Policy Loss": 0.00361375146485443,
+        "Value Loss": 0.0020000738360295145,
+        "Total Loss": 0.007603597548040852,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.6015873551368713,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.03920597955584526,
+        "Episode Length Mean": 2.5098039215686287,
+        "Policy Loss": 0.0028658095438913725,
+        "Value Loss": 0.002466334972496044,
+        "Total Loss": 0.007788952834744122,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.6114179491996765,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.03975524753332138,
+        "Episode Length Mean": 2.4854368932038846,
+        "Policy Loss": 0.012420155281915868,
+        "Value Loss": 0.011974511794960566,
+        "Total Loss": 0.03634888536544166,
+        "Reward Min": -1.0525556802749634,
+        "Reward Average": 0.5978388786315918,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.04684288054704666,
+        "Episode Length Mean": 2.4975609756097574,
+        "Policy Loss": 0.0030939580046833717,
+        "Value Loss": 0.0015631564920113303,
+        "Total Loss": 0.006209126666362865,
+        "Reward Min": -0.12303397059440613,
+        "Reward Average": 0.6109790802001953,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.04163159057497978,
+        "Episode Length Mean": 2.5147058823529385,
+        "Policy Loss": 9.510205995866272e-05,
+        "Value Loss": 0.0001158407027048725,
+        "Total Loss": 0.0003161498737540568,
+        "Reward Min": 0.0,
+        "Reward Average": 0.6158602237701416,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.039967067539691925,
+        "Episode Length Mean": 2.4975609756097557,
+        "Policy Loss": 0.0005864342905397281,
+        "Value Loss": 0.00016443361462847864,
+        "Total Loss": 0.000905790887600233,
+        "Reward Min": -0.12303397059440613,
+        "Reward Average": 0.6090981364250183,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.03908208757638931,
+        "Episode Length Mean": 2.502439024390244,
+        "Policy Loss": 0.015309982198232314,
+        "Value Loss": 0.016625017909973398,
+        "Total Loss": 0.04854433936998247,
+        "Reward Min": 0.0,
+        "Reward Average": 0.5991078615188599,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.05828036740422249,
+        "Episode Length Mean": 2.5024390243902443,
+        "Policy Loss": 4.421721592962053e-05,
+        "Value Loss": 0.0009216376379299611,
+        "Total Loss": 0.0018730333489429527,
+        "Reward Min": -0.38052666187286377,
+        "Reward Average": 0.6098740696907043,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.035411544144153595,
+        "Episode Length Mean": 2.4975609756097574,
+        "Policy Loss": 0.004294072787160985,
+        "Value Loss": 7.22898666651872e-05,
+        "Total Loss": 0.004431482440850232,
+        "Reward Min": -0.13388073444366455,
+        "Reward Average": 0.6109262108802795,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.034856900572776794,
+        "Episode Length Mean": 2.522167487684728,
+        "Policy Loss": 0.0012706021243502619,
+        "Value Loss": 9.281968668162219e-05,
+        "Total Loss": 0.001447312729396799,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.6094099283218384,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.03415503725409508,
+        "Episode Length Mean": 2.5024390243902457,
+        "Policy Loss": 0.0007111103950592224,
+        "Value Loss": 1.3735144799298384e-05,
+        "Total Loss": 0.0007311755289265421,
+        "Reward Min": 0.0,
+        "Reward Average": 0.6133776903152466,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.034517884254455566,
+        "Episode Length Mean": 2.509803921568626,
+        "Policy Loss": 0.0001410360654929832,
+        "Value Loss": 4.646234943450621e-07,
+        "Total Loss": 0.0001340743505835462,
+        "Reward Min": 0.0,
+        "Reward Average": 0.6158602237701416,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.03505567088723183,
+        "Episode Length Mean": 2.50731707317073,
+        "Policy Loss": 0.0030894076430740833,
+        "Value Loss": 0.004796936151259425,
+        "Total Loss": 0.012675295727831331,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.6025055646896362,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.04368888586759567,
+        "Episode Length Mean": 2.527093596059113,
+        "Policy Loss": 0.007442890957463533,
+        "Value Loss": 0.0011076107512053568,
+        "Total Loss": 0.009646260645240549,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.6113094687461853,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.03982619568705559,
+        "Episode Length Mean": 2.495145631067963,
+        "Policy Loss": 0.0010374909907113759,
+        "Value Loss": 0.00010923447268851306,
+        "Total Loss": 0.0012470701876736714,
+        "Reward Min": 0.0,
+        "Reward Average": 0.6137921214103699,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.0375991091132164,
+        "Episode Length Mean": 2.514705882352942,
+        "Policy Loss": 0.029508726374842812,
+        "Value Loss": 0.01626623974880204,
+        "Total Loss": 0.06203051884949672,
+        "Reward Min": -0.12303397059440613,
+        "Reward Average": 0.6106868982315063,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.06054307520389557,
+        "Episode Length Mean": 2.4902912621359197,
+        "Policy Loss": 0.020633626380003985,
+        "Value Loss": 0.0025668423249953776,
+        "Total Loss": 0.025752096960786723,
+        "Reward Min": -0.14718207716941833,
+        "Reward Average": 0.6105678677558899,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.04735111445188522,
+        "Episode Length Mean": 2.497560975609757,
+        "Policy Loss": 0.025943929678760472,
+        "Value Loss": 0.028584472674992867,
+        "Total Loss": 0.08309357304824516,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.601172149181366,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.08291114866733551,
+        "Episode Length Mean": 2.502439024390246,
+        "Policy Loss": 0.014136494130070794,
+        "Value Loss": 0.013428799997200253,
+        "Total Loss": 0.04098454045015388,
+        "Reward Min": -0.14718207716941833,
+        "Reward Average": 0.5923423171043396,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.051218803972005844,
+        "Episode Length Mean": 2.4951456310679587,
+        "Policy Loss": 0.010221360613968498,
+        "Value Loss": 0.019688732398208234,
+        "Total Loss": 0.04958865989465268,
+        "Reward Min": -1.0525556802749634,
+        "Reward Average": 0.6081945896148682,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.044951193034648895,
+        "Episode Length Mean": 2.4975609756097557,
+        "Policy Loss": 0.010455480412929315,
+        "Value Loss": 0.0008049245335541853,
+        "Total Loss": 0.01205675941309892,
+        "Reward Min": 0.0,
+        "Reward Average": 0.6114966869354248,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.041395340114831924,
+        "Episode Length Mean": 2.5073170731707304,
+        "Policy Loss": 0.0033350574130963655,
+        "Value Loss": 0.00018068690609140966,
+        "Total Loss": 0.003688667210553831,
+        "Reward Min": -0.22412846982479095,
+        "Reward Average": 0.611537754535675,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.040354687720537186,
+        "Episode Length Mean": 2.49514563106796,
+        "Policy Loss": 0.005356963305530375,
+        "Value Loss": 0.002294654115928551,
+        "Total Loss": 0.009938227423845092,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.6037593483924866,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.040668100118637085,
+        "Episode Length Mean": 2.485436893203883,
+        "Policy Loss": 0.006400221791409422,
+        "Value Loss": 0.004301521700654119,
+        "Total Loss": 0.014992491654993492,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.6028063893318176,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.0406576469540596,
+        "Episode Length Mean": 2.4902912621359183,
+        "Policy Loss": 0.0063681055034976435,
+        "Value Loss": 0.000535534272330551,
+        "Total Loss": 0.007430322944856019,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.6041455864906311,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.040652450174093246,
+        "Episode Length Mean": 2.51470588235294,
+        "Policy Loss": 0.009496574582954054,
+        "Value Loss": 0.008328261143333297,
+        "Total Loss": 0.026141727466892924,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.6009296774864197,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.0376548245549202,
+        "Episode Length Mean": 2.502439024390242,
+        "Policy Loss": 0.0005576983321589067,
+        "Value Loss": 0.00014469931420535437,
+        "Total Loss": 0.0008402377461607101,
+        "Reward Min": 0.0,
+        "Reward Average": 0.6109026670455933,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.033735185861587524,
+        "Episode Length Mean": 2.4854368932038855,
+        "Policy Loss": 0.0027530607003427576,
+        "Value Loss": 0.0007789348672986305,
+        "Total Loss": 0.004305698041207507,
+        "Reward Min": -1.0525556802749634,
+        "Reward Average": 0.5948649048805237,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.034563109278678894,
+        "Episode Length Mean": 2.5024390243902443,
+        "Policy Loss": 0.005196542959311045,
+        "Value Loss": 0.0015396399676887995,
+        "Total Loss": 0.008270141515822619,
+        "Reward Min": 0.0,
+        "Reward Average": 0.6113247871398926,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.036464475095272064,
+        "Episode Length Mean": 2.495145631067963,
+        "Policy Loss": 0.0014666988181488705,
+        "Value Loss": 0.0009560091511673364,
+        "Total Loss": 0.003372663578375069,
+        "Reward Min": -0.12303397059440613,
+        "Reward Average": 0.6083301901817322,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.03452549874782562,
+        "Episode Length Mean": 2.4975609756097557,
+        "Policy Loss": 0.0020259338043615567,
+        "Value Loss": 0.0006849362714547169,
+        "Total Loss": 0.0033901460119523117,
+        "Reward Min": -0.12303397059440613,
+        "Reward Average": 0.6039046049118042,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.03638704493641853,
+        "Episode Length Mean": 2.5098039215686265,
+        "Policy Loss": 0.00031124223698952836,
+        "Value Loss": 9.10924506598576e-05,
+        "Total Loss": 0.0004886723465915567,
+        "Reward Min": 0.0,
+        "Reward Average": 0.6168740391731262,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.034963589161634445,
+        "Episode Length Mean": 2.4951456310679627,
+        "Policy Loss": 0.01665476532434695,
+        "Value Loss": 0.0042104470539925404,
+        "Total Loss": 0.02507019955373835,
+        "Reward Min": -1.245230793952942,
+        "Reward Average": 0.6039406657218933,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.039846207946538925,
+        "Episode Length Mean": 2.51470588235294,
+        "Policy Loss": 0.04037341568619013,
+        "Value Loss": 0.0019578431983973137,
+        "Total Loss": 0.04428295657271519,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.6064475774765015,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.03970840945839882,
+        "Episode Length Mean": 2.49514563106796,
+        "Policy Loss": 0.03654363110399573,
+        "Value Loss": 0.031938545371303924,
+        "Total Loss": 0.1004126182742766,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.6047416925430298,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.06879044324159622,
+        "Episode Length Mean": 2.4951456310679627,
+        "Policy Loss": 0.017918184748850763,
+        "Value Loss": 0.010425598450638063,
+        "Total Loss": 0.0387602774426341,
+        "Reward Min": -0.12303397059440613,
+        "Reward Average": 0.5994043350219727,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.04656463861465454,
+        "Episode Length Mean": 2.507317073170732,
+        "Policy Loss": 0.012077889667125419,
+        "Value Loss": 0.0011051544342990378,
+        "Total Loss": 0.014283554861322045,
+        "Reward Min": -0.12303397059440613,
+        "Reward Average": 0.6121995449066162,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.03686629980802536,
+        "Episode Length Mean": 2.497560975609757,
+        "Policy Loss": 0.0003680089924955609,
+        "Value Loss": 7.385670301118807e-05,
+        "Total Loss": 0.0005106570487214414,
+        "Reward Min": 0.0,
+        "Reward Average": 0.612460196018219,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.0348789244890213,
+        "Episode Length Mean": 2.4975609756097557,
+        "Policy Loss": 0.0010336302416362741,
+        "Value Loss": 0.0001271796254229685,
+        "Total Loss": 0.0012831292128794303,
+        "Reward Min": 0.0,
+        "Reward Average": 0.6119729280471802,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.0347219780087471,
+        "Episode Length Mean": 2.5147058823529416,
+        "Policy Loss": 0.012311108990616047,
+        "Value Loss": 0.003038834491235321,
+        "Total Loss": 0.0183844944149314,
+        "Reward Min": -0.13388073444366455,
+        "Reward Average": 0.6081327199935913,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.0354434996843338,
+        "Episode Length Mean": 2.485436893203883,
+        "Policy Loss": 0.01141276212001685,
+        "Value Loss": 0.005248693961675599,
+        "Total Loss": 0.02190607578086201,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.6034466624259949,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.03711128607392311,
+        "Episode Length Mean": 2.4854368932038815,
+        "Policy Loss": 0.006970378483401875,
+        "Value Loss": 0.012396168365739868,
+        "Total Loss": 0.03175820060278057,
+        "Reward Min": -1.0525556802749634,
+        "Reward Average": 0.59892338514328,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.0350564569234848,
+        "Episode Length Mean": 2.5196078431372544,
+        "Policy Loss": 0.015831532473384858,
+        "Value Loss": 0.012552076261272305,
+        "Total Loss": 0.0409294410783332,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.5990020632743835,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.03294575586915016,
+        "Episode Length Mean": 2.497560975609753,
+        "Policy Loss": 0.009807314781937746,
+        "Value Loss": 0.005196722494474671,
+        "Total Loss": 0.020195564138703048,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.5955281853675842,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.037689805030822754,
+        "Episode Length Mean": 2.5221674876847304,
+        "Policy Loss": 0.004957859564456158,
+        "Value Loss": 0.0007662993170924894,
+        "Total Loss": 0.006485382575192488,
+        "Reward Min": -0.14718207716941833,
+        "Reward Average": 0.6139813661575317,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.03480669483542442,
+        "Episode Length Mean": 2.502439024390242,
+        "Policy Loss": 0.006130274821771308,
+        "Value Loss": 0.00010843482257882901,
+        "Total Loss": 0.0063428270659642285,
+        "Reward Min": 0.0,
+        "Reward Average": 0.6114966869354248,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.033382222056388855,
+        "Episode Length Mean": 2.527093596059113,
+        "Policy Loss": 0.002261388940041796,
+        "Value Loss": 0.0022595605473156866,
+        "Total Loss": 0.006776227768568787,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.6088337898254395,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.034249212592840195,
+        "Episode Length Mean": 2.50731707317073,
+        "Policy Loss": 0.006912801225553266,
+        "Value Loss": 0.00019184653052661815,
+        "Total Loss": 0.0072919148078653935,
+        "Reward Min": 0.0,
+        "Reward Average": 0.6114966869354248,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.03321865200996399,
+        "Episode Length Mean": 2.5147058823529416,
+        "Policy Loss": 0.008503597808157787,
+        "Value Loss": 0.003761696232686518,
+        "Total Loss": 0.016023061252781197,
+        "Reward Min": -0.14718207716941833,
+        "Reward Average": 0.6093084812164307,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.039063844829797745,
+        "Episode Length Mean": 2.5073170731707304,
+        "Policy Loss": 0.0009747159810444824,
+        "Value Loss": 0.0017214236231666291,
+        "Total Loss": 0.004412947869241179,
+        "Reward Min": -0.12303397059440613,
+        "Reward Average": 0.6112977266311646,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.03547390550374985,
+        "Episode Length Mean": 2.5098039215686287,
+        "Policy Loss": 0.00254777691225172,
+        "Value Loss": 8.461496673817237e-05,
+        "Total Loss": 0.0027129573427373543,
+        "Reward Min": 0.0,
+        "Reward Average": 0.6130972504615784,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.03347620740532875,
+        "Episode Length Mean": 2.5024390243902443,
+        "Policy Loss": 0.006463797993092161,
+        "Value Loss": 0.012282053263220412,
+        "Total Loss": 0.031024106336190026,
+        "Reward Min": -1.245230793952942,
+        "Reward Average": 0.6058235168457031,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.033245258033275604,
+        "Episode Length Mean": 2.509803921568629,
+        "Policy Loss": 0.011014377552783115,
+        "Value Loss": 0.00031024117254219174,
+        "Total Loss": 0.01163113136135507,
+        "Reward Min": 0.0,
+        "Reward Average": 0.6111204624176025,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.03125746548175812,
+        "Episode Length Mean": 2.522167487684728,
+        "Policy Loss": 0.00968937478319276,
+        "Value Loss": 0.0017293207463353615,
+        "Total Loss": 0.013144996817572972,
+        "Reward Min": -0.12303397059440613,
+        "Reward Average": 0.6059208512306213,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.03267159312963486,
+        "Episode Length Mean": 2.5098039215686287,
+        "Policy Loss": 0.0012658230843953788,
+        "Value Loss": 0.00020423994499196854,
+        "Total Loss": 0.0016709771289242776,
+        "Reward Min": 0.0,
+        "Reward Average": 0.61251300573349,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.032998763024806976,
+        "Episode Length Mean": 2.5098039215686248,
+        "Policy Loss": 0.003013023197127041,
+        "Value Loss": 0.0006288773720370955,
+        "Total Loss": 0.004266856125468621,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.6031106114387512,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.031961001455783844,
+        "Episode Length Mean": 2.5098039215686287,
+        "Policy Loss": 0.0027826762488984977,
+        "Value Loss": 6.226000523668063e-05,
+        "Total Loss": 0.002903115873778007,
+        "Reward Min": 0.0,
+        "Reward Average": 0.6133304834365845,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.03777236118912697,
+        "Episode Length Mean": 2.497560975609757,
+        "Policy Loss": 0.00041124679728454794,
+        "Value Loss": 5.414651786495028e-06,
+        "Total Loss": 0.00041745701673789887,
+        "Reward Min": 0.0,
+        "Reward Average": 0.6138648986816406,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.03744201362133026,
+        "Episode Length Mean": 2.4975609756097574,
+        "Policy Loss": 0.0018632105793585654,
+        "Value Loss": 0.0009291586430961731,
+        "Total Loss": 0.0037182438027230096,
+        "Reward Min": -0.12303397059440613,
+        "Reward Average": 0.6109790802001953,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.034952402114868164,
+        "Episode Length Mean": 2.5147058823529385,
+        "Policy Loss": 0.0005142696621192042,
+        "Value Loss": 9.553680540363985e-05,
+        "Total Loss": 0.0007022183494882482,
+        "Reward Min": 0.0,
+        "Reward Average": 0.6158602237701416,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.03456927090883255,
+        "Episode Length Mean": 2.4951456310679623,
+        "Policy Loss": 0.0056962993576235,
+        "Value Loss": 0.005475869488691387,
+        "Total Loss": 0.016644820515466556,
+        "Reward Min": 0.0,
+        "Reward Average": 0.6100693941116333,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.03408617898821831,
+        "Episode Length Mean": 2.5221674876847286,
+        "Policy Loss": 0.003240490317693912,
+        "Value Loss": 0.00014829299425400672,
+        "Total Loss": 0.0035339841051609255,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.6073200106620789,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.03322898596525192,
+        "Episode Length Mean": 2.497560975609754,
+        "Policy Loss": 0.0011389341334506749,
+        "Value Loss": 1.4257399293171595e-05,
+        "Total Loss": 0.001164732688266667,
+        "Reward Min": 0.0,
+        "Reward Average": 0.6136963367462158,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.03307217359542847,
+        "Episode Length Mean": 2.4975609756097548,
+        "Policy Loss": 0.0007035694588921619,
+        "Value Loss": 1.0223866713232608e-06,
+        "Total Loss": 0.0007029297485132701,
+        "Reward Min": 0.0,
+        "Reward Average": 0.6101065278053284,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.033276982605457306,
+        "Episode Length Mean": 2.5098039215686265,
+        "Policy Loss": 0.00023145614522945842,
+        "Value Loss": 9.716547280658185e-08,
+        "Total Loss": 0.00022938938900551875,
+        "Reward Min": 0.0,
+        "Reward Average": 0.6168740391731262,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.03381644934415817,
+        "Episode Length Mean": 2.4975609756097574,
+        "Policy Loss": 0.00046031039015392844,
+        "Value Loss": 0.0002544056195405432,
+        "Total Loss": 0.0009667592754425414,
+        "Reward Min": -0.12303397059440613,
+        "Reward Average": 0.6085805296897888,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.034194041043519974,
+        "Episode Length Mean": 2.5147058823529416,
+        "Policy Loss": 0.0014188211698638045,
+        "Value Loss": 6.15805280546056e-06,
+        "Total Loss": 0.0014286551631812478,
+        "Reward Min": -1.018707513809204,
+        "Reward Average": 0.6090592741966248,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.03518733009696007,
+        "Episode Length Mean": 2.5024390243902443,
+        "Policy Loss": 0.0007682052091695368,
+        "Value Loss": 1.335158899351541e-05,
+        "Total Loss": 0.0007921047290437854,
+        "Reward Min": 0.0,
+        "Reward Average": 0.6114966869354248,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.03510511666536331,
+        "Episode Length Mean": 2.5098039215686287,
+        "Policy Loss": 0.00025106239682770603,
+        "Value Loss": 8.969072816356065e-05,
+        "Total Loss": 0.00042796075400985934,
+        "Reward Min": 0.0,
+        "Reward Average": 0.6154270768165588,
+        "Reward Max": 1.1319324970245361
+    },
+    {
+        "Entropy": 0.03717256709933281,
+        "Episode Length Mean": 2.5098039215686256,
+        "Policy Loss": 0.000980503918981413,
+        "Value Loss": 0.0001458637416078545,
+        "Total Loss": 0.0012694572797045107,
+        "Reward Min": -0.38052666187286377,
+        "Reward Average": 0.6071134209632874,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.03669217601418495,
+        "Episode Length Mean": 2.502439024390244,
+        "Policy Loss": 0.0007077039117575622,
+        "Value Loss": 0.0002008934530230988,
+        "Total Loss": 0.0011075063748648972,
+        "Reward Min": 0.0,
+        "Reward Average": 0.6109014749526978,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.0372108519077301,
+        "Episode Length Mean": 2.497560975609757,
+        "Policy Loss": 0.0010751010213425618,
+        "Value Loss": 2.177109487888629e-05,
+        "Total Loss": 0.0011158874967804881,
+        "Reward Min": 0.0,
+        "Reward Average": 0.6138648986816406,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.037101417779922485,
+        "Episode Length Mean": 2.5024390243902452,
+        "Policy Loss": 0.0007524974216721598,
+        "Value Loss": 1.8180028769521076e-05,
+        "Total Loss": 0.0007865059651521731,
+        "Reward Min": 0.0,
+        "Reward Average": 0.6133776903152466,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.03698023036122322,
+        "Episode Length Mean": 2.519607843137253,
+        "Policy Loss": 0.0004344631333879079,
+        "Value Loss": 5.952845505197144e-06,
+        "Total Loss": 0.0004441177952685395,
+        "Reward Min": 0.0,
+        "Reward Average": 0.6158602237701416,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.03801998868584633,
+        "Episode Length Mean": 2.4975609756097557,
+        "Policy Loss": 8.412453428263685e-05,
+        "Value Loss": 7.682756735238886e-07,
+        "Total Loss": 8.346679055648566e-05,
+        "Reward Min": 0.0,
+        "Reward Average": 0.6078492403030396,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.03791366145014763,
+        "Episode Length Mean": 2.507317073170732,
+        "Policy Loss": 2.9766553609533727e-05,
+        "Value Loss": 2.2597237012145225e-08,
+        "Total Loss": 2.771164949422202e-05,
+        "Reward Min": 0.0,
+        "Reward Average": 0.6153960824012756,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.038083624094724655,
+        "Episode Length Mean": 2.4951456310679587,
+        "Policy Loss": 0.010875593235212474,
+        "Value Loss": 0.012742709046960952,
+        "Total Loss": 0.03635781886259794,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.5977998971939087,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.055330920964479446,
+        "Episode Length Mean": 2.497560975609758,
+        "Policy Loss": 0.006119474732258821,
+        "Value Loss": 0.0017831207449034987,
+        "Total Loss": 0.00968362340063322,
+        "Reward Min": 0.0,
+        "Reward Average": 0.6076678037643433,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.04078983515501022,
+        "Episode Length Mean": 2.502439024390244,
+        "Policy Loss": 0.00276969092374202,
+        "Value Loss": 0.0011667178412153594,
+        "Total Loss": 0.0051005850109504544,
+        "Reward Min": -0.12303397059440613,
+        "Reward Average": 0.6091940999031067,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.04108138754963875,
+        "Episode Length Mean": 2.5073170731707277,
+        "Policy Loss": 0.002851700147949998,
+        "Value Loss": 0.0014523766267302558,
+        "Total Loss": 0.005754078267273144,
+        "Reward Min": -0.12303397059440613,
+        "Reward Average": 0.606933057308197,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.04412112385034561,
+        "Episode Length Mean": 2.5024390243902443,
+        "Policy Loss": 0.0006052851313143036,
+        "Value Loss": 0.00035999241117679043,
+        "Total Loss": 0.0013226543233031403,
+        "Reward Min": 0.0,
+        "Reward Average": 0.6133776903152466,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.037964388728141785,
+        "Episode Length Mean": 2.5196078431372544,
+        "Policy Loss": 0.0058029117790283635,
+        "Value Loss": 0.005790024519455983,
+        "Total Loss": 0.017380108474753797,
+        "Reward Min": -1.0525556802749634,
+        "Reward Average": 0.6056740880012512,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.04075855761766434,
+        "Episode Length Mean": 2.495145631067963,
+        "Policy Loss": 0.0009783725963643517,
+        "Value Loss": 0.00012150624716866792,
+        "Total Loss": 0.001219415214109176,
+        "Reward Min": 0.0,
+        "Reward Average": 0.6137921214103699,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.03645152226090431,
+        "Episode Length Mean": 2.514705882352942,
+        "Policy Loss": 0.002548314312662115,
+        "Value Loss": 0.00015248169643200537,
+        "Total Loss": 0.002851405010005692,
+        "Reward Min": 0.0,
+        "Reward Average": 0.6130972504615784,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.0360281877219677,
+        "Episode Length Mean": 2.497560975609757,
+        "Policy Loss": 2.055044901538849e-05,
+        "Value Loss": 2.6160307271538824e-05,
+        "Total Loss": 7.103181910395051e-05,
+        "Reward Min": 0.0,
+        "Reward Average": 0.6138648986816406,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.036353062838315964,
+        "Episode Length Mean": 2.5024390243902443,
+        "Policy Loss": 0.00351378761047272,
+        "Value Loss": 0.0018657899215668294,
+        "Total Loss": 0.007243883160299445,
+        "Reward Min": -0.12303397059440613,
+        "Reward Average": 0.6109790802001953,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.0361490324139595,
+        "Episode Length Mean": 2.509803921568626,
+        "Policy Loss": 0.0024515701552445535,
+        "Value Loss": 0.00013103308529593968,
+        "Total Loss": 0.0027120185550302267,
+        "Reward Min": 0.0,
+        "Reward Average": 0.6136468052864075,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.03678618371486664,
+        "Episode Length Mean": 2.4975609756097557,
+        "Policy Loss": 0.0036546155110954706,
+        "Value Loss": 0.004427376437689645,
+        "Total Loss": 0.012507557514254588,
+        "Reward Min": 0.0,
+        "Reward Average": 0.6056679487228394,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.0384097695350647,
+        "Episode Length Mean": 2.5098039215686287,
+        "Policy Loss": 0.0014778716598016217,
+        "Value Loss": 0.0007823474182941936,
+        "Total Loss": 0.003041032601458938,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.6103287935256958,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.03479118272662163,
+        "Episode Length Mean": 2.5098039215686256,
+        "Policy Loss": 0.0030649414056824753,
+        "Value Loss": 0.0024793618854346278,
+        "Total Loss": 0.00802208334062016,
+        "Reward Min": 0.0,
+        "Reward Average": 0.6052094101905823,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.03487684577703476,
+        "Episode Length Mean": 2.507317073170732,
+        "Policy Loss": 0.03425661589426454,
+        "Value Loss": 0.03731181804960215,
+        "Total Loss": 0.10887791113054845,
+        "Reward Min": -1.0525556802749634,
+        "Reward Average": 0.6084631681442261,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.047089193016290665,
+        "Episode Length Mean": 2.50731707317073,
+        "Policy Loss": 0.012326882831985131,
+        "Value Loss": 0.020421336721483385,
+        "Total Loss": 0.05316531535936521,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.6087026596069336,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.09741213917732239,
+        "Episode Length Mean": 2.534653465346532,
+        "Policy Loss": 0.02401650726096705,
+        "Value Loss": 0.01005464965419378,
+        "Total Loss": 0.044122163293650374,
+        "Reward Min": -0.38052666187286377,
+        "Reward Average": 0.5945791602134705,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.044185612350702286,
+        "Episode Length Mean": 2.4975609756097525,
+        "Policy Loss": 0.009816859455895612,
+        "Value Loss": 0.0037392002413980667,
+        "Total Loss": 0.017293480035732497,
+        "Reward Min": 0.0,
+        "Reward Average": 0.6075466871261597,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.03957683593034744,
+        "Episode Length Mean": 2.4975609756097548,
+        "Policy Loss": 0.009798864935874008,
+        "Value Loss": 0.0010461375459271944,
+        "Total Loss": 0.011889307817909865,
+        "Reward Min": 0.0,
+        "Reward Average": 0.6101065278053284,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.03608766570687294,
+        "Episode Length Mean": 2.5098039215686265,
+        "Policy Loss": 0.0012154058704254569,
+        "Value Loss": 7.153651836233622e-05,
+        "Total Loss": 0.0013568371714427485,
+        "Reward Min": 0.0,
+        "Reward Average": 0.6168740391731262,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.036045923829078674,
+        "Episode Length Mean": 2.485436893203881,
+        "Policy Loss": 0.00457069020740164,
+        "Value Loss": 0.0024419513715656645,
+        "Total Loss": 0.009453263704926943,
+        "Reward Min": -0.14718207716941833,
+        "Reward Average": 0.6077286601066589,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.037450145930051804,
+        "Episode Length Mean": 2.502439024390244,
+        "Policy Loss": 0.0033172736948472448,
+        "Value Loss": 0.0002116475943978458,
+        "Total Loss": 0.0037393649145087697,
+        "Reward Min": 0.0,
+        "Reward Average": 0.6115671992301941,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.03486822172999382,
+        "Episode Length Mean": 2.5221674876847273,
+        "Policy Loss": 0.001980618231641529,
+        "Value Loss": 0.0014011132780069602,
+        "Total Loss": 0.004781612533861335,
+        "Reward Min": -0.12303397059440613,
+        "Reward Average": 0.605370819568634,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.031549327075481415,
+        "Episode Length Mean": 2.5147058823529416,
+        "Policy Loss": 0.0015801117751834683,
+        "Value Loss": 8.493666507547465e-05,
+        "Total Loss": 0.0017487019522377523,
+        "Reward Min": 0.0,
+        "Reward Average": 0.6166054606437683,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.031717732548713684,
+        "Episode Length Mean": 2.497560975609754,
+        "Policy Loss": 0.000658600109090912,
+        "Value Loss": 1.074277186852157e-05,
+        "Total Loss": 0.0006788142568439074,
+        "Reward Min": 0.0,
+        "Reward Average": 0.6136963367462158,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.03191864863038063,
+        "Episode Length Mean": 2.514705882352942,
+        "Policy Loss": 0.002716456684083823,
+        "Value Loss": 0.0017291159609520435,
+        "Total Loss": 0.006173608732751746,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.6053809523582458,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.03213690221309662,
+        "Episode Length Mean": 2.497560975609757,
+        "Policy Loss": 0.003922797828181502,
+        "Value Loss": 0.003616729332406976,
+        "Total Loss": 0.011155216088809537,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.6061862707138062,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.04022393375635147,
+        "Episode Length Mean": 2.4975609756097557,
+        "Policy Loss": 0.0046047321993683,
+        "Value Loss": 9.460379587267201e-05,
+        "Total Loss": 0.004792877625732215,
+        "Reward Min": 0.0,
+        "Reward Average": 0.6133776903152466,
+        "Reward Max": 1.0843532085418701
+    },
+    {
+        "Entropy": 0.03347611799836159,
+        "Episode Length Mean": 2.5147058823529385,
+        "Policy Loss": 0.00341028595721582,
+        "Value Loss": 0.0001703965802200003,
+        "Total Loss": 0.0037500696707866155,
+        "Reward Min": -0.6550076603889465,
+        "Reward Average": 0.6000922918319702,
+        "Reward Max": 1.0843532085418701
+    }
+]

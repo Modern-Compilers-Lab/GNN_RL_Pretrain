@@ -13,10 +13,10 @@ batch_size = 256
 lr = 0.0001
 use_cuda = 1
 
-device = torch.device("cuda" if (torch.cuda.is_available() & use_cuda) else "cpu")
+device = torch.device("cuda:0" if (torch.cuda.is_available() & use_cuda) else "cpu")
 print("Loading dataset ... ")
-np_data_train = np.load("pretrain/data/sequence_dataset_train.npy").astype(np.float32)
-np_data_val = np.load("pretrain/data/sequence_dataset_val.npy").astype(np.float32)
+np_data_train = np.load("./pretrain/data/sequence_dataset_train.npy").astype(np.float32)
+np_data_val = np.load("./pretrain/data/sequence_dataset_val.npy").astype(np.float32)
 print("Data length: ", len(np_data_train), len(np_data_val))
 
 tensor_data_train = torch.from_numpy(np_data_train)

@@ -7,6 +7,6 @@ dataset
 
 *.ipynb
 *.txt
-*.json
+# *.json
 *.sh
 *.pkl

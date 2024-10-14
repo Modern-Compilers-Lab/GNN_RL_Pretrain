@@ -24,6 +24,7 @@ class TiramisuConfig:
     tiramisu_path: str = ""
     workspace: str = "./workspace/"
     experiment_dir: str = ""
+    logs_dir: str = ""
 
 @dataclass
 class DatasetConfig:
@@ -72,6 +73,29 @@ class EnvVars:
     TIRAMISU_ROOT: str = ""
     CONDA_ENV: str = ""
     LD_LIBRARY_PATH: str = ""
+    
+@dataclass
+class Pretrain:
+    embed_access_matrices: bool
+    embedding_type: str
+    
+@dataclass
+class Hyperparameters:
+    num_updates: int
+    batch_size: int
+    mini_batch_size: int
+    num_epochs: int
+    clip_epsilon: float
+    gamma: float
+    lambdaa: float
+    value_coeff: float
+    entropy_coeff_start: float
+    entropy_coeff_finish: float
+    max_grad_norm: float
+    lr: float
+    start_lr: float
+    final_lr: float
+    weight_decay: float
 
 @dataclass
 class AutoSchedulerConfig:
@@ -80,6 +104,8 @@ class AutoSchedulerConfig:
     dataset: DatasetConfig
     experiment: Experiment
     env_vars: EnvVars
+    pretrain: Pretrain
+    hyperparameters: Hyperparameters
 
     def __post_init__(self):
         if isinstance(self.tiramisu, dict):
@@ -90,6 +116,10 @@ class AutoSchedulerConfig:
             self.experiment = Experiment(**self.experiment)
         if isinstance(self.env_vars, dict):
             self.env_vars = EnvVars(**self.env_vars)
+        if isinstance(self.pretrain, dict):
+            self.pretrain = Pretrain(**self.pretrain)
+        if isinstance(self.hyperparameters, dict):
+            self.hyperparameters = Hyperparameters(**self.hyperparameters)
 
 def read_yaml_file(path):
     with open(path) as yaml_file:
@@ -103,7 +133,16 @@ def dict_to_config(parsed_yaml: Dict[Any, Any]) -> AutoSchedulerConfig:
     dataset = DatasetConfig(parsed_yaml["dataset"])
     experiment = Experiment(**parsed_yaml["experiment"])
     env_vars = EnvVars(**parsed_yaml["env_vars"])
-    return AutoSchedulerConfig(tiramisu, dataset,  experiment, env_vars)
+    pretrain = Pretrain(**parsed_yaml["pretrain"])
+    hyperparameters = Hyperparameters(**parsed_yaml["hyperparameters"])
+    return AutoSchedulerConfig(
+        tiramisu,
+        dataset,
+        experiment,
+        env_vars,
+        pretrain,
+        hyperparameters
+        )
 
 class Config(object):
     config = None
