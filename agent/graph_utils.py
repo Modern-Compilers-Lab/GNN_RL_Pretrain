@@ -81,7 +81,6 @@ def comps_to_vectors(annotations, embed_access_matrices, embedding_type):
         device = "cuda:0" if torch.cuda.is_available() else "cpu"
     else:
         comp_vector_size = 709 + 9
-
     max_depth = 5
     dict_comp = {}
     for comp in annotations["computations"]:

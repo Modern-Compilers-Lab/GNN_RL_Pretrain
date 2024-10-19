@@ -14,6 +14,8 @@ def get_embedding_size(embedding_type: str = 'flattened_output'):
             return 16
         case "flattened_output":
             return 640
+        case "concat_max_pooling_output_final_hidden_state":
+            return 16 + 80
 
 def get_embedding(encoder, input_sequence, embedding_type):
     output, (h_n, c_n) = encoder(input_sequence)
@@ -31,5 +33,9 @@ def get_embedding(encoder, input_sequence, embedding_type):
             embedding = torch.max(output, dim=1).values.reshape(-1)
         case "flattened_output":
             embedding = output.reshape(-1)
+        case "concat_max_pooling_output_final_hidden_state":
+            max_pooled_output = torch.max(output, dim=1).values.reshape(-1)
+            final_hidden_state = h_n.reshape(-1)
+            embedding = torch.cat([max_pooled_output, final_hidden_state]) #.reshape(-1)
     
     return embedding

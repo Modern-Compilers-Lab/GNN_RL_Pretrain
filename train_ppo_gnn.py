@@ -24,7 +24,7 @@ if "__main__" == __name__:
 
     parser.add_argument("--num-nodes", default=1, type=int)
     
-    experiment_name = "final_hidden_state_u500_b500_ent0.5"
+    experiment_name = "concat_max_pooling_output_final_hidden_state_u500_b500_ent0.5"
 
     parser.add_argument("--name", type=str, default=experiment_name)
 

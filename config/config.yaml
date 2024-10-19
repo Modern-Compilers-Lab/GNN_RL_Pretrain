@@ -36,8 +36,8 @@ experiment:
     NB_EXEC: 3
 
 pretrain:
-    embed_access_matrices: True
-    embedding_type: final_hidden_state # final_hidden_state, final_cell_state, concat_final_hidden_cell_state, mean_pooling_output, max_pooling_output, flattened_output
+    embed_access_matrices: False
+    embedding_type: concat_max_pooling_output_final_hidden_state # final_hidden_state, final_cell_state, concat_final_hidden_cell_state, mean_pooling_output, max_pooling_output, flattened_output, concat_max_pooling_output_final_hidden_state
 
 hyperparameters:
     num_updates: 500

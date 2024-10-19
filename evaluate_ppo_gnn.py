@@ -45,11 +45,13 @@ if "__main__" == __name__:
         input_size = 6 + get_embedding_size(Config.config.pretrain.embedding_type) + 9
     else:
         input_size = 718
+        
+    print(input_size)
     
     ppo_agent = GAT(input_size=input_size, num_heads=4, hidden_size=128, num_outputs=56).to(
         device
     )
-    
+
     model_name = 'model_full_computational_vector_u500_b500_ent0.5_426'
     ppo_agent.load_state_dict(
         torch.load(

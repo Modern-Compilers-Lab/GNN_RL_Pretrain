@@ -5,7 +5,7 @@ experiment_dir
 mlruns
 dataset
 
-*.ipynb
+# *.ipynb
 *.txt
 # *.json
 *.sh
