@@ -1,19 +1,15 @@
 import torch
 import torch.nn as nn
 import torch.optim as optim
-import numpy as np
 from torch_geometric.data import Data, Batch
 import time
 import ray
 import mlflow
 import argparse as arg
 import json
-
 import math
 import numpy as np
-import torch
-import torch.nn as nn
-from torch_geometric.data import Batch, Data
+
 import matplotlib.pyplot as plt
 from pretrain.embedding import get_embedding_size
 from pretrain.lstm_autoencoder_modeling import encoder
@@ -22,29 +18,18 @@ from agent.policy_value_nn import GAT
 from agent.rollout_worker import RolloutWorker, Transition
 from utils.dataset_actor.dataset_actor import DatasetActor
 
-import ray
-import torch
-import torch.nn as nn
-import math
-from torch_geometric.data import Data
 from agent.graph_utils import *
 from config.config import Config
 from env_api.tiramisu_api import TiramisuEnvAPI
 from tqdm import tqdm
 
-from concurrent.futures import ThreadPoolExecutor, as_completed
-# Assuming dataset_worker and data loading logic is already set up
-# We will prepare a custom data loader for the pretraining task
 from sklearn.model_selection import train_test_split
 
 import os
 import pickle
-from sklearn.model_selection import train_test_split
-from tqdm import tqdm
-from concurrent.futures import ThreadPoolExecutor, as_completed
-import torch
-from torch_geometric.data import Data, Batch
 import pandas as pd
+
+
 class PretrainDataset:
     def __init__(self, dataset_worker, config, save_path="pretrain_dataset.pkl"):
         self.dataset_worker = dataset_worker
