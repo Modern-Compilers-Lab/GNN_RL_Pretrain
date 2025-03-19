@@ -31,10 +31,12 @@ class DatasetConfig:
     dataset_format: DatasetFormat = DatasetFormat.HYBRID
     cpps_path: str = ""
     dataset_path: str = ""
+    pretrain_dataset_path: str = ""
     save_path: str = ""
     shuffle: bool = False
     seed: int = None
     saving_frequency: int = 10000
+    tags: list[str] = field(default_factory=list)
     is_benchmark: bool =False
 
     def __init__(self, dataset_config_dict: Dict):
@@ -42,6 +44,7 @@ class DatasetConfig:
             dataset_config_dict["dataset_format"])
         self.cpps_path = dataset_config_dict["cpps_path"]
         self.dataset_path = dataset_config_dict["dataset_path"]
+        self.pretrain_dataset_path = dataset_config_dict["pretrain_dataset_path"]
         self.save_path = dataset_config_dict["save_path"]
         self.models_save_path = dataset_config_dict["models_save_path"]
         self.results_save_path = dataset_config_dict["results_save_path"]
@@ -49,6 +52,7 @@ class DatasetConfig:
         self.shuffle = dataset_config_dict["shuffle"]
         self.seed = dataset_config_dict["seed"]
         self.saving_frequency = dataset_config_dict["saving_frequency"]
+        self.tags = dataset_config_dict["tags"] if "tags" in dataset_config_dict else []
         self.is_benchmark = dataset_config_dict["is_benchmark"]
 
         if dataset_config_dict['is_benchmark']:
@@ -106,6 +110,7 @@ class AutoSchedulerConfig:
     env_vars: EnvVars
     pretrain: Pretrain
     hyperparameters: Hyperparameters
+    machine: str = "jubail"
 
     def __post_init__(self):
         if isinstance(self.tiramisu, dict):
@@ -135,13 +140,15 @@ def dict_to_config(parsed_yaml: Dict[Any, Any]) -> AutoSchedulerConfig:
     env_vars = EnvVars(**parsed_yaml["env_vars"])
     pretrain = Pretrain(**parsed_yaml["pretrain"])
     hyperparameters = Hyperparameters(**parsed_yaml["hyperparameters"])
+    machine = parsed_yaml.get("machine", "jubail")
     return AutoSchedulerConfig(
         tiramisu,
         dataset,
         experiment,
         env_vars,
         pretrain,
-        hyperparameters
+        hyperparameters,
+        machine
         )
 
 class Config(object):

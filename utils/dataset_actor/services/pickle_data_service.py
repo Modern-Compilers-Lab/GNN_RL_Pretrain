@@ -17,6 +17,7 @@ class PickleDataService(BaseDataService):
         shuffle: bool = False,
         seed: int = None,
         saving_frequency: int = 10000,
+        tags: list[str] = [],
     ):
         super().__init__(
             dataset_path=dataset_path,
@@ -27,6 +28,7 @@ class PickleDataService(BaseDataService):
         )
         self.cpps_path = cpps_path
         self.cpps = {}
+        self.tags = tags
 
         print(
             f"reading dataset in full pkl format: dataset pkl from {self.dataset_path} and cpps pkl from {self.cpps_path}"
@@ -35,6 +37,13 @@ class PickleDataService(BaseDataService):
         with open(self.dataset_path, "rb") as f:
             self.dataset = pickle.load(f)
             self.function_names = list(self.dataset.keys())
+            if self.tags:
+                print(f"Filtering dataset by tags: {self.tags}")
+                filtered_function_names = []
+                for program in self.function_names:
+                    if any(tag in self.dataset[program]["tags"] for tag in self.tags):
+                        filtered_function_names.append(program)
+                self.function_names = filtered_function_names
 
         with open(self.cpps_path, "rb") as f:
             self.cpps = pickle.load(f)
