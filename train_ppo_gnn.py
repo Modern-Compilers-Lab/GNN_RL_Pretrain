@@ -24,7 +24,7 @@ if "__main__" == __name__:
 
     parser.add_argument("--num-nodes", default=1, type=int)
     
-    experiment_name = "final_hidden_state_u500_b500_ent0.5"
+    experiment_name = "concat_final_hidden_cell_state_pretrained"
 
     parser.add_argument("--name", type=str, default=experiment_name)
 
@@ -61,8 +61,10 @@ if "__main__" == __name__:
     start_lr = Config.config.hyperparameters.start_lr
     final_lr = Config.config.hyperparameters.final_lr
     weight_decay = Config.config.hyperparameters.weight_decay
-
+    tag = "12.5k"
+    Config.config.dataset.tags = [tag]
     dataset_worker = DatasetActor.remote(Config.config.dataset)
+    pretrained_model_path = Config.config.dataset.pretrain_dataset_path
     device = "cuda:0" if torch.cuda.is_available() else "cpu"
     print(f"TRAINING DEVICE: {device}")
 
@@ -71,25 +73,29 @@ if "__main__" == __name__:
     else:
         input_size = 718
     
-    ppo_agent = GAT(input_size=input_size, num_heads=4, hidden_size=128, num_outputs=56).to(
-        device
-    )
+    # Path to the pretrained model
+    if pretrained_model_path is not None:
+        ppo_agent = GAT(input_size=input_size, num_heads=4, hidden_size=128, num_outputs=56).to(
+            device
+        )
     
     optimizer = torch.optim.Adam(
         ppo_agent.parameters(), lr=lr, weight_decay=weight_decay, eps=1e-5
     )
     value_loss = nn.MSELoss()
 
-    # ppo_agent.load_state_dict(
-    #     torch.load(
-    #         f"{Config.config.dataset.models_save_path}/model_experiment_101_239.pt",
-    #         map_location=torch.device(device)
-    #     ),
-    # )
+    # Load pretrained weights
+    pretrained_weights = torch.load(pretrained_model_path, map_location=device)
+    ppo_agent.load_state_dict(
+        torch.load(
+            pretrained_model_path,
+            map_location=torch.device(device)
+        ),
+    )
 
     rollout_workers = [
         RolloutWorker.options(
-            num_cpus=12, num_gpus=1, scheduling_strategy="SPREAD"
+            num_cpus=20, num_gpus=0, scheduling_strategy="SPREAD"
         ).remote(dataset_worker, Config.config, worker_id=i)
         for i in range(NUM_ROLLOUT_WORKERS)
     ]
@@ -121,7 +127,7 @@ if "__main__" == __name__:
         )
         best_performance = 0
         global_steps = 0
-        
+        total_num_hits = 0
         for u in range(num_updates):
             start_u = time.time()
             print(f"Update {u+1}/{num_updates}")
@@ -163,6 +169,7 @@ if "__main__" == __name__:
                     b_speedups.append(math.log(result["speedup"], 4))
                     trajectory_len = len(result["trajectory"])
                     full_trajectory = Transition(*zip(*result["trajectory"]))
+                    total_num_hits = total_num_hits + result["num_hits"]
                     avg_episode_length = (m * avg_episode_length) / (
                         m + 1
                     ) + trajectory_len / (m + 1)
@@ -226,7 +233,7 @@ if "__main__" == __name__:
                         for i in range(NUM_ROLLOUT_WORKERS)
                     ]
                 )
-
+        
             b_speedups = torch.Tensor(b_speedups)
             b_states = Batch.from_data_list(b_states).to(device)
             batch_indices = torch.arange(num_steps).to(device)
@@ -237,7 +244,6 @@ if "__main__" == __name__:
             v_loss_mean = 0
             policy_loss_mean = 0
             total_loss_mean = 0
-
             s = 0
 
             for e in range(num_epochs):
@@ -302,6 +308,7 @@ if "__main__" == __name__:
                 "Reward Min": b_speedups.min().item(),
                 "Reward Average": speedups_mean,
                 "Reward Max": b_speedups.max().item(),
+                "total number hits": total_num_hits,
             }
             record.append(infos)
             mlflow.log_metrics(
