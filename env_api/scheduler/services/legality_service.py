@@ -20,6 +20,7 @@ class LegalityService:
         output :
             - legality_check : bool
         """
+       
         branches[current_branch].update_actions_mask(action=action, applied=False)
         # Check first if the iterator(s) level(s) is(are) included in the current iterators
         # If not then the action is illegal by default 
@@ -69,6 +70,7 @@ class LegalityService:
             legality_check = int(
                 schedule_object.prog.schedules_legality[schdule_str])
         else:
+            legality_check=0
             # To run the legality we need the original function code to generate legality code
             if (not schedule_object.prog.original_str):
                 # Loading function code lines

@@ -67,7 +67,7 @@ class GAT(nn.Module):
         self.π = nn.Sequential(
             self.init_layer(nn.Linear(hidden_size, hidden_size)),
             nn.SELU(),
-            self.init_layer(nn.Linear(hidden_size, hidden_size)),
+            self.init_layer(nn.Linear(hidden_size, hidden_size)), 
             nn.SELU(),
             self.init_layer(nn.Linear(hidden_size, num_outputs), std=0.1),
         )
@@ -77,7 +77,7 @@ class GAT(nn.Module):
             nn.SELU(),
             self.init_layer(nn.Linear(hidden_size, hidden_size)),
             nn.SELU(),
-            self.init_layer(nn.Linear(hidden_size, 1)),
+            self.init_layer(nn.Linear(hidden_size , 1)),
         )
 
     def init_layer(self, layer, std=np.sqrt(2), bias_const=0.0):
@@ -122,4 +122,5 @@ class GAT(nn.Module):
         if action == None:
             action = probs.sample()
         value = self.v(weights)
+        
         return action, probs.log_prob(action), probs.entropy(), value

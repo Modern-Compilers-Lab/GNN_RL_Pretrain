@@ -11,6 +11,7 @@ class DataSetService:
         self.schedules_dataset_path = schedules_dataset_path
         self.schedules_dataset = None
         self.cpps_dataset = None
+        self.graph_dataset = None
         try :
             with open(cpps_dataset_path, "rb") as file:
                     self.cpps_dataset = pickle.load(file)
@@ -23,7 +24,7 @@ class DataSetService:
                     self.schedules_dataset = pickle.load(file)
             except FileNotFoundError:
                 print("[Error] : Offline dataset path is not valid => Reading from cpp files on disk")
-
+        
     def in_schedule_dataset(self, func_name):
         exist_offline = False
         # Check if the file exists in the offline dataset

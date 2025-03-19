@@ -62,6 +62,7 @@ class SchedulerService:
     def next_branch(self):
         # Switch to the next branch to optimize it 
         self.current_branch += 1
+     
         if (self.current_branch == len(self.branches)):
             # This matks the finish of exploring the branches
             return None
@@ -81,12 +82,13 @@ class SchedulerService:
                                                                current_branch=self.current_branch,
                                                                action=action)
         speedup = 1
+        num_hits = 0
         if legality_check:
             try : 
                 if (Config.config.dataset.is_benchmark):
                     speedup = 1
                 else :
-                    speedup = self.prediction_service.get_real_speedup(schedule_object=self.schedule_object)
+                    speedup, num_hits  = self.prediction_service.get_real_speedup(schedule_object=self.schedule_object)
 
                 if isinstance(action, Tiling):
                     action.apply_on_branches(self.branches, self.schedule_object.schedule_list)
@@ -108,4 +110,4 @@ class SchedulerService:
 
         
 
-        return speedup, legality_check, self.branches[self.current_branch].actions_mask
+        return speedup, legality_check, self.branches[self.current_branch].actions_mask, num_hits

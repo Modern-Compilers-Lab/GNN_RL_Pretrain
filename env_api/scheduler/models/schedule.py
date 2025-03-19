@@ -126,7 +126,6 @@ class Schedule:
         for key in comps.keys():
             schedule_string+= "{"+key+"}:"+comps[key]
         return schedule_string
-
     
     def update_actions_mask(self, action : Action,applied : bool = True):
         # Whether an action is legal or not we should mask it to not use it again

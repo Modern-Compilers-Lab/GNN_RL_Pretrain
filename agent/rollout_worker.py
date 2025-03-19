@@ -1,5 +1,6 @@
 from collections import namedtuple
 
+import time
 import ray
 import torch
 import torch.nn as nn
@@ -26,6 +27,7 @@ def apply_flattened_action(
             speedup,
             legality,
             actions_mask,
+            num_hits,
         ) = tiramisu_api.interchange(
             loop_level1=loop_level,
             loop_level2=loop_level + 1,
@@ -45,6 +47,7 @@ def apply_flattened_action(
             speedup,
             legality,
             actions_mask,
+            num_hits,
         ) = tiramisu_api.reverse(
             loop_level=loop_level, env_id=action, worker_id=worker_id
         )
@@ -55,7 +58,7 @@ def apply_flattened_action(
     elif action < 12:
         loop_level = action - 9
         # Skewing 0,1 to 2,3
-        speedup, legality, actions_mask = tiramisu_api.skew(
+        speedup, legality, actions_mask, num_hits, = tiramisu_api.skew(
             loop_level1=loop_level,
             loop_level2=loop_level + 1,
             env_id=action,
@@ -83,6 +86,7 @@ def apply_flattened_action(
             speedup,
             legality,
             actions_mask,
+            num_hits,
         ) = tiramisu_api.parallelize(
             loop_level=loop_level, env_id=action, worker_id=worker_id
         )
@@ -93,7 +97,7 @@ def apply_flattened_action(
     elif action < 18:
         loop_level = action - 14
         size = 32
-        speedup, legality, actions_mask = tiramisu_api.tile2D(
+        speedup, legality, actions_mask, num_hits = tiramisu_api.tile2D(
             loop_level1=loop_level,
             loop_level2=loop_level + 1,
             size_x=size,
@@ -110,7 +114,7 @@ def apply_flattened_action(
     elif action < 22:
         loop_level = action - 18
         size = 64
-        speedup, legality, actions_mask = tiramisu_api.tile2D(
+        speedup, legality, actions_mask, num_hits = tiramisu_api.tile2D(
             loop_level1=loop_level,
             loop_level2=loop_level + 1,
             size_x=size,
@@ -127,7 +131,7 @@ def apply_flattened_action(
     elif action < 26:
         loop_level = action - 22
         size = 128
-        speedup, legality, actions_mask = tiramisu_api.tile2D(
+        speedup, legality, actions_mask, num_hits = tiramisu_api.tile2D(
             loop_level1=loop_level,
             loop_level2=loop_level + 1,
             size_x=size,
@@ -146,7 +150,7 @@ def apply_flattened_action(
         size_x = 32
         size_y = 64
 
-        speedup, legality, actions_mask = tiramisu_api.tile2D(
+        speedup, legality, actions_mask, num_hits = tiramisu_api.tile2D(
             loop_level1=loop_level,
             loop_level2=loop_level + 1,
             size_x=size_x,
@@ -165,7 +169,7 @@ def apply_flattened_action(
         size_x = 32
         size_y = 128
 
-        speedup, legality, actions_mask = tiramisu_api.tile2D(
+        speedup, legality, actions_mask, num_hits = tiramisu_api.tile2D(
             loop_level1=loop_level,
             loop_level2=loop_level + 1,
             size_x=size_x,
@@ -184,7 +188,7 @@ def apply_flattened_action(
         size_x = 64
         size_y = 32
 
-        speedup, legality, actions_mask = tiramisu_api.tile2D(
+        speedup, legality, actions_mask, num_hits = tiramisu_api.tile2D(
             loop_level1=loop_level,
             loop_level2=loop_level + 1,
             size_x=size_x,
@@ -203,7 +207,7 @@ def apply_flattened_action(
         size_x = 64
         size_y = 128
 
-        speedup, legality, actions_mask = tiramisu_api.tile2D(
+        speedup, legality, actions_mask, num_hits = tiramisu_api.tile2D(
             loop_level1=loop_level,
             loop_level2=loop_level + 1,
             size_x=size_x,
@@ -222,7 +226,7 @@ def apply_flattened_action(
         size_x = 128
         size_y = 32
 
-        speedup, legality, actions_mask = tiramisu_api.tile2D(
+        speedup, legality, actions_mask, num_hits = tiramisu_api.tile2D(
             loop_level1=loop_level,
             loop_level2=loop_level + 1,
             size_x=size_x,
@@ -241,7 +245,7 @@ def apply_flattened_action(
         size_x = 128
         size_y = 64
 
-        speedup, legality, actions_mask = tiramisu_api.tile2D(
+        speedup, legality, actions_mask, num_hits = tiramisu_api.tile2D(
             loop_level1=loop_level,
             loop_level2=loop_level + 1,
             size_x=size_x,
@@ -257,7 +261,7 @@ def apply_flattened_action(
             )
     elif action < 55:
         factor = action - 49
-        speedup, legality, actions_mask = tiramisu_api.unroll(
+        speedup, legality, actions_mask, num_hits = tiramisu_api.unroll(
             unrolling_factor=2**factor, env_id=action, worker_id=worker_id
         )
         if legality:
@@ -265,6 +269,7 @@ def apply_flattened_action(
             its = tiramisu_api.scheduler_service.branches[branch].common_it
             apply_unrolling(its[-1], 2**factor, node_feats, it_index)
     else:
+        num_hits = 0
         # Next case
         next_branch_mask = tiramisu_api.scheduler_service.next_branch()
         if not (isinstance(next_branch_mask, np.ndarray)):
@@ -287,7 +292,7 @@ def apply_flattened_action(
                 it_index,
             )
 
-    return speedup, node_feats, edge_index, legality, actions_mask, done
+    return speedup, node_feats, edge_index, legality, actions_mask, done, num_hits
 
 
 Transition = namedtuple(
@@ -325,7 +330,6 @@ class RolloutWorker:
             actions_mask = self.tiramisu_api.set_program(*prog_infos)
 
         self.current_program = prog_infos[0]
-
         self.actions_mask = torch.tensor(actions_mask)
         annotations = (
             self.tiramisu_api.scheduler_service.schedule_object.prog.annotations
@@ -349,7 +353,7 @@ class RolloutWorker:
         done = False
         log_trajectory = "#" * 50
         log_trajectory += f"\nFunction  : {self.current_program}"
-
+        total_num_hits = 0
         while not done:
             prev_actions_mask = self.actions_mask
             self.steps += 1
@@ -375,6 +379,7 @@ class RolloutWorker:
                 legality,
                 actions_mask,
                 done,
+                num_hits,
             ) = apply_flattened_action(
                 self.tiramisu_api,
                 action,
@@ -383,6 +388,7 @@ class RolloutWorker:
                 it_index,
                 worker_id=str(self.worker_id),
             )
+            total_num_hits = total_num_hits + num_hits
             self.actions_mask = torch.tensor(actions_mask)
 
             reward = self.reward_process(action, legality, total_speedup)
@@ -399,7 +405,7 @@ class RolloutWorker:
                 )
             )
             self.state = (new_node_feats, new_edge_index, it_index)
-
+            print(f"\nActions Sequence So far : {self.tiramisu_api.scheduler_service.schedule_object.schedule_str}")
             log_trajectory += (
                 f"\nStep : {self.steps}"
                 + f"\nAction ID : {action}"
@@ -426,6 +432,7 @@ class RolloutWorker:
             "speedup": self.previous_speedup,
             "schedule_object": schedule_object,
             "log_trajectory": log_trajectory,
+            "num_hits": total_num_hits,
         }
 
     def reward_process(self, action, legality, total_speedup):

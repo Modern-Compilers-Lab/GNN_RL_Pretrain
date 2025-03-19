@@ -45,7 +45,6 @@ class TiramisuEnvAPI:
         return sorted(self.programs)
 
     def set_program(self, name: str, data: dict = None, cpp_code: str = None):
-        # print("Function : ", name)
         if data:
             # If data is provided externally (From ray dataset actor) then we don't need to use internal
             # dataset service nor compile to get annotations of a program
@@ -78,7 +77,7 @@ class TiramisuEnvAPI:
 
         # Create a Schedule object for the Tiramisu model
         schedule = Schedule(tiramisu_prog)
-
+  
         # Use the Scheduler service to set the schedule for the Tiramisu model
         actions_mask = self.scheduler_service.set_schedule(
             schedule_object=schedule
@@ -183,7 +182,7 @@ class TiramisuEnvAPI:
     def save_legality_dataset(self, suffix: str = ""):
         self.dataset_service.store_offline_dataset(suffix=suffix)
 
-    def get_current_tiramisu_program_dict(self) -> TiramisuProgram:
+    def get_current_tiramisu_program_dict(self) -> dict[str, any]:
         return {
             "program_annotation": self.scheduler_service.schedule_object.prog.annotations,
             "schedules_legality": self.scheduler_service.schedule_object.prog.schedules_legality,

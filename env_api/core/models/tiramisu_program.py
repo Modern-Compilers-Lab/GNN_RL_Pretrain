@@ -1,5 +1,6 @@
 import re, random
 from env_api.utils.wrapper_code import WrappersCode
+from config.config import Config
 
 class TiramisuProgram():
     def __init__(self, code: str):
@@ -29,6 +30,8 @@ class TiramisuProgram():
             tiramisu_prog.schedules_solver =  data["schedules_solver"] 
             if ("execution_times" in data):
                 tiramisu_prog.execution_times = data["execution_times"]
+            if Config.config.machine not in tiramisu_prog.execution_times:
+                tiramisu_prog.execution_times[Config.config.machine] = {}
 
         tiramisu_prog.load_code_lines(original_str)
 
@@ -101,3 +104,13 @@ class TiramisuProgram():
         )
 
         return wrapper_cpp_code, wrapper_h_code
+    
+    def get_execution_time(
+        self, schedule_str: str = "initial_execution", machine: str = "jubail"
+    ):
+        if (
+            machine in self.execution_times
+            and schedule_str in self.execution_times[machine]
+        ):
+            return self.execution_times[machine][schedule_str]
+        return None
