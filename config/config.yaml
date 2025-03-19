@@ -1,31 +1,31 @@
 tiramisu:
-    tiramisu_path: "/home/brouthen/ai/nyuad/tiramisu"
-    workspace: "/home/brouthen/ai/nyuad/gnn_rl/experiment_dir/workspace/"
-    experiment_dir: "/home/brouthen/ai/nyuad/gnn_rl/experiment_dir/"
-    logs_dir: "/home/brouthen/ai/nyuad/gnn_rl/logs/"
+    tiramisu_path: Path to tiramisu root directory 
+    workspace: Path to a folder to save binary files of tiramisu
+    experiment_dir: Path to a folder to save results of trainings
+    logs_dir: "Path to  logs directory
 
 env_vars:
-    CXX: "/usr/bin/g++"
-    TIRAMISU_ROOT: "/home/brouthen/ai/nyuad/tiramisu"
-    CONDA_ENV: "/home/brouthen/anaconda3/envs/tiramisu-build-env/"
-    LD_LIBRARY_PATH: "/usr/lib/x86_64-linux-gnu:${TIRAMISU_ROOT}/3rdParty/Halide/build/src:${TIRAMISU_ROOT}/3rdParty/llvm/build/lib:${TIRAMISU_ROOT}/3rdParty/isl/build/lib:"
+    CXX: Path to CXX compiler
+    TIRAMISU_ROOT: Path to tiramisu root directory 
+    CONDA_ENV: Path to conda environment
+    LD_LIBRARY_PATH: Path to LD_LIBRARY_PATH, where compiled libraries are stored
     # LD_LIBRARY_PATH: "${CONDA_ENV}/lib:${TIRAMISU_ROOT}/3rdParty/Halide/build/src:${TIRAMISU_ROOT}/3rdParty/llvm/build/lib:${TIRAMISU_ROOT}/3rdParty/isl/build/lib:"
 
 dataset:
     dataset_format: PICKLE
-    cpps_path: /home/brouthen/ai/nyuad/gnn_rl/dataset/cpps.pkl
-    dataset_path: /home/brouthen/ai/nyuad/gnn_rl/dataset/small_bench.pkl
-    save_path: /home/brouthen/ai/nyuad/gnn_rl/experiment_dir/save/
-    models_save_path: /home/brouthen/ai/nyuad/gnn_rl/experiment_dir/models/
-    results_save_path: /home/brouthen/ai/nyuad/gnn_rl/experiment_dir/results/
-    evaluation_save_path: /home/brouthen/ai/nyuad/gnn_rl/experiment_dir/evaluation/
+    cpps_path: dataset/cpps.pkl
+    dataset_path: dataset/schedules.pkl
+    pretrained_model_path: Path to the pretrained model
+    save_path: dataset/
+    models_save_path: /path/to/experiment_dir/models/
+    results_save_path: /path/to/experiment_dir/results/
+    evaluation_save_path: /path/to/experiment_dir/evaluation/
     shuffle: True
     seed: 133
     saving_frequency: 1000
     is_benchmark: False
-    # benchmark_cpp_files: /home/brouthen/ai/nyuad/gnn_rl/dataset/old_benchmark_cpps.pkl
-    # benchmark_dataset_path: /home/brouthen/ai/nyuad/gnn_rl/dataset/old_benchmark.pkl
-
+    # benchmark_cpp_files: /scratch/ia2280/GNN_RL_full_dataset//GNN_RL_Pretrain/dataset/old_benchmark_cpps.pkl
+    # benchmark_dataset_path: /scratch/ia2280/GNN_RL_full_dataset//GNN_RL_Pretrain/dataset/old_benchmark.pkl
 experiment:
     legality_speedup: 1.0
     beam_search_order: True
@@ -37,10 +37,10 @@ experiment:
 
 pretrain:
     embed_access_matrices: True
-    embedding_type: final_hidden_state # final_hidden_state, final_cell_state, concat_final_hidden_cell_state, mean_pooling_output, max_pooling_output, flattened_output
+    embedding_type: concat_final_hidden_cell_state # final_hidden_state, final_cell_state, concat_final_hidden_cell_state, mean_pooling_output, max_pooling_output, flattened_output
 
 hyperparameters:
-    num_updates: 500
+    num_updates: 10000
     batch_size: 512
     mini_batch_size: 64
     num_epochs: 4
@@ -48,7 +48,7 @@ hyperparameters:
     gamma: 0.99
     lambdaa: 0.95
     value_coeff: 2
-    entropy_coeff_start: 0.5
+    entropy_coeff_start: 0.1
     entropy_coeff_finish: 0
     max_grad_norm: 10
     lr: 0.0001
@@ -58,3 +58,5 @@ hyperparameters:
 
 # test:
     # skip_execute_schedules : False
+
+
