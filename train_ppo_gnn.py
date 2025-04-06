@@ -24,7 +24,7 @@ if "__main__" == __name__:
 
     parser.add_argument("--num-nodes", default=1, type=int)
     
-    experiment_name = "concat_final_hidden_cell_state_pretrained"
+    experiment_name = "concat_final_hidden_cell_state_pretrained_12.5k_pretrain"
 
     parser.add_argument("--name", type=str, default=experiment_name)
 
@@ -64,7 +64,7 @@ if "__main__" == __name__:
     tag = "12.5k"
     Config.config.dataset.tags = [tag]
     dataset_worker = DatasetActor.remote(Config.config.dataset)
-    pretrained_model_path = Config.config.dataset.pretrain_dataset_path
+    pretrained_model_path = Config.config.dataset.pretrained_model_path
     device = "cuda:0" if torch.cuda.is_available() else "cpu"
     print(f"TRAINING DEVICE: {device}")
 

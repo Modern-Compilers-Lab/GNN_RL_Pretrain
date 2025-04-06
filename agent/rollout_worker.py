@@ -405,7 +405,7 @@ class RolloutWorker:
                 )
             )
             self.state = (new_node_feats, new_edge_index, it_index)
-            print(f"\nActions Sequence So far : {self.tiramisu_api.scheduler_service.schedule_object.schedule_str}")
+            # print(f"\nActions Sequence So far : {self.tiramisu_api.scheduler_service.schedule_object.schedule_str}")
             log_trajectory += (
                 f"\nStep : {self.steps}"
                 + f"\nAction ID : {action}"

@@ -31,7 +31,7 @@ import pandas as pd
 
 
 class PretrainDataset:
-    def __init__(self, dataset_worker, config, save_path="pretrain_dataset.pkl"):
+    def __init__(self, dataset_worker, config, save_path="pretrain_dataset_12.5k_dropout.pkl"):
         self.dataset_worker = dataset_worker
         self.data = {}  # Initialize as a dictionary
         self.current_program = None
@@ -202,6 +202,10 @@ def pretrain_model(
     model, dataset_worker, device, config, num_epochs=1500, batch_size=64, lr=1e-3
 ):
     model.to(device)
+    
+    # L2 Regularization (Weight Decay)
+    # optimizer = optim.Adam(model.parameters(), lr=lr, weight_decay=1e-5)
+
     optimizer = optim.Adam(model.parameters(), lr=lr)
     criterion = nn.MSELoss()
 
@@ -226,13 +230,16 @@ def pretrain_model(
             # Value prediction through the value layers
             value_preds = model.v(weights).squeeze(-1)
 
-            # Use value predictions to estimate execution time
+            # Execution time prediction = value head output
             execution_time_preds = value_preds
 
-            # Compute loss using execution time targets
+            # Compute loss
             loss = criterion(execution_time_preds, batch.y.to(device))
 
             loss.backward()
+
+            torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
+
             optimizer.step()
             total_train_loss += loss.item()
 
@@ -247,16 +254,10 @@ def pretrain_model(
             for _ in range(total_val_batches):
                 batch = dataset.get_batch("val", batch_size).to(device)
 
-                # Pass through shared layers
                 weights = model.shared_layers(batch)
-
-                # Value prediction through the value layers
                 value_preds = model.v(weights).squeeze(-1)
-
-                # Use value predictions to estimate execution time
                 execution_time_preds = value_preds
 
-                # Compute validation loss
                 val_loss = criterion(execution_time_preds, batch.y.to(device))
                 total_val_loss += val_loss.item()
 
@@ -271,13 +272,13 @@ def pretrain_model(
         mlflow.log_metric("train_loss", avg_train_loss, step=epoch)
         mlflow.log_metric("val_loss", avg_val_loss, step=epoch)
 
-        # Save the model if validation loss improves
+        # Save best model
         if avg_val_loss < best_val_loss:
             best_val_loss = avg_val_loss
-            torch.save(model.state_dict(), "pretrained_model_on_speedup.pt")
+            torch.save(model.state_dict(), "pretrained_model_12.5k_dropout.pt")
 
     # Testing phase
-    model.load_state_dict(torch.load("pretrained_model_on_speedup.pt"))
+    model.load_state_dict(torch.load("pretrained_model_12.5k_dropout.pt"))
     model.eval()
 
     criterion = nn.MSELoss()
@@ -313,7 +314,7 @@ if "__main__" == __name__:
 
     parser.add_argument("--num-nodes", default=1, type=int)
     
-    experiment_name = "pretrain_1500_jubail_normalized_on_speedup"
+    experiment_name = "pretrain_1500_jubail"
 
     parser.add_argument("--name", type=str, default=experiment_name)
 
@@ -381,7 +382,7 @@ if "__main__" == __name__:
         pretrain_model(model, dataset_worker, device, Config.config, num_epochs=1500, batch_size=64, lr=lr)
     
         # Log final model after training
-        mlflow.pytorch.log_model(model, "final_gat_model")
+        mlflow.pytorch.log_model(model, "pretrained_model_12.5k_dropout")
     
     # Save the pretrained model
-    torch.save(model.state_dict(), "pretrained_model.pt")
+    torch.save(model.state_dict(), "pretrained_model_12.5k_dropout.pt")

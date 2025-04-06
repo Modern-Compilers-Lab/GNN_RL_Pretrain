@@ -17,8 +17,11 @@ class GAT(nn.Module):
         hidden_size=64,
         num_heads=4,
         num_outputs=32,
+        dropout_prob=0.1,
     ):
         super(GAT, self).__init__()
+
+        self.dropout = nn.AlphaDropout(dropout_prob)
 
         self.conv_layer1 = GATv2Conv(
             in_channels=input_size,
@@ -39,18 +42,13 @@ class GAT(nn.Module):
             out_channels=hidden_size,
         )
 
-        convolutions_layers = [
-            self.conv_layer1,
-            self.conv_layer2,
-        ]
+        convolutions_layers = [self.conv_layer1, self.conv_layer2]
         for convlayer in convolutions_layers:
             for name, param in convlayer.named_parameters():
                 if "weight" in name:
                     nn.init.xavier_uniform_(param)
-        linear_layers = [
-            self.linear1,
-            self.linear2,
-        ]
+
+        linear_layers = [self.linear1, self.linear2]
         for linearlayer in linear_layers:
             nn.init.xavier_uniform_(linearlayer.weight)
 
@@ -67,17 +65,21 @@ class GAT(nn.Module):
         self.π = nn.Sequential(
             self.init_layer(nn.Linear(hidden_size, hidden_size)),
             nn.SELU(),
-            self.init_layer(nn.Linear(hidden_size, hidden_size)), 
+            # nn.AlphaDropout(dropout_prob),
+            self.init_layer(nn.Linear(hidden_size, hidden_size)),
             nn.SELU(),
+            # nn.AlphaDropout(dropout_prob),
             self.init_layer(nn.Linear(hidden_size, num_outputs), std=0.1),
         )
 
         self.v = nn.Sequential(
             self.init_layer(nn.Linear(hidden_size, hidden_size)),
             nn.SELU(),
+            # nn.AlphaDropout(dropout_prob),
             self.init_layer(nn.Linear(hidden_size, hidden_size)),
             nn.SELU(),
-            self.init_layer(nn.Linear(hidden_size , 1)),
+            # nn.AlphaDropout(dropout_prob),
+            self.init_layer(nn.Linear(hidden_size, 1)),
         )
 
     def init_layer(self, layer, std=np.sqrt(2), bias_const=0.0):
@@ -90,37 +92,33 @@ class GAT(nn.Module):
 
         x = self.conv_layer1(x, edges_index)
         x = nn.functional.selu(self.linear1(x))
-        x1 = torch.concat(
+        x1 = torch.cat(
             (global_mean_pool(x, batch_index), global_max_pool(x, batch_index)), dim=-1
         )
 
         x = self.conv_layer2(x, edges_index)
         x = nn.functional.selu(self.linear2(x))
-        x2 = torch.concat(
+        x2 = torch.cat(
             (global_mean_pool(x, batch_index), global_max_pool(x, batch_index)), dim=-1
         )
 
-        x = torch.concat(
-            (
-                x1,
-                x2,
-            ),
-            dim=-1,
-        )
+        x = torch.cat((x1, x2), dim=-1)
 
         x = self.convs_summarizer(x)
-
         x = nn.functional.selu(self.shared_linear1(x))
+        x = self.dropout(x)  # ✅ Dropout after shared layer
         return x
 
     def forward(self, data, actions_mask=None, action=None):
         weights = self.shared_layers(data)
         logits = self.π(weights)
-        if actions_mask != None : 
+
+        if actions_mask is not None:
             logits = logits - actions_mask * 1e8
+
         probs = Categorical(logits=logits)
-        if action == None:
+        if action is None:
             action = probs.sample()
         value = self.v(weights)
-        
+
         return action, probs.log_prob(action), probs.entropy(), value
