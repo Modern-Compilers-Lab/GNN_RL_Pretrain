@@ -31,7 +31,7 @@ class DatasetConfig:
     dataset_format: DatasetFormat = DatasetFormat.HYBRID
     cpps_path: str = ""
     dataset_path: str = ""
-    pretrain_dataset_path: str = ""
+    pretrained_model_path: str = ""
     save_path: str = ""
     shuffle: bool = False
     seed: int = None
@@ -44,7 +44,7 @@ class DatasetConfig:
             dataset_config_dict["dataset_format"])
         self.cpps_path = dataset_config_dict["cpps_path"]
         self.dataset_path = dataset_config_dict["dataset_path"]
-        self.pretrain_dataset_path = dataset_config_dict["pretrain_dataset_path"]
+        self.pretrained_model_path = dataset_config_dict["pretrained_model_path"]
         self.save_path = dataset_config_dict["save_path"]
         self.models_save_path = dataset_config_dict["models_save_path"]
         self.results_save_path = dataset_config_dict["results_save_path"]
