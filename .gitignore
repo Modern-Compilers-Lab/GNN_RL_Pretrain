@@ -6,7 +6,6 @@ mlruns
 dataset
 
 *.ipynb
-*.txt
 # *.json
 *.sh
 *.pkl
