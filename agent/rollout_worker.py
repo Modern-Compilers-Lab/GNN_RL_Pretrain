@@ -341,12 +341,12 @@ class RolloutWorker:
             node_feats,
             it_index,
         )
-
         self.previous_speedup = 1
         self.steps = 0
         self.state = (node_feats, edge_index, it_index)
 
     def rollout(self, model: nn.Module, device: str):
+        start_time = time.time()
         model.to(device)
         model.eval()
         trajectory = []
@@ -364,7 +364,7 @@ class RolloutWorker:
                 .transpose(0, 1)
                 .contiguous(),
             ).to(device)
-
+            
             with torch.no_grad():
                 action, action_log_prob, entropy, value = model(
                     data, self.actions_mask.to(device)
@@ -427,14 +427,17 @@ class RolloutWorker:
                 self.current_program, tiramisu_program_dict
             )
 
-        return {
+        rollout_time = time.time() - start_time
+        result = {
             "trajectory": trajectory,
             "speedup": self.previous_speedup,
             "schedule_object": schedule_object,
             "log_trajectory": log_trajectory,
             "num_hits": total_num_hits,
+            "rollout_time": rollout_time,  
+            "worker_id": self.worker_id,  
         }
-
+        return result
     def reward_process(self, action, legality, total_speedup):
         switching_branch_penality = 0.9
         illegal_action_penality = 0.9

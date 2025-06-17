@@ -106,7 +106,7 @@ class GAT(nn.Module):
 
         x = self.convs_summarizer(x)
         x = nn.functional.selu(self.shared_linear1(x))
-        x = self.dropout(x)  # ✅ Dropout after shared layer
+        x = self.dropout(x)  
         return x
 
     def forward(self, data, actions_mask=None, action=None):

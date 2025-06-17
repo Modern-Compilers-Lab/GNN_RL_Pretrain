@@ -59,8 +59,7 @@ class SchedulerService:
             new_branch.prog.load_code_lines(self.schedule_object.prog.original_str)
             self.branches.append(new_branch)
             
-    def next_branch(self):
-        # Switch to the next branch to optimize it 
+    def next_branch(self):        # Switch to the next branch to optimize it 
         self.current_branch += 1
      
         if (self.current_branch == len(self.branches)):

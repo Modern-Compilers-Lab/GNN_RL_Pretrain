@@ -1,10 +1,10 @@
 tiramisu:
     tiramisu_path: "/scratch/ia2280/new-tiramisu/tiramisu" # path to the tiramisu folder
-    workspace: "/scratch/ia2280/GNN_RL_full_dataset/GNN_RL_Pretrain/experiment_dir/workspace_dataset/" # a folder to save binary files of tiramisu
+    workspace: "/scratch/ia2280/GNN_RL_full_dataset/GNN_RL_Pretrain/experiment_dir/workspace_rollouts/" # a folder to save binary files of tiramisu
     experiment_dir: "/scratch/ia2280/GNN_RL_full_dataset/GNN_RL_Pretrain/experiment_dir/" # a folder to save the experiment results
     logs_dir: "/scratch/ia2280/GNN_RL_full_dataset/GNN_RL_Pretrain/logs/" # a folder to save the logs
 
-env_vars:
+env_vars: 
     CXX: "/home/ia2280/.conda/envs/new-tiramisu/bin/g++" # path to the g++
     TIRAMISU_ROOT: "/scratch/ia2280/new-tiramisu/tiramisu" # path to the tiramisu folder
     CONDA_ENV: "/home/ia2280/.conda/envs/new-tiramisu" # path to the conda environment
@@ -14,8 +14,8 @@ env_vars:
 dataset:
     dataset_format: PICKLE
     cpps_path: /scratch/ia2280/GNN_RL_full_dataset/GNN_RL_Pretrain/dataset/cpps_12.5k.pkl # path to the cpps file
-    dataset_path: /scratch/ia2280/GNN_RL_full_dataset/GNN_RL_Pretrain/dataset/schedules_full_v0.pkl # path to the dataset/schedules file
-    pretrained_model_path: /scratch/ia2280/GNN_RL_full_dataset/GNN_RL_Pretrain/pretrained_model_12.5k_dropout_L2_Regularization.pt # path to the pretrained model
+    dataset_path: /scratch/ia2280/GNN_RL_full_dataset/GNN_RL_Pretrain/dataset/schedules_full_v2_100k.pkl # path to the dataset/schedules file
+    pretrained_model_path: /scratch/ia2280/GNN_RL_full_dataset/GNN_RL_Pretrain/pretrained_model_12.5k_L2_Regularization_fixed_duplicates.pt # path to the pretrained model
     save_path: /scratch/ia2280/GNN_RL_full_dataset/GNN_RL_Pretrain/experiment_dir/save/  # a folder to save the updated dataset
     models_save_path: /scratch/ia2280/GNN_RL_full_dataset/GNN_RL_Pretrain/experiment_dir/models/ # a folder to save the models
     results_save_path: /scratch/ia2280/GNN_RL_full_dataset/GNN_RL_Pretrain/experiment_dir/results/ # a folder to save the results
@@ -42,7 +42,7 @@ pretrain:
 
 # hyperparameters for the RL agent training
 hyperparameters:
-    num_updates: 20000
+    num_updates: 15000
     batch_size: 512
     mini_batch_size: 64
     num_epochs: 4

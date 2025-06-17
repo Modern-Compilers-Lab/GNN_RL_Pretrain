@@ -20,12 +20,11 @@ class LegalityService:
         output :
             - legality_check : bool
         """
-       
         branches[current_branch].update_actions_mask(action=action, applied=False)
         # Check first if the iterator(s) level(s) is(are) included in the current iterators
         # If not then the action is illegal by default 
         exceeded_iterators = self.check_iterators(branches=branches,
-                                                  current_branch = current_branch,
+                                                  current_branch=current_branch,
                                                   action=action)
         if exceeded_iterators : return False
 

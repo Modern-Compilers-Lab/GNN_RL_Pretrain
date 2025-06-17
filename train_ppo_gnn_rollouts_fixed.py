@@ -62,11 +62,35 @@ def async_collect_rollouts(rollout_workers, ppo_agent, device, batch_size):
     return results, rollout_timings, batch_total_time
 
 if "__main__" == __name__:
+    
+    # parser = arg.ArgumentParser()
+    # parser.add_argument("--ray-address")
+    # parser.add_argument("--device", default="cpu")
+    # args = parser.parse_args()
+
+    # # Connect to Ray (use ray-address from SLURM script)
+    # if args.ray_address:
+    #     print(f"Connecting to Ray at address {args.ray_address}")
+    #     ray.init(address=args.ray_address)
+    # else:
+    #     ray.init()  # Local mode (debug)
+        
+    
+    
+    # # parser = arg.ArgumentParser() 
+
+
+    # NUM_ROLLOUT_WORKERS = args.num_nodes
+
+    # # if NUM_ROLLOUT_WORKERS > 1:
+    # #     ray.init("auto")
+    # # else:
+    # #     ray.init()
     parser = arg.ArgumentParser() 
 
     parser.add_argument("--num-nodes", default=1, type=int)
     
-    experiment_name = "concat_final_hidden_cell_state_pretrained_12.5k_pretrain_duplicate_fixed"
+    experiment_name = "concat_final_hidden_cell_state_pretrained_100k"
 
     parser.add_argument("--name", type=str, default=experiment_name)
 
@@ -78,6 +102,7 @@ if "__main__" == __name__:
         ray.init("auto")
     else:
         ray.init()
+
 
     # Init global config to run the Tiramisu env
     Config.init()
@@ -103,11 +128,11 @@ if "__main__" == __name__:
     start_lr = Config.config.hyperparameters.start_lr
     final_lr = Config.config.hyperparameters.final_lr
     weight_decay = Config.config.hyperparameters.weight_decay
-    tag = "12.5k"
+    tag = "100k"
     Config.config.dataset.tags = [tag]
     dataset_worker = DatasetActor.remote(Config.config.dataset)
     pretrained_model_path = Config.config.dataset.pretrained_model_path
-    device = "cuda:0" if torch.cuda.is_available() else "cpu"
+    device = torch.device(args.device if torch.cuda.is_available() and args.device == "cuda" else "cpu")
     print(f"TRAINING DEVICE: {device}")
 
     if Config.config.pretrain.embed_access_matrices:
@@ -199,106 +224,103 @@ if "__main__" == __name__:
             avg_episode_length = 0
             m = 0
 
-            rollout_times_batch = []
+            result_refs = []
+            rollout_start_times = {}
+            ref_to_worker = {}  # Maps Ray ObjectRef to worker index
+
+            # Initial launch: one rollout per worker
+            for i in range(NUM_ROLLOUT_WORKERS):
+                obj_ref = rollout_workers[i].rollout.remote(ppo_agent.to("cpu"), "cpu")
+                result_refs.append(obj_ref)
+                rollout_start_times[obj_ref] = time.time()
+                ref_to_worker[obj_ref] = i
+
+            rollout_times = []
             process_times = []
+            num_steps = 0
+
             start_time_batch_size = time.time()
             while num_steps < batch_size:
-                start_time = time.time()
-                results = ray.get(
-                    [
-                        rollout_workers[i].rollout.remote(ppo_agent.to("cpu"), "cpu")
-                        for i in range(NUM_ROLLOUT_WORKERS)
-                    ]
-                )
-               
-                rollout_time = time.time() - start_time
-                print(f"Total Time: {rollout_time:.2f} seconds")
-                rollout_times = [res["rollout_time"] for res in results]
-                rollout_times_batch.append(rollout_time)
-                print("Rollout times per worker:", rollout_times)
-                print("Max:", max(rollout_times), "Min:", min(rollout_times), "Mean:", sum(rollout_times)/len(rollout_times))
+                # Wait for the first available result
+                done_refs, result_refs = ray.wait(result_refs, num_returns=1)
+                done_ref = done_refs[0]
+                result = ray.get(done_ref)
+                worker_idx = ref_to_worker.pop(done_ref)
+
+                # --- Timing ---
+                rollout_time = result.get("rollout_time")
+                if rollout_time is None:
+                    rollout_time = time.time() - rollout_start_times[done_ref]
+                rollout_times.append(rollout_time)
+                rollout_start_times.pop(done_ref, None)
+                
                 start_process_time = time.time()
-                for result in results:
-                    b_speedups.append(math.log(result["speedup"], 4))
-                    trajectory_len = len(result["trajectory"])
-                    full_trajectory = Transition(*zip(*result["trajectory"]))
-                    total_num_hits = total_num_hits + result["num_hits"]
-                    avg_episode_length = (m * avg_episode_length) / (
-                        m + 1
-                    ) + trajectory_len / (m + 1)
-                    m += 1
-                    num_steps += trajectory_len
+                # --- PPO logic as before ---
+                b_speedups.append(math.log(result["speedup"], 4))
+                trajectory_len = len(result["trajectory"])
+                full_trajectory = Transition(*zip(*result["trajectory"]))
+                total_num_hits = total_num_hits + result["num_hits"]
+                avg_episode_length = (m * avg_episode_length) / (m + 1) + trajectory_len / (m + 1)
+                m += 1
+                num_steps += trajectory_len
 
-                    actions = torch.Tensor(full_trajectory.action).to(device)
-                    log_probs = torch.Tensor(full_trajectory.log_prob).to(device)
-                    rewards = torch.Tensor(full_trajectory.reward).to(device)
-                    values = torch.Tensor(full_trajectory.value).to(device)
-                    entropies = torch.Tensor(full_trajectory.entropy).to(device)
-                    # actions_mask = torch.Tensor(full_trajectory.actions_mask).to(device)
-                    # Calculating advantages and lambda returns
-                    advantages = torch.zeros(trajectory_len).to(device)
-                    returns = torch.zeros(trajectory_len).to(device)
+                actions = torch.Tensor(full_trajectory.action).to(device)
+                log_probs = torch.Tensor(full_trajectory.log_prob).to(device)
+                rewards = torch.Tensor(full_trajectory.reward).to(device)
+                values = torch.Tensor(full_trajectory.value).to(device)
+                entropies = torch.Tensor(full_trajectory.entropy).to(device)
+                advantages = torch.zeros(trajectory_len).to(device)
+                returns = torch.zeros(trajectory_len).to(device)
+                states = [None] * trajectory_len
 
-                    states = [None] * trajectory_len
+                states[-1] = Data(
+                    x=torch.tensor(full_trajectory.state[-1][0], dtype=torch.float32),
+                    edge_index=torch.tensor(full_trajectory.state[-1][1], dtype=torch.int).transpose(0, 1).contiguous(),
+                )
 
-                    states[-1] = Data(
-                        x=torch.tensor(
-                            full_trajectory.state[-1][0], dtype=torch.float32
-                        ),
-                        edge_index=torch.tensor(
-                            full_trajectory.state[-1][1], dtype=torch.int
-                        )
-                        .transpose(0, 1)
-                        .contiguous(),
+                advantages[-1] = rewards[-1] - values[-1]
+
+                for t in reversed(range(trajectory_len - 1)):
+                    td = rewards[t] + gamma * values[t + 1] - values[t]
+                    advantages[t] = td + gamma * lambdaa * advantages[t + 1]
+                    states[trajectory_len - 2 - t] = Data(
+                        x=torch.tensor(full_trajectory.state[trajectory_len - 2 - t][0], dtype=torch.float32),
+                        edge_index=torch.tensor(full_trajectory.state[trajectory_len - 2 - t][1], dtype=torch.int).transpose(0, 1).contiguous(),
                     )
 
-                    advantages[-1] = rewards[-1] - values[-1]
+                returns = advantages + values
 
-                    for t in reversed(range(trajectory_len - 1)):
-                        td = rewards[t] + gamma * values[t + 1] - values[t]
-                        advantages[t] = td + gamma * lambdaa * advantages[t + 1]
-                        states[trajectory_len - 2 - t] = Data(
-                            x=torch.tensor(
-                                full_trajectory.state[trajectory_len - 2 - t][0],
-                                dtype=torch.float32,
-                            ),
-                            edge_index=torch.tensor(
-                                full_trajectory.state[trajectory_len - 2 - t][1],
-                                dtype=torch.int,
-                            )
-                            .transpose(0, 1)
-                            .contiguous(),
-                        )
+                b_actions = torch.cat([b_actions, actions]).to(device)
+                b_log_probs = torch.cat([b_log_probs, log_probs]).to(device)
+                b_advantages = torch.cat([b_advantages, advantages]).to(device)
+                b_returns = torch.cat([b_returns, returns]).to(device)
+                b_entropy = torch.cat([b_entropy, entropies]).to(device)
+                b_states.extend(states)
 
-                    returns = advantages + values
-
-                    b_actions = torch.cat([b_actions, actions]).to(device)
-                    b_log_probs = torch.cat([b_log_probs, log_probs]).to(device)
-                    b_advantages = torch.cat([b_advantages, advantages]).to(device)
-                    b_returns = torch.cat([b_returns, returns]).to(device)
-                    b_entropy = torch.cat([b_entropy, entropies]).to(device)
-                    # b_actions_mask = torch.cat([b_actions_mask, actions_mask]).to(device)
-                    b_states.extend(states)
-                    
+                if num_steps < batch_size:
+                    ray.get(rollout_workers[worker_idx].reset.remote())
+                    new_obj_ref = rollout_workers[worker_idx].rollout.remote(ppo_agent.to("cpu"), "cpu")
+                    result_refs.append(new_obj_ref)
+                    rollout_start_times[new_obj_ref] = time.time()
+                    ref_to_worker[new_obj_ref] = worker_idx
+                
                 end_process_time = time.time()
                 process_times.append(end_process_time - start_process_time)
-                ray.get(
-                    [
-                        rollout_workers[i].reset.remote()
-                        for i in range(NUM_ROLLOUT_WORKERS)
-                    ]
-                )
+                    
+            # Reset all workers as before
+            ray.get([w.reset.remote() for w in rollout_workers])
+            
             end_time_batch_size = time.time()
             print(f"Batch collection time: {(end_time_batch_size - start_time_batch_size):.2f} seconds")
-            
-            if len(rollout_times_batch) > 1:
-                times = [t  for t in rollout_times_batch]
+            # After collection, print timing stats:
+            print(f"Rollout times per rollout: {rollout_times}")
+            if len(rollout_times) > 1:
+                times = [t  for t in rollout_times]
                 print("Total  time (sum):", sum(times))
-            
-            
+
             process_times = [t for t in process_times]
             print("Total process time (sum):", sum(process_times))
-            
+
             b_speedups = torch.Tensor(b_speedups)
             b_states = Batch.from_data_list(b_states).to(device)
             batch_indices = torch.arange(num_steps).to(device)
@@ -311,6 +333,7 @@ if "__main__" == __name__:
             total_loss_mean = 0
             s = 0
 
+            start_training = time.time()
             for e in range(num_epochs):
                 start_e = time.time()
                 print(f"Epoch {e+1}/{num_epochs}")
@@ -358,8 +381,10 @@ if "__main__" == __name__:
 
             global_steps += num_steps
 
-            speedups_mean = b_speedups.mean().item()
-
+            speedups_mean = b_speedups.mean().item()                
+            
+            end_training = time.time()
+            print(f"Training Time: {(end_training - start_training)/60:.1f} Minutes")
             if best_performance < speedups_mean:
                 torch.save(ppo_agent.state_dict(), f"{Config.config.dataset.models_save_path}/model_{run_name}_{u}.pt")
                 best_performance = speedups_mean
