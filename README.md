@@ -102,7 +102,7 @@ hyperparameters:
 
 ## Getting Started
 
-1. Install Tiramisu Compiler using [this guide](https://docs.google.com/document/d/1fCnPNd37BByYpAAw5c0Y5Mnswcn9wSKqt2nvb8oBwZY/edit?tab=t.0)
+1. Install Tiramisu Compiler using [this guide](https://docs.google.com/document/d/1fCnPNd37BByYpAAw5c0Y5Mnswcn9wSKqt2nvb8oBwZY/edit?tab=t.0) (This can be skipped if onlt the pretraining with existing data is performed)
 
 2. Set up a new conda environment and install the required packages:
 
