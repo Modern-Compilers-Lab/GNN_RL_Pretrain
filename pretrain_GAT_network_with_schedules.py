@@ -23,20 +23,20 @@ import torch.nn as nn
 from torch_geometric.data import Batch, Data
 import matplotlib.pyplot as plt
 from pretrain.embedding import get_embedding_size
-from pretrain.lstm_autoencoder_modeling import encoder
+# from pretrain.lstm_autoencoder_modeling import encoder # NOT USED ANYWHERE
 
 
-from agent.rollout_worker import RolloutWorker, Transition, apply_flattened_action
-from utils.dataset_actor.dataset_actor import DatasetActor
+# from agent.rollout_worker import RolloutWorker, Transition, apply_flattened_action # used inside PretrainDataset class
+# from utils.dataset_actor.dataset_actor import DatasetActor # used inside PretrainDataset class
 
-# import ray
+# import ray # used inside PretrainDataset class
 import torch
 import torch.nn as nn
 import math
 from torch_geometric.data import Data
 from agent.graph_utils import *
 from config.config import Config
-# from env_api.tiramisu_api import TiramisuEnvAPI
+# from env_api.tiramisu_api import TiramisuEnvAPI # used inside PretrainDataset class
 from tqdm import tqdm
 
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -48,7 +48,7 @@ import os
 import pickle
 from sklearn.model_selection import train_test_split
 from tqdm import tqdm
-from concurrent.futures import ThreadPoolExecutor, as_completed
+# from concurrent.futures import ThreadPoolExecutor, as_completed # NOT USED ANYWHERE
 import torch
 from torch_geometric.data import Data, Batch
 import pandas as pd
@@ -942,8 +942,14 @@ if "__main__" == __name__:
     torch.save(model.state_dict(), "pretrained_model_12.5k_L2_Regularization_3GAT_512.pt")
 
 ### for documentation purposes, I am listing all changes made to the original code below:
+
 # - changes GAT_SCALED TO GAT
 # - added from agent.policy_value_nn import GAT
 # - replaced dataset_worker with None in pretrain_model call AND hardcoded 3000 for num_epochs with num_epochs
+
+## All of the following are used inside PretrainDataset class which I am not currently using:
 # - moved tiramisu_api initialization to PretrainDataset class and made it optional
 # - made ray import optional by putting it inside a try-except block
+# - commented out DatasetActor object creation inside if __name__ == "__main__" block
+# - commented out DatasetActor and RolloutWorker imports; used inside PretrainDataset class
+# - commented out some unused imports, put # NOT USED ANYWHERE next to them
