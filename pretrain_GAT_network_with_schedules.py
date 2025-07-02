@@ -6,7 +6,12 @@ import torch.optim as optim
 import numpy as np
 from torch_geometric.data import Data, Batch
 import time
-import ray
+
+try:
+    import ray
+except ImportError:
+    ray = None
+
 import mlflow
 import argparse as arg
 import json
@@ -24,7 +29,7 @@ from pretrain.lstm_autoencoder_modeling import encoder
 from agent.rollout_worker import RolloutWorker, Transition, apply_flattened_action
 from utils.dataset_actor.dataset_actor import DatasetActor
 
-import ray
+# import ray
 import torch
 import torch.nn as nn
 import math
@@ -941,3 +946,4 @@ if "__main__" == __name__:
 # - added from agent.policy_value_nn import GAT
 # - replaced dataset_worker with None in pretrain_model call AND hardcoded 3000 for num_epochs with num_epochs
 # - moved tiramisu_api initialization to PretrainDataset class and made it optional
+# - made ray import optional by putting it inside a try-except block
