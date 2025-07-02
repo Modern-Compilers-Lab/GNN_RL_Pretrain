@@ -31,7 +31,7 @@ import math
 from torch_geometric.data import Data
 from agent.graph_utils import *
 from config.config import Config
-from env_api.tiramisu_api import TiramisuEnvAPI
+# from env_api.tiramisu_api import TiramisuEnvAPI
 from tqdm import tqdm
 
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -47,6 +47,8 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 import torch
 from torch_geometric.data import Data, Batch
 import pandas as pd
+
+from agent.policy_value_nn import GAT
 
 
 def get_action_number(transformation: str) -> Optional[int]:
@@ -153,14 +155,17 @@ def parse_schedule_to_action_list(schedule_str: str) -> List[int]:
         prev_transforms = current_transforms
     
     return action_list
+
 class PretrainDataset:
     def __init__(self, dataset_worker, config, save_path="pretrain_dataset_12.5k_fixed_duplicates.pkl"):
-        self.dataset_worker = dataset_worker
+        self.save_path = save_path
+        if not os.path.exists(self.save_path): # modification: made tiramisu api optional
+            from env_api.tiramisu_env_api import TiramisuEnvAPI
+            self.tiramisu_api = TiramisuEnvAPI(local_dataset=True)
+            self.dataset_worker = dataset_worker
         self.data = {}  # Initialize as a dictionary
         self.current_program = None
-        self.tiramisu_api = TiramisuEnvAPI(local_dataset=True)
         Config.config = config
-        self.save_path = save_path
         self.y_mean = None
         self.y_std = None
         self.collected_programs = set()
@@ -857,7 +862,7 @@ if "__main__" == __name__:
 
     parser.add_argument("--num-nodes", default=1, type=int)
     
-    experiment_name = "pretrained_12.5k_L2_3GAT_512"
+    experiment_name = "pretrained_12.5k_L2_3GAT_512" + "_testing" # modified this for testing
 
     parser.add_argument("--name", type=str, default=experiment_name)
 
@@ -870,7 +875,8 @@ if "__main__" == __name__:
     num_updates = Config.config.hyperparameters.num_updates
     batch_size = Config.config.hyperparameters.batch_size
     mini_batch_size = Config.config.hyperparameters.mini_batch_size
-    num_epochs = Config.config.hyperparameters.num_epochs
+    # num_epochs = Config.config.hyperparameters.num_epochs
+    num_epochs = 2 # for testing purposes
     total_steps = num_updates * batch_size
     
     clip_epsilon = Config.config.hyperparameters.clip_epsilon
@@ -887,7 +893,7 @@ if "__main__" == __name__:
     weight_decay = Config.config.hyperparameters.weight_decay
     tag = "12.5k"
     Config.config.dataset.tags = [tag]
-    dataset_worker = DatasetActor.remote(Config.config.dataset)
+    # dataset_worker = DatasetActor.remote(Config.config.dataset)
     device = "cuda:0" if torch.cuda.is_available() else "cpu"
     print(f"TRAINING DEVICE: {device}")
     # Initialize GAT model
@@ -895,7 +901,7 @@ if "__main__" == __name__:
         input_size = 6 + get_embedding_size(Config.config.pretrain.embedding_type) + 9
     else:
         input_size = 718
-    model = GAT_SCALED(input_size=input_size, hidden_size=128, num_heads=4, num_outputs=56).to(device)
+    model = GAT(input_size=input_size, hidden_size=128, num_heads=4, num_outputs=56).to(device)
 
     # Pretrain the model
     run_name = args.name
@@ -921,10 +927,17 @@ if "__main__" == __name__:
                 "entropy_coeff_finish": entropy_coeff_finish,
             }
         )
-        pretrain_model(model, dataset_worker, device, Config.config, num_epochs=3000, batch_size=512, lr=lr)
-    
+        # pretrain_model(model, dataset_worker, device, Config.config, num_epochs=3000, batch_size=512, lr=lr)
+        pretrain_model(model, None, device, Config.config, num_epochs=num_epochs, batch_size=512, lr=lr)
+
         # Log final model after training
         mlflow.pytorch.log_model(model, "final_gat_model1")
     
     # Save the pretrained model
     torch.save(model.state_dict(), "pretrained_model_12.5k_L2_Regularization_3GAT_512.pt")
+
+### for documentation purposes, I am listing all changes made to the original code below:
+# - changes GAT_SCALED TO GAT
+# - added from agent.policy_value_nn import GAT
+# - replaced dataset_worker with None in pretrain_model call AND hardcoded 3000 for num_epochs with num_epochs
+# - moved tiramisu_api initialization to PretrainDataset class and made it optional
