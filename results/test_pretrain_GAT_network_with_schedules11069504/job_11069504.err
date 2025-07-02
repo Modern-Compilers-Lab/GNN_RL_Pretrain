@@ -1,0 +1,6 @@
+Loading module 'cuda/11.8.0'
+Loading module 'gcc/9.2.0'
+
+Loading [1mcuda/11.8.0[22m
+  [94mLoading requirement[0m: gcc/9.2.0
+python: can't open file '/scratch/mk8737/rl_pretrain/testing_job.py': [Errno 2] No such file or directory

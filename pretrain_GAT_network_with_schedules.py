@@ -829,6 +829,7 @@ def pretrain_model(
     # Calculate average loss
     avg_test_loss = total_test_loss / total_test_batches
     print(f"Test Loss: {avg_test_loss:.4f}")
+    mlflow.log_metric("test_loss", avg_test_loss)
 
     # Create the DataFrame
     comparison_df = pd.DataFrame({
@@ -841,10 +842,27 @@ def pretrain_model(
     # Add a column for the absolute error
     comparison_df["Absolute Error"] = comparison_df["Difference"].abs()
 
+    # Save comparison DataFrame as MLflow artifact
+    comparison_csv_path = "test_predictions_comparison.csv"
+    comparison_df.to_csv(comparison_csv_path, index=False)
+    mlflow.log_artifact(comparison_csv_path)
+    
     # Display basic statistics about the differences
     error_stats = comparison_df["Absolute Error"].describe()
     print("Error Statistics:")
     print(error_stats)
+    
+    # Log key error statistics as metrics with test prefix
+    mlflow.log_metric("test_mean_absolute_error", error_stats['mean'])
+    mlflow.log_metric("test_median_absolute_error", error_stats['50%'])
+    mlflow.log_metric("test_max_absolute_error", error_stats['max'])
+    mlflow.log_metric("test_std_absolute_error", error_stats['std'])
+    mlflow.log_metric("test_min_absolute_error", error_stats['min'])
+    mlflow.log_metric("test_25th_percentile_error", error_stats['25%'])
+    mlflow.log_metric("test_75th_percentile_error", error_stats['75%'])
+    
+    # Additional test metrics
+    mlflow.log_metric("test_sample_count", len(comparison_df))
 
     # Optionally, visualize the differences
     plt.figure(figsize=(10, 6))
@@ -854,8 +872,8 @@ def pretrain_model(
     plt.ylabel("Frequency", fontsize=12)
     plt.grid(axis="y", linestyle="--", alpha=0.7)
     plt.savefig('errors.png')
+    mlflow.log_artifact('errors.png')
     plt.show()
-
 
     print("Training complete. Final model saved.")
 
@@ -933,7 +951,7 @@ if "__main__" == __name__:
             }
         )
         # pretrain_model(model, dataset_worker, device, Config.config, num_epochs=3000, batch_size=512, lr=lr)
-        pretrain_model(model, None, device, Config.config, num_epochs=num_epochs, batch_size=512, lr=lr)
+        pretrain_model(model, None, device, Config.config, num_epochs=2, batch_size=512, lr=lr)
 
         # Log final model after training
         mlflow.pytorch.log_model(model, "final_gat_model1")
@@ -953,3 +971,8 @@ if "__main__" == __name__:
 # - commented out DatasetActor object creation inside if __name__ == "__main__" block
 # - commented out DatasetActor and RolloutWorker imports; used inside PretrainDataset class
 # - commented out some unused imports, put # NOT USED ANYWHERE next to them
+
+## Log test loss
+# - log test_loss using mlflow
+# - log other test metrics using mlflow
+# - log the errors.png using mlflow
