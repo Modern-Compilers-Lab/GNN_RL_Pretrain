@@ -1,59 +1,42 @@
+# Standard library imports
+import argparse as arg
+import json
+import math
+import os
+import pickle
+import time
 from builtins import set
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import List, Optional
+
+# Third-party imports
+import matplotlib.pyplot as plt
+import mlflow
+import numpy as np
+import pandas as pd
 import torch
 import torch.nn as nn
 import torch.optim as optim
-import numpy as np
+from sklearn.model_selection import train_test_split
 from torch_geometric.data import Data, Batch
-import time
+from tqdm import tqdm
 
 try:
     import ray
 except ImportError:
     ray = None
 
-import mlflow
-import argparse as arg
-import json
-
-import math
-import numpy as np
-import torch
-import torch.nn as nn
-from torch_geometric.data import Batch, Data
-import matplotlib.pyplot as plt
+# Local imports
+from agent.graph_utils import *
+from agent.policy_value_nn import GAT
+from config.config import Config
 from pretrain.embedding import get_embedding_size
+
+# Commented out unused imports
 # from pretrain.lstm_autoencoder_modeling import encoder # NOT USED ANYWHERE
-
-
 # from agent.rollout_worker import RolloutWorker, Transition, apply_flattened_action # used inside PretrainDataset class
 # from utils.dataset_actor.dataset_actor import DatasetActor # used inside PretrainDataset class
-
-# import ray # used inside PretrainDataset class
-import torch
-import torch.nn as nn
-import math
-from torch_geometric.data import Data
-from agent.graph_utils import *
-from config.config import Config
 # from env_api.tiramisu_api import TiramisuEnvAPI # used inside PretrainDataset class
-from tqdm import tqdm
-
-from concurrent.futures import ThreadPoolExecutor, as_completed
-# Assuming dataset_worker and data loading logic is already set up
-# We will prepare a custom data loader for the pretraining task
-
-
-import os
-import pickle
-from sklearn.model_selection import train_test_split
-from tqdm import tqdm
-# from concurrent.futures import ThreadPoolExecutor, as_completed # NOT USED ANYWHERE
-import torch
-from torch_geometric.data import Data, Batch
-import pandas as pd
-
-from agent.policy_value_nn import GAT
 
 
 def get_action_number(transformation: str) -> Optional[int]:
@@ -731,6 +714,14 @@ def pretrain_model(
     dataset.prepare_data()
 
     best_val_loss = float("inf")
+    
+    # Initialize lists to track losses for plotting
+    train_losses = []
+    val_losses = []
+    epochs = []
+    
+    # Start timing the training process
+    training_start_time = time.time()
     print("finidhed preparing data")
     for epoch in range(num_epochs):
         model.train()
@@ -793,14 +784,31 @@ def pretrain_model(
             f"Validation Loss: {avg_val_loss:.4f}"
         )
 
+        # Store losses for plotting
+        train_losses.append(avg_train_loss)
+        val_losses.append(avg_val_loss)
+        epochs.append(epoch + 1)
 
-        mlflow.log_metric("train_loss", avg_train_loss, step=epoch)
-        mlflow.log_metric("val_loss", avg_val_loss, step=epoch)
+        mlflow.log_metric("train_loss", avg_train_loss, step=epoch + 1)
+        mlflow.log_metric("val_loss", avg_val_loss, step=epoch + 1)
 
         # Save the model if validation loss improves
         if avg_val_loss < best_val_loss:
             best_val_loss = avg_val_loss
             torch.save(model.state_dict(), "pretrained_model_12.5k_L2_Regularization_GAT_512.pt")
+
+    # End timing and calculate training duration
+    training_end_time = time.time()
+    total_training_time = training_end_time - training_start_time
+    
+    # Log training time metrics
+    mlflow.log_metric("total_training_time_seconds", total_training_time)
+    total_training_time_formatted = f"{int(total_training_time//3600)}h {int(total_training_time%3600//60)}m {total_training_time%60:.2f}s"
+    mlflow.set_tag("total_training_time_formatted", total_training_time_formatted)
+    mlflow.log_metric("average_training_time_per_epoch", total_training_time / num_epochs) # in seconds
+    # num_epochs already saved under params inside mlflow
+
+    print(f"Time taken for training: {total_training_time_formatted}")    
 
     # Testing phase
     model.load_state_dict(torch.load("pretrained_model_12.5k_L2_Regularization_GAT_512.pt"))
@@ -831,6 +839,37 @@ def pretrain_model(
     print(f"Test Loss: {avg_test_loss:.4f}")
     mlflow.log_metric("test_loss", avg_test_loss)
 
+    # Create training curves plot
+    plt.figure(figsize=(12, 5))
+    
+    # Plot 1: Training and Validation Loss
+    plt.subplot(1, 2, 1)
+    plt.plot(epochs, train_losses, label='Training Loss', color='blue', linewidth=2)
+    plt.plot(epochs, val_losses, label='Validation Loss', color='red', linewidth=2)
+    plt.axhline(y=avg_test_loss, color='green', linestyle='--', linewidth=2, label=f'Test Loss ({avg_test_loss:.4f})')
+    plt.xlabel('Epoch', fontsize=12)
+    plt.ylabel('Loss (MSE)', fontsize=12)
+    plt.title('Training, Validation, and Test Loss', fontsize=14)
+    plt.legend()
+    plt.grid(True, alpha=0.3)
+    
+    # Plot 2: Log scale version for better visualization if losses vary greatly
+    plt.subplot(1, 2, 2)
+    plt.plot(epochs, train_losses, label='Training Loss', color='blue', linewidth=2)
+    plt.plot(epochs, val_losses, label='Validation Loss', color='red', linewidth=2)
+    plt.axhline(y=avg_test_loss, color='green', linestyle='--', linewidth=2, label=f'Test Loss ({avg_test_loss:.4f})')
+    plt.xlabel('Epoch', fontsize=12)
+    plt.ylabel('Loss (MSE) - Log Scale', fontsize=12)
+    plt.title('Training, Validation, and Test Loss (Log Scale)', fontsize=14)
+    plt.yscale('log')
+    plt.legend()
+    plt.grid(True, alpha=0.3)
+    
+    plt.tight_layout()
+    plt.savefig('training_curves.png', dpi=300, bbox_inches='tight')
+    mlflow.log_artifact('training_curves.png')
+    plt.show()
+
     # Create the DataFrame
     comparison_df = pd.DataFrame({
         "Real Execution Time": real_times,
@@ -844,7 +883,7 @@ def pretrain_model(
 
     # Save comparison DataFrame as MLflow artifact
     comparison_csv_path = "test_predictions_comparison.csv"
-    comparison_df.to_csv(comparison_csv_path, index=False)
+    # comparison_df.to_csv(comparison_csv_path, index=False)
     mlflow.log_artifact(comparison_csv_path)
     
     # Display basic statistics about the differences
@@ -876,7 +915,6 @@ def pretrain_model(
     plt.show()
 
     print("Training complete. Final model saved.")
-
 
 # Example usage
 if "__main__" == __name__:
@@ -918,12 +956,22 @@ if "__main__" == __name__:
     # dataset_worker = DatasetActor.remote(Config.config.dataset)
     device = "cuda:0" if torch.cuda.is_available() else "cpu"
     print(f"TRAINING DEVICE: {device}")
+    
+
     # Initialize GAT model
     if Config.config.pretrain.embed_access_matrices:
         input_size = 6 + get_embedding_size(Config.config.pretrain.embedding_type) + 9
     else:
         input_size = 718
-    model = GAT(input_size=input_size, hidden_size=128, num_heads=4, num_outputs=56).to(device)
+    
+    model_config = {
+        "input_size": input_size,
+        "hidden_size": 128, 
+        "num_heads": 4,
+        "num_outputs": 56
+    }
+
+    model = GAT(**model_config).to(device)
 
     # Pretrain the model
     run_name = args.name
@@ -953,7 +1001,8 @@ if "__main__" == __name__:
         pretrain_model(model, None, device, Config.config, num_epochs=2, batch_size=512, lr=lr)
 
         # Log final model after training
-        mlflow.pytorch.log_model(model, "final_gat_model1")
+        mlflow.pytorch.log_model(model, "final_gat_model1", model_type="pytorch", metadata={"architecture": "GAT", **model_config})
+        mlflow.set_tag("architecture", "GAT")
     
     # Save the pretrained model
     torch.save(model.state_dict(), "pretrained_model_12.5k_L2_Regularization_3GAT_512.pt")
@@ -975,3 +1024,13 @@ if "__main__" == __name__:
 # - log test_loss using mlflow
 # - log other test metrics using mlflow
 # - log the errors.png using mlflow
+# - log test_predictions_comparison.csv using mlflow
+
+## log model metadata
+# - added model_type and architecture:GAT metadata to mlflow.pytorch.log_model call
+# - created model_config dictionary to pass to GAT model initialization inside main block
+
+# - create plots: validation and training loss VS epoch, and store them as artifacts in mlflow
+# - removed duplicate imports, grouped imports together
+# - added time related logging
+# - changed epoch logging to start from 1 instead of 0
