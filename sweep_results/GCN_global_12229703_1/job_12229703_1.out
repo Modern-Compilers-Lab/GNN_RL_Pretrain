@@ -1,8 +1,0 @@
-Waiting for sweep ID...
-Found Sweep ID: utlbuaok
-Starting wandb agent for sweep utlbuaok...
-Run Name: pretrained_12.5k_L2_3GCN_512_dataloader
-[1;34mwandb[0m: 
-[1;34mwandb[0m: 🚀 View run [33mglad-sweep-1[0m at: [34mhttps://wandb.ai/mk8737-new-york-university/GCN_global_hp_sweep/runs/xr76owfq[0m
-[1;34mwandb[0m: Find logs at: [1;35mwandb/run-20251005_232620-xr76owfq/logs[0m
-Agent finished.

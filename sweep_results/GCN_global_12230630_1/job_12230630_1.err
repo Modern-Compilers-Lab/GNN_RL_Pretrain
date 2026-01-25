@@ -1,8 +1,0 @@
-Loading module 'cuda/11.8.0'
-Loading module 'gcc/9.2.0'
-
-Loading [1mcuda/11.8.0[22m
-  [94mLoading requirement[0m: gcc/9.2.0
-wandb: Starting wandb agent 🕵️
-wandb: ERROR Find detailed error logs at: /scratch/mk8737/rl_pretrain/wandb/debug-cli.mk8737.log
-Error: Sweep mk8737-new-york-university/rl_pretrain_hp_sweeps/d12rxuve not found
