@@ -1,0 +1,35 @@
+Waiting for sweep ID...
+Found Sweep ID: ypk69plo
+Starting wandb agent for sweep ypk69plo...
+TRAINING DEVICE: cpu
+Run Name: GCN_global_hp_sweep_}_ypk69plo-ws2yczpe
+finidhed preparing data
+Loading dataset from pretrain_dataset_12.5k_fixed_duplicates.pkl
+Loaded 412712 data objects.
+finished preparing data
+Epoch 1/2, Train Loss: 5.5915, Validation Loss: 1.8287
+Epoch 2/2, Train Loss: 1.4648, Validation Loss: 2.8774
+Best Training Loss: 1.4648
+Best Training Loss Epoch: 2
+Best Validation Loss: 1.8287
+Best Validation Loss Epoch: 1
+Time taken for training: 0-00:01:16
+Test Loss: 1.9010
+Test MAPE: 579215.0000%
+Error Statistics:
+count    4.127200e+04
+mean     4.240808e+07
+std      8.586449e+09
+min      2.908707e-05
+25%      6.059958e-01
+50%      3.913435e+00
+75%      7.816123e+01
+max      1.744379e+12
+Name: Absolute Error, dtype: float64
+Training complete. Final model saved.
+Saving model as a wandb Artifact...
+Model artifact logged successfully.
+[1;34mwandb[0m: 
+[1;34mwandb[0m: 🚀 View run [33mavid-sweep-2[0m at: [34mhttps://wandb.ai/mk8737-new-york-university/rl_pretrain_hp_sweeps/runs/ws2yczpe[0m
+[1;34mwandb[0m: Find logs at: [1;35mwandb/run-20251006_031429-ws2yczpe/logs[0m
+Agent finished.

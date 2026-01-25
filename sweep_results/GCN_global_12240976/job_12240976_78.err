@@ -1,0 +1,30 @@
+Loading module 'cuda/11.8.0'
+Loading module 'gcc/9.2.0'
+
+Loading [1mcuda/11.8.0[22m
+  [94mLoading requirement[0m: gcc/9.2.0
+wandb: Starting wandb agent 🕵️
+2025-10-06 14:38:46,788 - wandb.wandb_agent - INFO - Running runs: []
+2025-10-06 14:40:30,527 - wandb.wandb_agent - INFO - Agent received command: run
+2025-10-06 14:40:30,528 - wandb.wandb_agent - INFO - Agent starting run with config:
+	batch_size: 512
+	hidden_size: 128
+	lr: 0.009484947803173192
+	num_gcn_layers: 3
+2025-10-06 14:40:30,530 - wandb.wandb_agent - INFO - About to run command: /usr/bin/env python pretrain_GCN_network.py --sweep --name GCN_global_hp_sweep --pool-type global --num-epochs 1000
+2025-10-06 14:40:35,542 - wandb.wandb_agent - INFO - Running runs: ['pr8bkbpu']
+/scratch/mk8737/rl_pretrain/pretrain/lstm_autoencoder_modeling.py:42: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  autoencoder.load_state_dict(torch.load('./models/lstm_autoencoder_perm100_005drop.pt', map_location = device))
+wandb: Currently logged in as: mk8737 (mk8737-new-york-university) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: setting up run pr8bkbpu
+wandb: Tracking run with wandb version 0.22.1
+wandb: Run data is saved locally in /scratch/mk8737/rl_pretrain/wandb/run-20251006_144038-pr8bkbpu
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run stellar-sweep-105
+wandb: ⭐️ View project at https://wandb.ai/mk8737-new-york-university/rl_pretrain_hp_sweeps
+wandb: 🧹 View sweep at https://wandb.ai/mk8737-new-york-university/rl_pretrain_hp_sweeps/sweeps/be12np04
+wandb: 🚀 View run at https://wandb.ai/mk8737-new-york-university/rl_pretrain_hp_sweeps/runs/pr8bkbpu
+/scratch/mk8737/rl_pretrain/pretrain_GCN_network.py:857: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  model.load_state_dict(torch.load(f"saved_weights/pretrained_model_12.5k_{run_name}.pt"))
+2025-10-09 01:33:35,514 - wandb.wandb_agent - INFO - Cleaning up finished run: pr8bkbpu
+wandb: Terminating and syncing runs. Press ctrl-c to kill.

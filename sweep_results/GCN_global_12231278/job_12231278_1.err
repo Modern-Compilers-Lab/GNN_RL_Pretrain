@@ -1,0 +1,34 @@
+Loading module 'cuda/11.8.0'
+Loading module 'gcc/9.2.0'
+
+Loading [1mcuda/11.8.0[22m
+  [94mLoading requirement[0m: gcc/9.2.0
+wandb: Starting wandb agent 🕵️
+2025-10-06 01:08:10,994 - wandb.wandb_agent - INFO - Running runs: []
+2025-10-06 01:08:11,356 - wandb.wandb_agent - INFO - Agent received command: run
+2025-10-06 01:08:11,356 - wandb.wandb_agent - INFO - Agent starting run with config:
+	batch_size: 1024
+	hidden_size: 90
+	lr: 0.002186161341700394
+	num_gcn_layers: 4
+2025-10-06 01:08:11,359 - wandb.wandb_agent - INFO - About to run command: /usr/bin/env python pretrain_GCN_network.py --sweep --name GCN_global --pool-type global --num-epochs 2
+2025-10-06 01:08:16,369 - wandb.wandb_agent - INFO - Running runs: ['ojkp4xx2']
+/scratch/mk8737/rl_pretrain/pretrain/lstm_autoencoder_modeling.py:42: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  autoencoder.load_state_dict(torch.load('./models/lstm_autoencoder_perm100_005drop.pt', map_location = device))
+wandb: Currently logged in as: mk8737 (mk8737-new-york-university) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: setting up run ojkp4xx2
+wandb: Tracking run with wandb version 0.22.1
+wandb: Run data is saved locally in /scratch/mk8737/rl_pretrain/wandb/run-20251006_010819-ojkp4xx2
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run summer-sweep-2
+wandb: ⭐️ View project at https://wandb.ai/mk8737-new-york-university/rl_pretrain_hp_sweeps
+wandb: 🧹 View sweep at https://wandb.ai/mk8737-new-york-university/rl_pretrain_hp_sweeps/sweeps/squckx19
+wandb: 🚀 View run at https://wandb.ai/mk8737-new-york-university/rl_pretrain_hp_sweeps/runs/ojkp4xx2
+Traceback (most recent call last):
+  File "/scratch/mk8737/rl_pretrain/pretrain_GCN_network.py", line 1093, in <module>
+    if use_wandb:
+  File "/scratch/mk8737/rl_pretrain/pretrain_GCN_network.py", line 850, in pretrain_model
+    mlflow.log_metric("average_training_time_per_epoch", total_training_time / num_epochs) # in seconds
+UnboundLocalError: local variable 'total_training_time_formatted' referenced before assignment
+2025-10-06 01:10:53,753 - wandb.wandb_agent - INFO - Cleaning up finished run: ojkp4xx2
+wandb: Terminating and syncing runs. Press ctrl-c to kill.

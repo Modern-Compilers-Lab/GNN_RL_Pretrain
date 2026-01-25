@@ -1,0 +1,29 @@
+Loading module 'cuda/11.8.0'
+Loading module 'gcc/9.2.0'
+
+Loading [1mcuda/11.8.0[22m
+  [94mLoading requirement[0m: gcc/9.2.0
+/scratch/mk8737/rl_pretrain/pretrain/lstm_autoencoder_modeling.py:42: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  autoencoder.load_state_dict(torch.load('./models/lstm_autoencoder_perm100_005drop.pt', map_location = device))
+/scratch/mk8737/rl_pretrain/pretrain_GCN_network.py:845: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  model.load_state_dict(torch.load(f"pretrained_model_12.5k_L2_Regularization_GCN_{model.pooling_type}_512.pt"))
+Traceback (most recent call last):
+  File "/scratch/mk8737/rl_pretrain/pretrain_GCN_network.py", line 1050, in <module>
+    pretrain_model(model, None, device, Config.config, num_epochs=num_epochs, batch_size=batch_size, lr=lr, num_workers=num_workers)
+  File "/scratch/mk8737/rl_pretrain/pretrain_GCN_network.py", line 845, in pretrain_model
+    model.load_state_dict(torch.load(f"pretrained_model_12.5k_L2_Regularization_GCN_{model.pooling_type}_512.pt"))
+  File "/home/mk8737/.conda/envs/rl_pretrain/lib/python3.10/site-packages/torch/serialization.py", line 1360, in load
+    return _load(
+  File "/home/mk8737/.conda/envs/rl_pretrain/lib/python3.10/site-packages/torch/serialization.py", line 1848, in _load
+    result = unpickler.load()
+  File "/home/mk8737/.conda/envs/rl_pretrain/lib/python3.10/site-packages/torch/serialization.py", line 1812, in persistent_load
+    typed_storage = load_tensor(
+  File "/home/mk8737/.conda/envs/rl_pretrain/lib/python3.10/site-packages/torch/serialization.py", line 1784, in load_tensor
+    wrap_storage=restore_location(storage, location),
+  File "/home/mk8737/.conda/envs/rl_pretrain/lib/python3.10/site-packages/torch/serialization.py", line 601, in default_restore_location
+    result = fn(storage, location)
+  File "/home/mk8737/.conda/envs/rl_pretrain/lib/python3.10/site-packages/torch/serialization.py", line 539, in _deserialize
+    device = _validate_device(location, backend_name)
+  File "/home/mk8737/.conda/envs/rl_pretrain/lib/python3.10/site-packages/torch/serialization.py", line 508, in _validate_device
+    raise RuntimeError(
+RuntimeError: Attempting to deserialize object on a CUDA device but torch.cuda.is_available() is False. If you are running on a CPU-only machine, please use torch.load with map_location=torch.device('cpu') to map your storages to the CPU.

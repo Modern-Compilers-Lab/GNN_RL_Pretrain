@@ -1,0 +1,223 @@
+Run Name: GCN_global_workers4_epochs200
+TRAINING DEVICE: cuda:0
+finidhed preparing data
+Loading dataset from pretrain_dataset_12.5k_fixed_duplicates.pkl
+Loaded 412712 data objects.
+finished preparing data
+Epoch 1/200, Train Loss: 2.6358, Validation Loss: 2.9518
+Epoch 2/200, Train Loss: 1.6878, Validation Loss: 1.7111
+Epoch 3/200, Train Loss: 1.5237, Validation Loss: 2.6066
+Epoch 4/200, Train Loss: 1.4027, Validation Loss: 1.7251
+Epoch 5/200, Train Loss: 1.3484, Validation Loss: 1.4353
+Epoch 6/200, Train Loss: 1.2925, Validation Loss: 1.6026
+Epoch 7/200, Train Loss: 1.2328, Validation Loss: 1.3394
+Epoch 8/200, Train Loss: 1.1816, Validation Loss: 1.3332
+Epoch 9/200, Train Loss: 1.1340, Validation Loss: 1.2529
+Epoch 10/200, Train Loss: 1.1203, Validation Loss: 2.7017
+Epoch 11/200, Train Loss: 1.0984, Validation Loss: 2.6647
+Epoch 12/200, Train Loss: 1.0715, Validation Loss: 1.1968
+Epoch 13/200, Train Loss: 1.0522, Validation Loss: 1.9243
+Epoch 14/200, Train Loss: 1.0293, Validation Loss: 1.6424
+Epoch 15/200, Train Loss: 1.1245, Validation Loss: 2.4555
+Epoch 16/200, Train Loss: 1.0169, Validation Loss: 1.1241
+Epoch 17/200, Train Loss: 0.9861, Validation Loss: 1.3912
+Epoch 18/200, Train Loss: 0.9853, Validation Loss: 1.4516
+Epoch 19/200, Train Loss: 0.9832, Validation Loss: 1.5516
+Epoch 20/200, Train Loss: 0.9568, Validation Loss: 1.0648
+Epoch 21/200, Train Loss: 0.9387, Validation Loss: 1.2042
+Epoch 22/200, Train Loss: 0.9207, Validation Loss: 0.9827
+Epoch 23/200, Train Loss: 0.9161, Validation Loss: 2.7881
+Epoch 24/200, Train Loss: 0.9169, Validation Loss: 1.1102
+Epoch 25/200, Train Loss: 0.8807, Validation Loss: 1.1109
+Epoch 26/200, Train Loss: 0.8757, Validation Loss: 1.2437
+Epoch 27/200, Train Loss: 0.8699, Validation Loss: 1.3296
+Epoch 28/200, Train Loss: 0.8625, Validation Loss: 0.9909
+Epoch 29/200, Train Loss: 0.8386, Validation Loss: 1.3794
+Epoch 30/200, Train Loss: 0.8392, Validation Loss: 1.2130
+Epoch 31/200, Train Loss: 0.8114, Validation Loss: 1.0754
+Epoch 32/200, Train Loss: 0.8235, Validation Loss: 1.2584
+Epoch 33/200, Train Loss: 0.8418, Validation Loss: 1.2314
+Epoch 34/200, Train Loss: 0.8140, Validation Loss: 1.8006
+Epoch 35/200, Train Loss: 0.7931, Validation Loss: 1.7337
+Epoch 36/200, Train Loss: 0.7716, Validation Loss: 0.8713
+Epoch 37/200, Train Loss: 0.7838, Validation Loss: 1.1759
+Epoch 38/200, Train Loss: 0.7804, Validation Loss: 1.7157
+Epoch 39/200, Train Loss: 0.7572, Validation Loss: 1.1285
+Epoch 40/200, Train Loss: 0.7854, Validation Loss: 1.5527
+Epoch 41/200, Train Loss: 0.7489, Validation Loss: 1.1432
+Epoch 42/200, Train Loss: 0.7552, Validation Loss: 0.8322
+Epoch 43/200, Train Loss: 0.7422, Validation Loss: 1.2013
+Epoch 44/200, Train Loss: 0.7353, Validation Loss: 1.1334
+Epoch 45/200, Train Loss: 0.7240, Validation Loss: 1.0928
+Epoch 46/200, Train Loss: 0.7231, Validation Loss: 0.8895
+Epoch 47/200, Train Loss: 0.7126, Validation Loss: 0.7968
+Epoch 48/200, Train Loss: 0.7071, Validation Loss: 0.7072
+Epoch 49/200, Train Loss: 0.7020, Validation Loss: 0.7784
+Epoch 50/200, Train Loss: 0.6850, Validation Loss: 1.1528
+Epoch 51/200, Train Loss: 0.6864, Validation Loss: 0.7256
+Epoch 52/200, Train Loss: 0.6768, Validation Loss: 0.8829
+Epoch 53/200, Train Loss: 0.6670, Validation Loss: 1.1637
+Epoch 54/200, Train Loss: 0.6611, Validation Loss: 1.5511
+Epoch 55/200, Train Loss: 0.6606, Validation Loss: 1.2471
+Epoch 56/200, Train Loss: 0.6519, Validation Loss: 1.1001
+Epoch 57/200, Train Loss: 0.6452, Validation Loss: 0.9987
+Epoch 58/200, Train Loss: 0.6449, Validation Loss: 1.5856
+Epoch 59/200, Train Loss: 0.6351, Validation Loss: 0.7851
+Epoch 60/200, Train Loss: 0.6392, Validation Loss: 0.7347
+Epoch 61/200, Train Loss: 0.6297, Validation Loss: 1.7158
+Epoch 62/200, Train Loss: 0.6212, Validation Loss: 0.7534
+Epoch 63/200, Train Loss: 0.6162, Validation Loss: 1.2459
+Epoch 64/200, Train Loss: 0.6116, Validation Loss: 1.3280
+Epoch 65/200, Train Loss: 0.6149, Validation Loss: 0.9456
+Epoch 66/200, Train Loss: 0.6008, Validation Loss: 1.7508
+Epoch 67/200, Train Loss: 0.5980, Validation Loss: 0.9515
+Epoch 68/200, Train Loss: 0.6000, Validation Loss: 0.7684
+Epoch 69/200, Train Loss: 0.5859, Validation Loss: 0.9034
+Epoch 70/200, Train Loss: 0.5925, Validation Loss: 0.8210
+Epoch 71/200, Train Loss: 0.5963, Validation Loss: 0.8793
+Epoch 72/200, Train Loss: 0.5807, Validation Loss: 0.9424
+Epoch 73/200, Train Loss: 0.5791, Validation Loss: 2.1303
+Epoch 74/200, Train Loss: 0.5701, Validation Loss: 2.4292
+Epoch 75/200, Train Loss: 0.5696, Validation Loss: 0.6951
+Epoch 76/200, Train Loss: 0.5675, Validation Loss: 0.7582
+Epoch 77/200, Train Loss: 0.5675, Validation Loss: 1.4861
+Epoch 78/200, Train Loss: 0.5751, Validation Loss: 1.3623
+Epoch 79/200, Train Loss: 0.5677, Validation Loss: 1.0070
+Epoch 80/200, Train Loss: 0.5578, Validation Loss: 0.7141
+Epoch 81/200, Train Loss: 0.5614, Validation Loss: 0.6533
+Epoch 82/200, Train Loss: 0.5529, Validation Loss: 0.9179
+Epoch 83/200, Train Loss: 0.5571, Validation Loss: 0.8506
+Epoch 84/200, Train Loss: 0.5569, Validation Loss: 2.3576
+Epoch 85/200, Train Loss: 0.5488, Validation Loss: 0.8615
+Epoch 86/200, Train Loss: 0.5471, Validation Loss: 0.8418
+Epoch 87/200, Train Loss: 0.5502, Validation Loss: 0.8622
+Epoch 88/200, Train Loss: 0.5488, Validation Loss: 0.7630
+Epoch 89/200, Train Loss: 0.5420, Validation Loss: 0.8906
+Epoch 90/200, Train Loss: 0.5387, Validation Loss: 0.8733
+Epoch 91/200, Train Loss: 0.5383, Validation Loss: 0.8101
+Epoch 92/200, Train Loss: 0.5467, Validation Loss: 0.6614
+Epoch 93/200, Train Loss: 0.5355, Validation Loss: 0.7003
+Epoch 94/200, Train Loss: 0.5353, Validation Loss: 0.8969
+Epoch 95/200, Train Loss: 0.5333, Validation Loss: 0.7357
+Epoch 96/200, Train Loss: 0.5357, Validation Loss: 2.2033
+Epoch 97/200, Train Loss: 0.5315, Validation Loss: 1.0372
+Epoch 98/200, Train Loss: 0.5285, Validation Loss: 1.6890
+Epoch 99/200, Train Loss: 0.5288, Validation Loss: 1.6643
+Epoch 100/200, Train Loss: 0.5327, Validation Loss: 0.6752
+Epoch 101/200, Train Loss: 0.5291, Validation Loss: 1.1985
+Epoch 102/200, Train Loss: 0.5259, Validation Loss: 1.0972
+Epoch 103/200, Train Loss: 0.5263, Validation Loss: 0.7845
+Epoch 104/200, Train Loss: 0.5236, Validation Loss: 1.3781
+Epoch 105/200, Train Loss: 0.5255, Validation Loss: 1.1104
+Epoch 106/200, Train Loss: 0.5141, Validation Loss: 0.6650
+Epoch 107/200, Train Loss: 0.5232, Validation Loss: 1.9929
+Epoch 108/200, Train Loss: 0.5147, Validation Loss: 0.6872
+Epoch 109/200, Train Loss: 0.5209, Validation Loss: 0.6631
+Epoch 110/200, Train Loss: 0.5140, Validation Loss: 1.0565
+Epoch 111/200, Train Loss: 0.5129, Validation Loss: 0.6780
+Epoch 112/200, Train Loss: 0.5150, Validation Loss: 0.6528
+Epoch 113/200, Train Loss: 0.5115, Validation Loss: 0.6320
+Epoch 114/200, Train Loss: 0.5171, Validation Loss: 1.2294
+Epoch 115/200, Train Loss: 0.5114, Validation Loss: 0.6853
+Epoch 116/200, Train Loss: 0.5096, Validation Loss: 1.0454
+Epoch 117/200, Train Loss: 0.5160, Validation Loss: 2.3885
+Epoch 118/200, Train Loss: 0.5051, Validation Loss: 0.6113
+Epoch 119/200, Train Loss: 0.5030, Validation Loss: 0.7355
+Epoch 120/200, Train Loss: 0.5019, Validation Loss: 1.0986
+Epoch 121/200, Train Loss: 0.5075, Validation Loss: 0.6961
+Epoch 122/200, Train Loss: 0.5015, Validation Loss: 0.8369
+Epoch 123/200, Train Loss: 0.4952, Validation Loss: 1.4770
+Epoch 124/200, Train Loss: 0.4973, Validation Loss: 0.6583
+Epoch 125/200, Train Loss: 0.4949, Validation Loss: 1.2661
+Epoch 126/200, Train Loss: 0.4955, Validation Loss: 0.9418
+Epoch 127/200, Train Loss: 0.4919, Validation Loss: 0.9066
+Epoch 128/200, Train Loss: 0.5050, Validation Loss: 0.7709
+Epoch 129/200, Train Loss: 0.4938, Validation Loss: 0.8799
+Epoch 130/200, Train Loss: 0.4974, Validation Loss: 0.5969
+Epoch 131/200, Train Loss: 0.4847, Validation Loss: 0.6813
+Epoch 132/200, Train Loss: 0.4977, Validation Loss: 1.4021
+Epoch 133/200, Train Loss: 0.4865, Validation Loss: 0.6534
+Epoch 134/200, Train Loss: 0.4869, Validation Loss: 0.9878
+Epoch 135/200, Train Loss: 0.4895, Validation Loss: 0.6647
+Epoch 136/200, Train Loss: 0.4854, Validation Loss: 0.6160
+Epoch 137/200, Train Loss: 0.4885, Validation Loss: 1.0224
+Epoch 138/200, Train Loss: 0.4797, Validation Loss: 0.5410
+Epoch 139/200, Train Loss: 0.4892, Validation Loss: 0.5113
+Epoch 140/200, Train Loss: 0.4839, Validation Loss: 0.8259
+Epoch 141/200, Train Loss: 0.4795, Validation Loss: 2.6171
+Epoch 142/200, Train Loss: 0.4835, Validation Loss: 0.7180
+Epoch 143/200, Train Loss: 0.4862, Validation Loss: 0.7959
+Epoch 144/200, Train Loss: 0.4754, Validation Loss: 0.6153
+Epoch 145/200, Train Loss: 0.4783, Validation Loss: 0.5530
+Epoch 146/200, Train Loss: 0.4776, Validation Loss: 2.2706
+Epoch 147/200, Train Loss: 0.4906, Validation Loss: 2.7418
+Epoch 148/200, Train Loss: 0.4816, Validation Loss: 0.7952
+Epoch 149/200, Train Loss: 0.4730, Validation Loss: 1.5170
+Epoch 150/200, Train Loss: 0.4735, Validation Loss: 1.0308
+Epoch 151/200, Train Loss: 0.4723, Validation Loss: 3.5579
+Epoch 152/200, Train Loss: 0.4733, Validation Loss: 2.1554
+Epoch 153/200, Train Loss: 0.4777, Validation Loss: 1.8958
+Epoch 154/200, Train Loss: 0.4750, Validation Loss: 0.9956
+Epoch 155/200, Train Loss: 0.4721, Validation Loss: 3.1091
+Epoch 156/200, Train Loss: 0.4676, Validation Loss: 0.7528
+Epoch 157/200, Train Loss: 0.4668, Validation Loss: 0.9728
+Epoch 158/200, Train Loss: 0.4657, Validation Loss: 0.9897
+Epoch 159/200, Train Loss: 0.4685, Validation Loss: 0.9862
+Epoch 160/200, Train Loss: 0.4783, Validation Loss: 0.6980
+Epoch 161/200, Train Loss: 0.4629, Validation Loss: 0.8271
+Epoch 162/200, Train Loss: 0.4652, Validation Loss: 2.5184
+Epoch 163/200, Train Loss: 0.4627, Validation Loss: 0.5585
+Epoch 164/200, Train Loss: 0.4653, Validation Loss: 2.0112
+Epoch 165/200, Train Loss: 0.4629, Validation Loss: 0.9450
+Epoch 166/200, Train Loss: 0.4592, Validation Loss: 0.6273
+Epoch 167/200, Train Loss: 0.4574, Validation Loss: 0.5408
+Epoch 168/200, Train Loss: 0.4591, Validation Loss: 1.5379
+Epoch 169/200, Train Loss: 0.4672, Validation Loss: 0.9738
+Epoch 170/200, Train Loss: 0.4597, Validation Loss: 0.9903
+Epoch 171/200, Train Loss: 0.4603, Validation Loss: 0.5733
+Epoch 172/200, Train Loss: 0.4570, Validation Loss: 0.6093
+Epoch 173/200, Train Loss: 0.4569, Validation Loss: 0.7500
+Epoch 174/200, Train Loss: 0.4522, Validation Loss: 0.4954
+Epoch 175/200, Train Loss: 0.4551, Validation Loss: 0.5540
+Epoch 176/200, Train Loss: 0.4557, Validation Loss: 1.6675
+Epoch 177/200, Train Loss: 0.4508, Validation Loss: 0.4811
+Epoch 178/200, Train Loss: 0.4558, Validation Loss: 0.4897
+Epoch 179/200, Train Loss: 0.4482, Validation Loss: 0.5289
+Epoch 180/200, Train Loss: 0.4600, Validation Loss: 0.6408
+Epoch 181/200, Train Loss: 0.4529, Validation Loss: 1.4722
+Epoch 182/200, Train Loss: 0.4564, Validation Loss: 1.1070
+Epoch 183/200, Train Loss: 0.4620, Validation Loss: 0.6423
+Epoch 184/200, Train Loss: 0.4534, Validation Loss: 0.6850
+Epoch 185/200, Train Loss: 0.4507, Validation Loss: 1.1071
+Epoch 186/200, Train Loss: 0.4462, Validation Loss: 0.6061
+Epoch 187/200, Train Loss: 0.4440, Validation Loss: 1.2632
+Epoch 188/200, Train Loss: 0.4523, Validation Loss: 0.6220
+Epoch 189/200, Train Loss: 0.4532, Validation Loss: 0.4896
+Epoch 190/200, Train Loss: 0.4431, Validation Loss: 0.7754
+Epoch 191/200, Train Loss: 0.4467, Validation Loss: 0.9510
+Epoch 192/200, Train Loss: 0.4505, Validation Loss: 0.7236
+Epoch 193/200, Train Loss: 0.4517, Validation Loss: 0.9227
+Epoch 194/200, Train Loss: 0.4422, Validation Loss: 0.9286
+Epoch 195/200, Train Loss: 0.4429, Validation Loss: 0.8944
+Epoch 196/200, Train Loss: 0.4410, Validation Loss: 1.2310
+Epoch 197/200, Train Loss: 0.4509, Validation Loss: 0.7535
+Epoch 198/200, Train Loss: 0.4391, Validation Loss: 1.6649
+Epoch 199/200, Train Loss: 0.4382, Validation Loss: 1.1719
+Epoch 200/200, Train Loss: 0.4411, Validation Loss: 1.9677
+Best Training Loss: 0.4382
+Best Training Loss Epoch: 199
+Best Validation Loss: 0.4811
+Best Validation Loss Epoch: 177
+Time taken for training: 0-00:39:42
+Test Loss: 0.4925
+Error Statistics:
+count     41272.000000
+mean        508.304901
+std        7125.456543
+min           0.000042
+25%           0.201412
+50%           1.518624
+75%          22.262847
+max      510861.312500
+Name: Absolute Error, dtype: float64
+Training complete. Final model saved.

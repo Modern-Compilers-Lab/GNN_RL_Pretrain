@@ -1,0 +1,35 @@
+Waiting for sweep ID...
+Found Sweep ID: 23dojk1i
+Starting wandb agent for sweep 23dojk1i...
+TRAINING DEVICE: cpu
+Run Name: GIN_global_hp_sweep_global_23dojk1i-wh822kkz
+finidhed preparing data
+Loading dataset from pretrain_dataset_12.5k_fixed_duplicates.pkl
+Loaded 412712 data objects.
+finished preparing data
+Epoch 1/2, Train Loss: 2.6273, Validation Loss: 2.2621
+Epoch 2/2, Train Loss: 1.4321, Validation Loss: 1.9488
+Best Training Loss: 1.4321
+Best Training Loss Epoch: 2
+Best Validation Loss: 1.9488
+Best Validation Loss Epoch: 2
+Time taken for training: 0-00:01:31
+Test Loss: 1.9817
+Test MAPE: 37781.9922%
+Error Statistics:
+count    4.127200e+04
+mean     1.051831e+03
+std      7.791986e+04
+min      2.074242e-05
+25%      2.226811e-01
+50%      2.484609e+00
+75%      3.312635e+01
+max      1.564494e+07
+Name: Absolute Error, dtype: float64
+Training complete. Final model saved.
+Saving model as a wandb Artifact...
+Model artifact logged successfully.
+[1;34mwandb[0m: 
+[1;34mwandb[0m: 🚀 View run [33mastral-sweep-2[0m at: [34mhttps://wandb.ai/mk8737-new-york-university/rl_pretrain_hp_sweeps/runs/wh822kkz[0m
+[1;34mwandb[0m: Find logs at: [1;35mwandb/run-20251126_202740-wh822kkz/logs[0m
+Agent finished.

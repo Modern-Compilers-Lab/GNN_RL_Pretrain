@@ -1,0 +1,27 @@
+Loading module 'cuda/11.8.0'
+Loading module 'gcc/9.2.0'
+
+Loading [1mcuda/11.8.0[22m
+  [94mLoading requirement[0m: gcc/9.2.0
+wandb: Starting wandb agent 🕵️
+2025-10-04 17:54:45,062 - wandb.wandb_agent - INFO - Running runs: []
+2025-10-04 17:54:45,512 - wandb.wandb_agent - INFO - Agent received command: run
+2025-10-04 17:54:45,512 - wandb.wandb_agent - INFO - Agent starting run with config:
+	batch-size: 1024
+	hidden_size: 64
+	lr: 0.0009274431968651098
+	num_epochs: 500
+	num_gcn_layers: 3
+2025-10-04 17:54:45,516 - wandb.wandb_agent - INFO - About to run command: /usr/bin/env python pretrain_GCN_network.py --sweep --batch-size=1024 --hidden_size=64 --lr=0.0009274431968651098 --num_epochs=500 --num_gcn_layers=3
+2025-10-04 17:54:50,526 - wandb.wandb_agent - INFO - Running runs: ['7czf2iwv']
+/scratch/mk8737/rl_pretrain/pretrain/lstm_autoencoder_modeling.py:42: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  autoencoder.load_state_dict(torch.load('./models/lstm_autoencoder_perm100_005drop.pt', map_location = device))
+usage: pretrain_GCN_network.py [-h] [--num-nodes NUM_NODES] [--name NAME]
+                               [--pool-type {global,sag,diff}]
+                               [--num-clusters NUM_CLUSTERS]
+                               [--sag-ratio SAG_RATIO]
+                               [--num-epochs NUM_EPOCHS]
+                               [--num-workers NUM_WORKERS] [--sweep]
+pretrain_GCN_network.py: error: unrecognized arguments: --batch-size=1024 --hidden_size=64 --lr=0.0009274431968651098 --num_epochs=500 --num_gcn_layers=3
+2025-10-04 17:54:55,775 - wandb.wandb_agent - INFO - Cleaning up finished run: 7czf2iwv
+wandb: Terminating and syncing runs. Press ctrl-c to kill.

@@ -1,0 +1,25 @@
+Run Name: GAT_dataloader_smoke_test3
+TRAINING DEVICE: cuda:0
+finidhed preparing data
+Loading dataset from pretrain_dataset_12.5k_fixed_duplicates.pkl
+Loaded 412712 data objects.
+finished preparing data
+Epoch 1/2, Train Loss: 3.3620, Validation Loss: 1.8520
+Epoch 2/2, Train Loss: 1.7446, Validation Loss: 1.4953
+Best Training Loss: 1.7446
+Best Training Loss Epoch: 2
+Best Validation Loss: 1.4953
+Best Validation Loss Epoch: 2
+Time taken for training: 0-00:00:22
+Test Loss: 1.5287
+Error Statistics:
+count    4.127200e+04
+mean     3.617046e+05
+std      7.156190e+07
+min      4.053116e-06
+25%      3.100408e-01
+50%      3.238675e+00
+75%      4.984350e+01
+max      1.453436e+10
+Name: Absolute Error, dtype: float64
+Training complete. Final model saved.

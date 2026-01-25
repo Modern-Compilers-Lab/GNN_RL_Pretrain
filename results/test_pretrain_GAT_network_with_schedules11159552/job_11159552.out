@@ -1,0 +1,27 @@
+Run Name: GAT_nondataloader_test4
+TRAINING DEVICE: cuda:0
+finidhed preparing data
+Loading dataset from pretrain_dataset_12.5k_fixed_duplicates.pkl
+Loaded 412712 data objects.
+finidhed preparing data
+total_batches 644
+Epoch 1/2, Train Loss: 4.0674, Validation Loss: 4.6761
+total_batches 644
+Epoch 2/2, Train Loss: 2.1145, Validation Loss: 2.6809
+Best Training Loss: 2.1145
+Best Training Loss Epoch: 2
+Best Validation Loss: 2.6809
+Best Validation Loss Epoch: 0
+Time taken for training: 0-00:00:57
+Test Loss: 2.6561
+Error Statistics:
+count     40960.000000
+mean        793.019531
+std       10476.220703
+min           0.000973
+25%           1.941926
+50%           9.240302
+75%         106.740084
+max      923505.812500
+Name: Absolute Error, dtype: float64
+Training complete. Final model saved.

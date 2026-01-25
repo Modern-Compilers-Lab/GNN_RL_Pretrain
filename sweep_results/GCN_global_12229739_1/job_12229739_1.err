@@ -1,0 +1,26 @@
+Loading module 'cuda/11.8.0'
+Loading module 'gcc/9.2.0'
+
+Loading [1mcuda/11.8.0[22m
+  [94mLoading requirement[0m: gcc/9.2.0
+wandb: Starting wandb agent 🕵️
+2025-10-06 00:01:11,109 - wandb.wandb_agent - INFO - Running runs: []
+2025-10-06 00:01:11,614 - wandb.wandb_agent - INFO - Agent received command: run
+2025-10-06 00:01:11,615 - wandb.wandb_agent - INFO - Agent starting run with config:
+	batch_size: 256
+	hidden_size: 128
+	lr: 0.001981105292479104
+	num_gcn_layers: 4
+2025-10-06 00:01:11,618 - wandb.wandb_agent - INFO - About to run command: /usr/bin/env python pretrain_GCN_network.py --sweep "name run_pretrain_GCN_global" "--pool-type global" "--num-epochs 1000"
+2025-10-06 00:01:16,628 - wandb.wandb_agent - INFO - Running runs: ['ijeqngyo']
+/scratch/mk8737/rl_pretrain/pretrain/lstm_autoencoder_modeling.py:42: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  autoencoder.load_state_dict(torch.load('./models/lstm_autoencoder_perm100_005drop.pt', map_location = device))
+usage: pretrain_GCN_network.py [-h] [--num-nodes NUM_NODES] [--name NAME]
+                               [--pool-type {global,sag,diff}]
+                               [--num-clusters NUM_CLUSTERS]
+                               [--sag-ratio SAG_RATIO]
+                               [--num-epochs NUM_EPOCHS]
+                               [--num-workers NUM_WORKERS] [--sweep]
+pretrain_GCN_network.py: error: unrecognized arguments: name run_pretrain_GCN_global --pool-type global --num-epochs 1000
+2025-10-06 00:01:21,881 - wandb.wandb_agent - INFO - Cleaning up finished run: ijeqngyo
+wandb: Terminating and syncing runs. Press ctrl-c to kill.

@@ -1,0 +1,24 @@
+Waiting for sweep ID...
+Found Sweep ID: mof3aj3v
+Starting wandb agent for sweep mof3aj3v...
+TRAINING DEVICE: cpu
+Run Name: GIN_sag_hp_sweep_sag_mof3aj3v-28ynapnl
+finidhed preparing data
+Loading dataset from pretrain_dataset_12.5k_fixed_duplicates.pkl
+Loaded 412712 data objects.
+finished preparing data
+Epoch 1/1000, Train Loss: 95.5366, Validation Loss: 12.7713
+Epoch 2/1000, Train Loss: 7.1203, Validation Loss: 6.3630
+Epoch 3/1000, Train Loss: 7.3212, Validation Loss: 6.1391
+Epoch 4/1000, Train Loss: 7.2807, Validation Loss: 6.1181
+Epoch 5/1000, Train Loss: 6.3768, Validation Loss: 6.0824
+Epoch 6/1000, Train Loss: 8.1646, Validation Loss: 7.1269
+Epoch 7/1000, Train Loss: 44.3190, Validation Loss: 6.4307
+Epoch 8/1000, Train Loss: 256.3683, Validation Loss: 6.0750
+Epoch 9/1000, Train Loss: 8.2107, Validation Loss: 6.3204
+Epoch 10/1000, Train Loss: 65.6892, Validation Loss: 6.0878
+Epoch 11/1000, Train Loss: 3780.3484, Validation Loss: 6.0855
+[1;34mwandb[0m: 
+[1;34mwandb[0m: 🚀 View run [33mlaced-sweep-5[0m at: [34mhttps://wandb.ai/mk8737-new-york-university/rl_pretrain_hp_sweeps/runs/28ynapnl[0m
+[1;34mwandb[0m: Find logs at: [1;35mwandb/run-20251126_204717-28ynapnl/logs[0m
+Agent finished.

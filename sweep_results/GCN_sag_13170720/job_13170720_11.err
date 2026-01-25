@@ -1,0 +1,51 @@
+Loading module 'cuda/11.8.0'
+Loading module 'gcc/9.2.0'
+
+Loading [1mcuda/11.8.0[22m
+  [94mLoading requirement[0m: gcc/9.2.0
+wandb: Starting wandb agent 🕵️
+2025-11-26 01:15:54,570 - wandb.wandb_agent - INFO - Running runs: []
+2025-11-26 01:15:59,874 - wandb.wandb_agent - INFO - Agent received command: run
+2025-11-26 01:15:59,874 - wandb.wandb_agent - INFO - Agent starting run with config:
+	batch_size: 512
+	hidden_size: 90
+	lr: 0.00712319895416794
+	num_gcn_layers: 3
+2025-11-26 01:15:59,878 - wandb.wandb_agent - INFO - About to run command: /usr/bin/env python pretrain_GCN_sag_network.py --sweep --name GCN_sag_hp_sweep --pool-type sag --num-epochs 1000
+2025-11-26 01:16:04,888 - wandb.wandb_agent - INFO - Running runs: ['ko6jo4pr']
+/scratch/mk8737/rl_pretrain/pretrain/lstm_autoencoder_modeling.py:42: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  autoencoder.load_state_dict(torch.load('./models/lstm_autoencoder_perm100_005drop.pt', map_location = device))
+wandb: Currently logged in as: mk8737 (mk8737-new-york-university) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: setting up run ko6jo4pr
+wandb: Tracking run with wandb version 0.22.1
+wandb: Run data is saved locally in /scratch/mk8737/rl_pretrain/wandb/run-20251126_011608-ko6jo4pr
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run astral-sweep-19
+wandb: ⭐️ View project at https://wandb.ai/mk8737-new-york-university/rl_pretrain_hp_sweeps
+wandb: 🧹 View sweep at https://wandb.ai/mk8737-new-york-university/rl_pretrain_hp_sweeps/sweeps/o2yj2zlq
+wandb: 🚀 View run at https://wandb.ai/mk8737-new-york-university/rl_pretrain_hp_sweeps/runs/ko6jo4pr
+Traceback (most recent call last):
+  File "/scratch/mk8737/rl_pretrain/pretrain_GCN_sag_network.py", line 1105, in <module>
+    pretrain_model(model, None, device, Config.config, num_epochs=num_epochs, batch_size=batch_size, lr=lr, num_workers=num_workers, use_wandb=True)
+  File "/scratch/mk8737/rl_pretrain/pretrain_GCN_sag_network.py", line 761, in pretrain_model
+    _, _, _, predicted_y, pooling_loss = model(batch) # We are not using any of the other return values
+  File "/home/mk8737/.conda/envs/rl_pretrain/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/mk8737/.conda/envs/rl_pretrain/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/scratch/mk8737/rl_pretrain/neural_nets/gcn_model.py", line 216, in forward
+    # Create categorical distribution
+  File "/home/mk8737/.conda/envs/rl_pretrain/lib/python3.10/site-packages/torch/distributions/categorical.py", line 72, in __init__
+    super().__init__(batch_shape, validate_args=validate_args)
+  File "/home/mk8737/.conda/envs/rl_pretrain/lib/python3.10/site-packages/torch/distributions/distribution.py", line 71, in __init__
+    raise ValueError(
+ValueError: Expected parameter logits (Tensor of shape (512, 56)) of distribution Categorical(logits: torch.Size([512, 56])) to satisfy the constraint IndependentConstraint(Real(), 1), but found invalid values:
+tensor([[nan, nan, nan,  ..., nan, nan, nan],
+        [nan, nan, nan,  ..., nan, nan, nan],
+        [nan, nan, nan,  ..., nan, nan, nan],
+        ...,
+        [nan, nan, nan,  ..., nan, nan, nan],
+        [nan, nan, nan,  ..., nan, nan, nan],
+        [nan, nan, nan,  ..., nan, nan, nan]], grad_fn=<SubBackward0>)
+2025-11-26 03:43:49,495 - wandb.wandb_agent - INFO - Cleaning up finished run: ko6jo4pr
+wandb: Terminating and syncing runs. Press ctrl-c to kill.

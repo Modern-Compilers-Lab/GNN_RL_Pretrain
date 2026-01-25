@@ -1,0 +1,44 @@
+Loading module 'cuda/11.8.0'
+Loading module 'gcc/9.2.0'
+
+Loading [1mcuda/11.8.0[22m
+  [94mLoading requirement[0m: gcc/9.2.0
+wandb: Starting wandb agent 🕵️
+2025-10-05 23:26:09,307 - wandb.wandb_agent - INFO - Running runs: []
+2025-10-05 23:26:09,634 - wandb.wandb_agent - INFO - Agent received command: run
+2025-10-05 23:26:09,634 - wandb.wandb_agent - INFO - Agent starting run with config:
+	batch-size: 256
+	hidden_size: 90
+	lr: 0.005123085391427536
+	num-epochs: 1000
+	num_gcn_layers: 2
+2025-10-05 23:26:09,639 - wandb.wandb_agent - INFO - About to run command: /usr/bin/env python pretrain_GCN_network.py --sweep --batch-size=256 --hidden_size=90 --lr=0.005123085391427536 --num-epochs=1000 --num_gcn_layers=2
+2025-10-05 23:26:14,649 - wandb.wandb_agent - INFO - Running runs: ['xr76owfq']
+/scratch/mk8737/rl_pretrain/pretrain/lstm_autoencoder_modeling.py:42: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  autoencoder.load_state_dict(torch.load('./models/lstm_autoencoder_perm100_005drop.pt', map_location = device))
+wandb: Currently logged in as: mk8737 (mk8737-new-york-university) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: setting up run xr76owfq
+wandb: Tracking run with wandb version 0.22.1
+wandb: Run data is saved locally in /scratch/mk8737/rl_pretrain/wandb/run-20251005_232620-xr76owfq
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run glad-sweep-1
+wandb: ⭐️ View project at https://wandb.ai/mk8737-new-york-university/GCN_global_hp_sweep
+wandb: 🧹 View sweep at https://wandb.ai/mk8737-new-york-university/GCN_global_hp_sweep/sweeps/utlbuaok
+wandb: 🚀 View run at https://wandb.ai/mk8737-new-york-university/GCN_global_hp_sweep/runs/xr76owfq
+Traceback (most recent call last):
+  File "/home/mk8737/.conda/envs/rl_pretrain/lib/python3.10/site-packages/wandb/sdk/wandb_config.py", line 165, in __getattr__
+    return self.__getitem__(key)
+  File "/home/mk8737/.conda/envs/rl_pretrain/lib/python3.10/site-packages/wandb/sdk/wandb_config.py", line 130, in __getitem__
+    return self._items[key]
+KeyError: 'batch_size'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/scratch/mk8737/rl_pretrain/pretrain_GCN_network.py", line 1022, in <module>
+    Config.config.hyperparameters.batch_size = wandb.config.batch_size
+  File "/home/mk8737/.conda/envs/rl_pretrain/lib/python3.10/site-packages/wandb/sdk/wandb_config.py", line 167, in __getattr__
+    raise AttributeError(
+AttributeError: <class 'wandb.sdk.wandb_config.Config'> object has no attribute 'batch_size'
+2025-10-05 23:26:25,140 - wandb.wandb_agent - INFO - Cleaning up finished run: xr76owfq
+wandb: Terminating and syncing runs. Press ctrl-c to kill.

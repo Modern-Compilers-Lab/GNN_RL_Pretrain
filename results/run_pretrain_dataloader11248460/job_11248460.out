@@ -1,0 +1,25 @@
+Run Name: GAT_dataloader_workers4_epochs2
+TRAINING DEVICE: cuda:0
+finidhed preparing data
+Loading dataset from pretrain_dataset_12.5k_fixed_duplicates.pkl
+Loaded 412712 data objects.
+finished preparing data
+Epoch 1/2, Train Loss: 3.3593, Validation Loss: 1.6304
+Epoch 2/2, Train Loss: 1.6896, Validation Loss: 2.1881
+Best Training Loss: 1.6896
+Best Training Loss Epoch: 2
+Best Validation Loss: 1.6304
+Best Validation Loss Epoch: 1
+Time taken for training: 0-00:00:21
+Test Loss: 1.6639
+Error Statistics:
+count     41272.000000
+mean        648.330078
+std        8963.022461
+min           0.000035
+25%           0.554976
+50%           3.824006
+75%          46.675865
+max      904598.937500
+Name: Absolute Error, dtype: float64
+Training complete. Final model saved.

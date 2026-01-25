@@ -1,0 +1,6 @@
+Run Name: GCN_diff_workers4_epochs2
+TRAINING DEVICE: cuda:0
+finidhed preparing data
+Loading dataset from pretrain_dataset_12.5k_fixed_duplicates.pkl
+Loaded 412712 data objects.
+finished preparing data

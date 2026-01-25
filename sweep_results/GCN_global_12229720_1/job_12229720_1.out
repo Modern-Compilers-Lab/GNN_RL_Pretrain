@@ -1,0 +1,19 @@
+Waiting for sweep ID...
+Found Sweep ID: sm9qjkz7
+Starting wandb agent for sweep sm9qjkz7...
+Run Name: pretrained_12.5k_L2_3GCN_512_dataloader
+TRAINING DEVICE: cpu
+finidhed preparing data
+Loading dataset from pretrain_dataset_12.5k_fixed_duplicates.pkl
+Loaded 412712 data objects.
+finished preparing data
+Epoch 1/2, Train Loss: 2.7984, Validation Loss: 2.4975
+Epoch 2/2, Train Loss: 1.2399, Validation Loss: 1.2051
+Best Training Loss: 1.2399
+Best Training Loss Epoch: 2
+Best Validation Loss: 1.2051
+Best Validation Loss Epoch: 2
+[1;34mwandb[0m: 
+[1;34mwandb[0m: 🚀 View run [33mproud-sweep-2[0m at: [34mhttps://wandb.ai/mk8737-new-york-university/GCN_global_hp_sweep/runs/8ezmpq82[0m
+[1;34mwandb[0m: Find logs at: [1;35mwandb/run-20251005_233705-8ezmpq82/logs[0m
+Agent finished.

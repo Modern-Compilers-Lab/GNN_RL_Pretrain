@@ -1,0 +1,8 @@
+Run Name: GAT_nondataloader_epochs500
+TRAINING DEVICE: cuda:0
+finidhed preparing data
+Loading dataset from pretrain_dataset_12.5k_fixed_duplicates.pkl
+Loaded 412712 data objects.
+finidhed preparing data
+total_batches 644
+Epoch 1/500, Train Loss: 3.1909, Validation Loss: 2.3412

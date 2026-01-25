@@ -1,0 +1,26 @@
+Run Name: test_discard
+TRAINING DEVICE: cpu
+finidhed preparing data
+Loading dataset from pretrain_dataset_12.5k_fixed_duplicates.pkl
+Loaded 412712 data objects.
+finished preparing data
+Epoch 1/2, Train Loss: 2.9251, Validation Loss: 2.2494
+Epoch 2/2, Train Loss: 1.8549, Validation Loss: 1.5112
+Best Training Loss: 1.8549
+Best Training Loss Epoch: 2
+Best Validation Loss: 1.5112
+Best Validation Loss Epoch: 2
+Time taken for training: 0-00:01:34
+Test Loss: 1.5545
+Test MAPE: 75719.1328%
+Error Statistics:
+count     41272.000000
+mean        669.967224
+std        8779.417969
+min           0.000017
+25%           0.450237
+50%           3.634983
+75%          53.770677
+max      926309.375000
+Name: Absolute Error, dtype: float64
+Training complete. Final model saved.

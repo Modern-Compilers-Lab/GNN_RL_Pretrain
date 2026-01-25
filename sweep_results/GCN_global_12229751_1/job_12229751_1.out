@@ -1,0 +1,19 @@
+Waiting for sweep ID...
+Found Sweep ID: ft1p3pgi
+Starting wandb agent for sweep ft1p3pgi...
+Run Name: run_pretrain_GCN_global
+TRAINING DEVICE: cpu
+finidhed preparing data
+Loading dataset from pretrain_dataset_12.5k_fixed_duplicates.pkl
+Loaded 412712 data objects.
+finished preparing data
+Epoch 1/2, Train Loss: 4.8914, Validation Loss: 2.3869
+Epoch 2/2, Train Loss: 1.3549, Validation Loss: 1.2901
+Best Training Loss: 1.3549
+Best Training Loss Epoch: 2
+Best Validation Loss: 1.2901
+Best Validation Loss Epoch: 2
+[1;34mwandb[0m: 
+[1;34mwandb[0m: 🚀 View run [33mwobbly-sweep-2[0m at: [34mhttps://wandb.ai/mk8737-new-york-university/GCN_global_hp_sweep/runs/8bix13ky[0m
+[1;34mwandb[0m: Find logs at: [1;35mwandb/run-20251006_000851-8bix13ky/logs[0m
+Agent finished.
