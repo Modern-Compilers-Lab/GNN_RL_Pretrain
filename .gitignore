@@ -8,5 +8,5 @@ dataset
 
 *.ipynb
 # *.json
-*.sh
+# *.sh
 *.pkl
