@@ -4,6 +4,7 @@ __pycache__/
 experiment_dir
 mlruns
 dataset
+.env
 
 *.ipynb
 # *.json
