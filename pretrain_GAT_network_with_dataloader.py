@@ -19,7 +19,8 @@ import torch.nn as nn
 import torch.optim as optim
 from sklearn.model_selection import train_test_split
 from torch_geometric.data import Data, Batch
-from tqdm import tqdm
+from torch_geometric.loader import DataLoader
+from torch.utils.data import Dataset
 
 try:
     import ray
@@ -144,6 +145,17 @@ def parse_schedule_to_action_list(schedule_str: str) -> List[int]:
     
     return action_list
 
+class GraphDataset(Dataset):
+    """Custom Dataset for Graph data compatible with PyTorch DataLoader"""
+    def __init__(self, data_list):
+        self.data_list = data_list
+    
+    def __len__(self):
+        return len(self.data_list)
+    
+    def __getitem__(self, idx):
+        return self.data_list[idx]
+
 class PretrainDataset:
     def __init__(self, dataset_worker, config, save_path="pretrain_dataset_12.5k_fixed_duplicates.pkl"):
         self.save_path = save_path
@@ -187,7 +199,7 @@ class PretrainDataset:
             pickle.dump(self.data, f)
         print(f"Saved {len(self.data)} data objects.")
 
-    def prepare_data(self, val_split=0.1, test_split=0.1):
+    def prepare_data(self, val_split=0.1, test_split=0.1, batch_size=128, num_workers=0):
         
         comp_pattern = r'{(.*?)}:(.*?)(?={|$)'
         """Prepare and process data."""
@@ -207,15 +219,14 @@ class PretrainDataset:
                 y = data["y"]
                 # Create a PyTorch Geometric Data object
                 graph_data[program_name] = Data(
-                    x=torch.tensor(node_feats, dtype=torch.float32).to(device),
+                    x=torch.tensor(node_feats, dtype=torch.float32),
                     edge_index=torch.tensor(edge_index, dtype=torch.long)
                                     .transpose(0, 1)
-                                    .contiguous()
-                                    .to(device),
-                    y = y
+                                    .contiguous(),
+                    y = torch.tensor(y, dtype=torch.float32)
                 )
             self.data = graph_data
-            self.split_data(val_split, test_split)
+            self.split_data(val_split, test_split, batch_size, num_workers)
             return
         
         # Replace the fixed num_functions with dynamic collection
@@ -629,24 +640,37 @@ class PretrainDataset:
             y = data["y"]
             # Create a PyTorch Geometric Data object
             graph_data[program_name] = Data(
-                x=torch.tensor(node_feats, dtype=torch.float32).to(device),
+                x=torch.tensor(node_feats, dtype=torch.float32),
                 edge_index=torch.tensor(edge_index, dtype=torch.long)
                                 .transpose(0, 1)
-                                .contiguous()
-                                .to(device),
-                y = y
+                                .contiguous(),
+                y = torch.tensor(y, dtype=torch.float32)
             )
         self.data = graph_data
 
         # Split data into training, validation, and test sets
-        self.split_data(val_split, test_split)
+        self.split_data(val_split, test_split, batch_size, num_workers)
 
-    def split_data(self, val_split, test_split):
-        """Split data into training, validation, and test sets."""
+    def split_data(self, val_split, test_split, batch_size=128, num_workers=0):
+        """Split data into training, validation, and test sets and create DataLoaders."""
         data_items = list(self.data.values())  # Get all data as a list
         train_val_data, test_data = train_test_split(data_items, test_size=test_split, random_state=42)
         train_data, val_data = train_test_split(train_val_data, test_size=val_split / (1 - test_split), random_state=42)
 
+        # Create Dataset objects
+        train_dataset = GraphDataset(train_data)
+        val_dataset = GraphDataset(val_data)
+        test_dataset = GraphDataset(test_data)
+
+        # Create DataLoaders with optimizations
+        self.train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, 
+                                     follow_batch=['x'], num_workers=num_workers, pin_memory=True)
+        self.val_loader = DataLoader(val_dataset, batch_size=batch_size, shuffle=False, 
+                                   follow_batch=['x'], num_workers=num_workers, pin_memory=True)
+        self.test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False, 
+                                    follow_batch=['x'], num_workers=num_workers, pin_memory=True)
+
+        # Keep the original data for backward compatibility
         self.train_data = train_data
         self.val_data = val_data
         self.test_data = test_data
@@ -684,23 +708,10 @@ class PretrainDataset:
     #     self.val_data = val_data
     #     self.test_data = test_data
 
-    def get_batch(self, data_split, batch_size):
-        """Retrieve a batch of data."""
-        if data_split == "train":
-            data = self.train_data
-        elif data_split == "val":
-            data = self.val_data
-        elif data_split == "test":
-            data = self.test_data
-        else:
-            raise ValueError("data_split must be 'train', 'val', or 'test'.")
-
-        indices = np.random.choice(len(data), batch_size)
-        batch_data = [data[i] for i in indices]
-        return Batch.from_data_list(batch_data)
+    # Note: get_batch method removed as we now use DataLoaders
 
 def pretrain_model(
-    model, dataset_worker, device, config, num_epochs=1000, batch_size=128, lr=1e-3
+    model, dataset_worker, device, config, num_epochs=1000, batch_size=128, lr=1e-3, num_workers=0
 ):
      # L2 Regularization (Weight Decay)
     optimizer = optim.Adam(model.parameters(), lr=lr, weight_decay=1e-5)
@@ -711,7 +722,7 @@ def pretrain_model(
     dataset = PretrainDataset(dataset_worker, config)
     
     print("finidhed preparing data")
-    dataset.prepare_data()
+    dataset.prepare_data(batch_size=batch_size, num_workers=num_workers)
 
     # best_loss_metrics obj to store best_val_loss, best_train_loss, best_val_loss_epoch, best_train_loss_epoch
     best_loss_metrics = {
@@ -728,15 +739,16 @@ def pretrain_model(
     
     # Start timing the training process
     training_start_time = time.time()
-    print("finidhed preparing data")
+    print("finished preparing data")
+    
     for epoch in range(num_epochs):
         model.train()
         total_train_loss = 0
-        total_batches = len(dataset.train_data) // batch_size
-        print("total_batches", total_batches)
-        for _ in range(total_batches):
-            batch = dataset.get_batch("train", batch_size).to(device)
-            
+        num_train_batches = 0
+        
+        # Use DataLoader for training
+        for batch in dataset.train_loader:
+            batch = batch.to(device)
             optimizer.zero_grad()
 
             # Pass through shared layers
@@ -749,7 +761,7 @@ def pretrain_model(
             execution_time_preds = value_preds
 
             # Compute loss
-            loss = criterion(execution_time_preds, batch.y.to(device))
+            loss = criterion(execution_time_preds, batch.y)
 
             loss.backward()
 
@@ -757,17 +769,18 @@ def pretrain_model(
 
             optimizer.step()
             total_train_loss += loss.item()
+            num_train_batches += 1
 
-        avg_train_loss = total_train_loss / total_batches
+        avg_train_loss = total_train_loss / num_train_batches
 
         # Validation phase
         model.eval()
         total_val_loss = 0
-        total_val_batches = len(dataset.val_data) // batch_size
+        num_val_batches = 0
 
         with torch.no_grad():
-            for batch_idx in range(total_val_batches):
-                batch = dataset.get_batch("val", batch_size).to(device)
+            for batch in dataset.val_loader:
+                batch = batch.to(device)
 
                 # Pass through shared layers
                 weights = model.shared_layers(batch)
@@ -779,10 +792,11 @@ def pretrain_model(
                 execution_time_preds = value_preds
 
                 # Compute validation loss
-                val_loss = criterion(execution_time_preds, batch.y.to(device))
+                val_loss = criterion(execution_time_preds, batch.y)
                 total_val_loss += val_loss.item()
+                num_val_batches += 1
 
-        avg_val_loss = total_val_loss / total_val_batches
+        avg_val_loss = total_val_loss / num_val_batches
 
         print(
             f"Epoch {epoch + 1}/{num_epochs}, "
@@ -804,8 +818,8 @@ def pretrain_model(
             best_loss_metrics["best_train_loss_epoch"] = epoch + 1
 
         # Save the model if validation loss improves AND save the value of the best_val_loss
-        if avg_val_loss < best_loss_metrics['best_val_loss']:
-            best_loss_metrics['best_val_loss'] = avg_val_loss
+        if avg_val_loss < best_loss_metrics["best_val_loss"]:
+            best_loss_metrics["best_val_loss"] = avg_val_loss
             best_loss_metrics["best_val_loss_epoch"] = epoch + 1
             torch.save(model.state_dict(), "pretrained_model_12.5k_L2_Regularization_GAT_512.pt")
 
@@ -839,26 +853,27 @@ def pretrain_model(
 
     criterion = nn.MSELoss()
     total_test_loss = 0
-    total_test_batches = len(dataset.test_data) // batch_size
+    num_test_batches = 0
 
     real_times = []
     predicted_times = []
 
     with torch.no_grad():
-        for _ in range(total_test_batches):
-            batch = dataset.get_batch("test", batch_size).to(device)
+        for batch in dataset.test_loader:
+            batch = batch.to(device)
             weights = model.shared_layers(batch)
-            execution_time_preds =  model.v(weights).squeeze(-1)
+            execution_time_preds = model.v(weights).squeeze(-1)
             
             # Collect predictions and ground truth
             real_times.extend(dataset.log_denormalize_y(batch.y.cpu().numpy()))
             predicted_times.extend(dataset.log_denormalize_y(execution_time_preds.cpu().numpy()))
             
-            test_loss = criterion(execution_time_preds, batch.y.to(device))
+            test_loss = criterion(execution_time_preds, batch.y)
             total_test_loss += test_loss.item()
+            num_test_batches += 1
 
     # Calculate average loss
-    avg_test_loss = total_test_loss / total_test_batches
+    avg_test_loss = total_test_loss / num_test_batches
     print(f"Test Loss: {avg_test_loss:.4f}")
     mlflow.log_metric("test_loss", avg_test_loss)
 
@@ -904,6 +919,19 @@ def pretrain_model(
     # Add a column for the absolute error
     comparison_df["Absolute Error"] = comparison_df["Difference"].abs()
 
+    #### MAPE
+    # Calculate Mean Absolute Percentage Error (MAPE)
+    real_times_np = np.array(real_times)
+    predicted_times_np = np.array(predicted_times)
+    
+    # Avoid division by zero for MAPE calculation
+    non_zero_mask = real_times_np != 0
+    mape = np.mean(np.abs((real_times_np[non_zero_mask] - predicted_times_np[non_zero_mask]) / real_times_np[non_zero_mask])) * 100
+    
+    print(f"Test MAPE: {mape:.4f}%")
+    mlflow.log_metric("test_mean_absolute_percentage_error", mape)
+    #######
+
     # Save comparison DataFrame as MLflow artifact
     comparison_csv_path = "test_predictions_comparison.csv"
     # comparison_df.to_csv(comparison_csv_path, index=False)
@@ -945,7 +973,7 @@ if "__main__" == __name__:
 
     parser.add_argument("--num-nodes", default=1, type=int)
     
-    experiment_name = "pretrained_12.5k_L2_3GAT_512"
+    experiment_name = "pretrained_12.5k_L2_3GAT_512" + "_dataloader" # modified this for testing
 
     parser.add_argument("--name", type=str, default=experiment_name)
 
@@ -956,13 +984,17 @@ if "__main__" == __name__:
     record = []
     Config.init()
     # Hyperparameters
-    num_updates = Config.config.hyperparameters.num_updates
-    batch_size = Config.config.hyperparameters.batch_size
-    mini_batch_size = Config.config.hyperparameters.mini_batch_size
+    # batch_size = Config.config.hyperparameters.batch_size
     # num_epochs = Config.config.hyperparameters.num_epochs
-    num_epochs = 2 # for testing purposes
+    batch_size = 512 # for testing purposes
+    num_epochs = 1000 # for testing purposes
+    num_workers = 4 # for DataLoader parallelism
+
+    num_updates = Config.config.hyperparameters.num_updates
+    mini_batch_size = Config.config.hyperparameters.mini_batch_size
     total_steps = num_updates * batch_size
     
+
     clip_epsilon = Config.config.hyperparameters.clip_epsilon
     gamma = Config.config.hyperparameters.gamma
     lambdaa = Config.config.hyperparameters.lambdaa
@@ -1009,6 +1041,7 @@ if "__main__" == __name__:
                 "num_updates": num_updates,
                 "num_epochs": num_epochs,
                 "batch_size": batch_size,
+                "num_workers": num_workers,
                 "mini_batch_size": mini_batch_size,
                 "lr": lr,
                 "gamma": gamma,
@@ -1022,7 +1055,10 @@ if "__main__" == __name__:
             }
         )
         # pretrain_model(model, dataset_worker, device, Config.config, num_epochs=3000, batch_size=512, lr=lr)
-        pretrain_model(model, None, device, Config.config, num_epochs=200, batch_size=512, lr=lr)
+        pretrain_model(model, None, device, Config.config, num_epochs=num_epochs, batch_size=batch_size, lr=lr, num_workers=num_workers)
+
+        # Log the model config as a JSON artifact
+        mlflow.log_dict(model_config, "model_config.json")
 
         # Log final model after training
         mlflow.pytorch.log_model(model, "final_gat_model1", model_type="pytorch", metadata={"architecture": "GAT", **model_config})
@@ -1058,6 +1094,12 @@ if "__main__" == __name__:
 # - removed duplicate imports, grouped imports together
 # - added time related logging
 # - changed epoch logging to start from 1 instead of 0
+
+## Dataloader optimization - for better utilization of GPU
+# - added DataLoaders for efficient GPU memory usage and batching
+# - removed manual batching in favor of PyTorch DataLoader with progress bars
+# - added pin_memory=True for faster GPU transfers
+# - made num_workers configurable for DataLoader parallelism
 
 ## log best loss metrics
 # - created a best_loss_metrics dictionary to store best_val_loss, best_train_loss, best_val_loss_epoch, best_train_loss_epoch

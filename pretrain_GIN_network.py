@@ -8,6 +8,7 @@ import time
 from builtins import set
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import List, Optional
+import re
 
 # Third-party imports
 import matplotlib.pyplot as plt
@@ -19,7 +20,9 @@ import torch.nn as nn
 import torch.optim as optim
 from sklearn.model_selection import train_test_split
 from torch_geometric.data import Data, Batch
-from tqdm import tqdm
+from torch_geometric.loader import DataLoader
+from torch.utils.data import Dataset
+import wandb
 
 try:
     import ray
@@ -28,9 +31,10 @@ except ImportError:
 
 # Local imports
 from agent.graph_utils import *
-from agent.policy_value_nn import GAT
+from neural_nets import GIN
 from config.config import Config
 from pretrain.embedding import get_embedding_size
+from agent.policy_value_nn import GAT
 
 # Commented out unused imports
 # from pretrain.lstm_autoencoder_modeling import encoder # NOT USED ANYWHERE
@@ -38,6 +42,9 @@ from pretrain.embedding import get_embedding_size
 # from utils.dataset_actor.dataset_actor import DatasetActor # used inside PretrainDataset class
 # from env_api.tiramisu_api import TiramisuEnvAPI # used inside PretrainDataset class
 
+# GLOBAL VARIABLES
+model_base = None
+run_name = None
 
 def get_action_number(transformation: str) -> Optional[int]:
     """Convert a transformation string to its corresponding action number"""
@@ -144,6 +151,17 @@ def parse_schedule_to_action_list(schedule_str: str) -> List[int]:
     
     return action_list
 
+class GraphDataset(Dataset):
+    """Custom Dataset for Graph data compatible with PyTorch DataLoader"""
+    def __init__(self, data_list):
+        self.data_list = data_list
+    
+    def __len__(self):
+        return len(self.data_list)
+    
+    def __getitem__(self, idx):
+        return self.data_list[idx]
+
 class PretrainDataset:
     def __init__(self, dataset_worker, config, save_path="pretrain_dataset_12.5k_fixed_duplicates.pkl"):
         self.save_path = save_path
@@ -187,7 +205,7 @@ class PretrainDataset:
             pickle.dump(self.data, f)
         print(f"Saved {len(self.data)} data objects.")
 
-    def prepare_data(self, val_split=0.1, test_split=0.1):
+    def prepare_data(self, val_split=0.1, test_split=0.1, batch_size=128, num_workers=0):
         
         comp_pattern = r'{(.*?)}:(.*?)(?={|$)'
         """Prepare and process data."""
@@ -207,15 +225,14 @@ class PretrainDataset:
                 y = data["y"]
                 # Create a PyTorch Geometric Data object
                 graph_data[program_name] = Data(
-                    x=torch.tensor(node_feats, dtype=torch.float32).to(device),
+                    x=torch.tensor(node_feats, dtype=torch.float32),
                     edge_index=torch.tensor(edge_index, dtype=torch.long)
                                     .transpose(0, 1)
-                                    .contiguous()
-                                    .to(device),
-                    y = y
+                                    .contiguous(),
+                    y = torch.tensor(y, dtype=torch.float32)
                 )
             self.data = graph_data
-            self.split_data(val_split, test_split)
+            self.split_data(val_split, test_split, batch_size, num_workers)
             return
         
         # Replace the fixed num_functions with dynamic collection
@@ -629,24 +646,37 @@ class PretrainDataset:
             y = data["y"]
             # Create a PyTorch Geometric Data object
             graph_data[program_name] = Data(
-                x=torch.tensor(node_feats, dtype=torch.float32).to(device),
+                x=torch.tensor(node_feats, dtype=torch.float32),
                 edge_index=torch.tensor(edge_index, dtype=torch.long)
                                 .transpose(0, 1)
-                                .contiguous()
-                                .to(device),
-                y = y
+                                .contiguous(),
+                y = torch.tensor(y, dtype=torch.float32)
             )
         self.data = graph_data
 
         # Split data into training, validation, and test sets
-        self.split_data(val_split, test_split)
+        self.split_data(val_split, test_split, batch_size, num_workers)
 
-    def split_data(self, val_split, test_split):
-        """Split data into training, validation, and test sets."""
+    def split_data(self, val_split, test_split, batch_size=128, num_workers=0):
+        """Split data into training, validation, and test sets and create DataLoaders."""
         data_items = list(self.data.values())  # Get all data as a list
         train_val_data, test_data = train_test_split(data_items, test_size=test_split, random_state=42)
         train_data, val_data = train_test_split(train_val_data, test_size=val_split / (1 - test_split), random_state=42)
 
+        # Create Dataset objects
+        train_dataset = GraphDataset(train_data)
+        val_dataset = GraphDataset(val_data)
+        test_dataset = GraphDataset(test_data)
+
+        # Create DataLoaders with optimizations
+        self.train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, 
+                                     follow_batch=['x'], num_workers=num_workers, pin_memory=True)
+        self.val_loader = DataLoader(val_dataset, batch_size=batch_size, shuffle=False, 
+                                   follow_batch=['x'], num_workers=num_workers, pin_memory=True)
+        self.test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False, 
+                                    follow_batch=['x'], num_workers=num_workers, pin_memory=True)
+
+        # Keep the original data for backward compatibility
         self.train_data = train_data
         self.val_data = val_data
         self.test_data = test_data
@@ -684,23 +714,10 @@ class PretrainDataset:
     #     self.val_data = val_data
     #     self.test_data = test_data
 
-    def get_batch(self, data_split, batch_size):
-        """Retrieve a batch of data."""
-        if data_split == "train":
-            data = self.train_data
-        elif data_split == "val":
-            data = self.val_data
-        elif data_split == "test":
-            data = self.test_data
-        else:
-            raise ValueError("data_split must be 'train', 'val', or 'test'.")
-
-        indices = np.random.choice(len(data), batch_size)
-        batch_data = [data[i] for i in indices]
-        return Batch.from_data_list(batch_data)
+    # Note: get_batch method removed as we now use DataLoaders
 
 def pretrain_model(
-    model, dataset_worker, device, config, num_epochs=1000, batch_size=128, lr=1e-3
+    model, dataset_worker, device, config, num_epochs=1000, batch_size=128, lr=1e-3, num_workers=0, use_wandb=False
 ):
      # L2 Regularization (Weight Decay)
     optimizer = optim.Adam(model.parameters(), lr=lr, weight_decay=1e-5)
@@ -711,7 +728,7 @@ def pretrain_model(
     dataset = PretrainDataset(dataset_worker, config)
     
     print("finidhed preparing data")
-    dataset.prepare_data()
+    dataset.prepare_data(batch_size=batch_size, num_workers=num_workers)
 
     # best_loss_metrics obj to store best_val_loss, best_train_loss, best_val_loss_epoch, best_train_loss_epoch
     best_loss_metrics = {
@@ -728,61 +745,57 @@ def pretrain_model(
     
     # Start timing the training process
     training_start_time = time.time()
-    print("finidhed preparing data")
+    print("finished preparing data")
+    
     for epoch in range(num_epochs):
         model.train()
         total_train_loss = 0
-        total_batches = len(dataset.train_data) // batch_size
-        print("total_batches", total_batches)
-        for _ in range(total_batches):
-            batch = dataset.get_batch("train", batch_size).to(device)
-            
+        num_train_batches = 0
+        
+        # Use DataLoader for training
+        for batch in dataset.train_loader:
             optimizer.zero_grad()
-
-            # Pass through shared layers
-            weights = model.shared_layers(batch)
-
-            # Value prediction through the value layers
-            value_preds = model.v(weights).squeeze(-1)
-
-            # Execution time prediction = value head output
-            execution_time_preds = value_preds
-
-            # Compute loss
-            loss = criterion(execution_time_preds, batch.y.to(device))
-
+            batch = batch.to(device)
+            
+            # The model forward pass returns value AND action probabilities
+            _, _, _, predicted_y, pooling_loss = model(batch) # We are not using any of the other return values
+            
+            loss = criterion(predicted_y.squeeze(), batch.y)
+            if pooling_loss is not None and pooling_loss != 0:
+                loss += pooling_loss
+            
             loss.backward()
 
             torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
 
             optimizer.step()
+            
             total_train_loss += loss.item()
+            num_train_batches += 1
 
-        avg_train_loss = total_train_loss / total_batches
+        avg_train_loss = total_train_loss / num_train_batches
 
         # Validation phase
         model.eval()
         total_val_loss = 0
-        total_val_batches = len(dataset.val_data) // batch_size
+        num_val_batches = 0
 
         with torch.no_grad():
-            for batch_idx in range(total_val_batches):
-                batch = dataset.get_batch("val", batch_size).to(device)
+            for batch in dataset.val_loader:
+                batch = batch.to(device)
 
-                # Pass through shared layers
-                weights = model.shared_layers(batch)
-
-                # Value prediction through the value layers
-                value_preds = model.v(weights).squeeze(-1)
-
-                # Use value predictions to estimate execution time
-                execution_time_preds = value_preds
+                # The model forward pass returns value AND action probabilities
+                _, _, _, predicted_y, pooling_loss = model(batch)
 
                 # Compute validation loss
-                val_loss = criterion(execution_time_preds, batch.y.to(device))
-                total_val_loss += val_loss.item()
+                val_loss = criterion(predicted_y.squeeze(), batch.y)
+                if pooling_loss is not None and pooling_loss != 0:
+                    val_loss += pooling_loss
 
-        avg_val_loss = total_val_loss / total_val_batches
+                total_val_loss += val_loss.item()
+                num_val_batches += 1
+
+        avg_val_loss = total_val_loss / num_val_batches
 
         print(
             f"Epoch {epoch + 1}/{num_epochs}, "
@@ -795,8 +808,11 @@ def pretrain_model(
         val_losses.append(avg_val_loss)
         epochs.append(epoch + 1)
 
-        mlflow.log_metric("train_loss", avg_train_loss, step=epoch + 1)
-        mlflow.log_metric("val_loss", avg_val_loss, step=epoch + 1)
+        if use_wandb:
+            wandb.log({"train_loss": avg_train_loss, "val_loss": avg_val_loss, "epoch": epoch + 1})
+        else:
+            mlflow.log_metric("train_loss", avg_train_loss, step=epoch + 1)
+            mlflow.log_metric("val_loss", avg_val_loss, step=epoch + 1)
 
         # Save the value of best_train_loss
         if avg_train_loss < best_loss_metrics["best_train_loss"]:
@@ -804,63 +820,71 @@ def pretrain_model(
             best_loss_metrics["best_train_loss_epoch"] = epoch + 1
 
         # Save the model if validation loss improves AND save the value of the best_val_loss
-        if avg_val_loss < best_loss_metrics['best_val_loss']:
-            best_loss_metrics['best_val_loss'] = avg_val_loss
+        if avg_val_loss < best_loss_metrics["best_val_loss"]:
+            best_loss_metrics["best_val_loss"] = avg_val_loss
             best_loss_metrics["best_val_loss_epoch"] = epoch + 1
-            torch.save(model.state_dict(), "pretrained_model_12.5k_L2_Regularization_GAT_512.pt")
+            torch.save(model.state_dict(), f"saved_weights/pretrained_model_12.5k_{run_name}.pt")
 
     # After training loop ends, log the best metrics
     print(f"Best Training Loss: {best_loss_metrics['best_train_loss']:.4f}")
     print(f"Best Training Loss Epoch: {best_loss_metrics['best_train_loss_epoch']}")
-    mlflow.log_metric("best_train_loss", best_loss_metrics["best_train_loss"])
-    mlflow.log_metric("best_train_loss_epoch", best_loss_metrics["best_train_loss_epoch"])
+    if not use_wandb:
+        mlflow.log_metric("best_train_loss", best_loss_metrics["best_train_loss"])
+        mlflow.log_metric("best_train_loss_epoch", best_loss_metrics["best_train_loss_epoch"])
 
     print(f"Best Validation Loss: {best_loss_metrics['best_val_loss']:.4f}")
     print(f"Best Validation Loss Epoch: {best_loss_metrics['best_val_loss_epoch']}")
-    mlflow.log_metric("best_val_loss", best_loss_metrics["best_val_loss"])
-    mlflow.log_metric("best_val_loss_epoch", best_loss_metrics["best_val_loss_epoch"])
+    if not use_wandb:
+        mlflow.log_metric("best_val_loss", best_loss_metrics["best_val_loss"])
+        mlflow.log_metric("best_val_loss_epoch", best_loss_metrics["best_val_loss"])
 
     # End timing and calculate training duration
     training_end_time = time.time()
     total_training_time = training_end_time - training_start_time
     
-    # Log training time metrics
-    mlflow.log_metric("total_training_time_seconds", total_training_time)
     total_training_time_formatted = f"{int(total_training_time)//86400}-{(int(total_training_time)%86400)//3600:02d}:{(int(total_training_time)%3600)//60:02d}:{int(total_training_time)%60:02d}"
-    mlflow.set_tag("total_training_time_formatted", total_training_time_formatted)
-    mlflow.log_metric("average_training_time_per_epoch", total_training_time / num_epochs) # in seconds
-    # num_epochs already saved under params inside mlflow
-
+    
     print(f"Time taken for training: {total_training_time_formatted}")    
+    
+    # Log training time metrics
+    if not use_wandb:
+        mlflow.log_metric("total_training_time_seconds", total_training_time)
+        mlflow.set_tag("total_training_time_formatted", total_training_time_formatted)
+        mlflow.log_metric("average_training_time_per_epoch", total_training_time / num_epochs) # in seconds
+        # num_epochs already saved under params inside mlflow
 
     # Testing phase
-    model.load_state_dict(torch.load("pretrained_model_12.5k_L2_Regularization_GAT_512.pt"))
+    model.load_state_dict(torch.load(f"saved_weights/pretrained_model_12.5k_{run_name}.pt"))
     model.eval()
 
     criterion = nn.MSELoss()
     total_test_loss = 0
-    total_test_batches = len(dataset.test_data) // batch_size
+    num_test_batches = 0
 
     real_times = []
     predicted_times = []
 
     with torch.no_grad():
-        for _ in range(total_test_batches):
-            batch = dataset.get_batch("test", batch_size).to(device)
-            weights = model.shared_layers(batch)
-            execution_time_preds =  model.v(weights).squeeze(-1)
+        for batch in dataset.test_loader:
+            batch = batch.to(device)
+            _, _, _, execution_time_preds, _ = model(batch)
+            execution_time_preds = execution_time_preds.squeeze(-1)
             
             # Collect predictions and ground truth
             real_times.extend(dataset.log_denormalize_y(batch.y.cpu().numpy()))
             predicted_times.extend(dataset.log_denormalize_y(execution_time_preds.cpu().numpy()))
             
-            test_loss = criterion(execution_time_preds, batch.y.to(device))
+            test_loss = criterion(execution_time_preds, batch.y)
             total_test_loss += test_loss.item()
+            num_test_batches += 1
 
     # Calculate average loss
-    avg_test_loss = total_test_loss / total_test_batches
+    avg_test_loss = total_test_loss / num_test_batches
     print(f"Test Loss: {avg_test_loss:.4f}")
-    mlflow.log_metric("test_loss", avg_test_loss)
+    if use_wandb:
+        wandb.log({"test_loss": avg_test_loss})
+    else:
+        mlflow.log_metric("test_loss", avg_test_loss)
 
     # Create training curves plot
     plt.figure(figsize=(12, 5))
@@ -890,7 +914,8 @@ def pretrain_model(
     
     plt.tight_layout()
     plt.savefig('training_curves.png', dpi=300, bbox_inches='tight')
-    mlflow.log_artifact('training_curves.png')
+    if not use_wandb:
+        mlflow.log_artifact('training_curves.png')
     plt.show()
 
     # Create the DataFrame
@@ -904,10 +929,25 @@ def pretrain_model(
     # Add a column for the absolute error
     comparison_df["Absolute Error"] = comparison_df["Difference"].abs()
 
+    # Calculate Mean Absolute Percentage Error (MAPE)
+    real_times_np = np.array(real_times)
+    predicted_times_np = np.array(predicted_times)
+    
+    # Avoid division by zero for MAPE calculation
+    non_zero_mask = real_times_np != 0
+    mape = np.mean(np.abs((real_times_np[non_zero_mask] - predicted_times_np[non_zero_mask]) / real_times_np[non_zero_mask])) * 100
+    
+    print(f"Test MAPE: {mape:.4f}%")
+    if use_wandb:
+        wandb.log({"test_mape": mape})
+    else:
+        mlflow.log_metric("test_mean_absolute_percentage_error", mape)
+
     # Save comparison DataFrame as MLflow artifact
     comparison_csv_path = "test_predictions_comparison.csv"
     # comparison_df.to_csv(comparison_csv_path, index=False)
-    mlflow.log_artifact(comparison_csv_path)
+    if not use_wandb:
+        mlflow.log_artifact(comparison_csv_path)
     
     # Display basic statistics about the differences
     error_stats = comparison_df["Absolute Error"].describe()
@@ -915,16 +955,18 @@ def pretrain_model(
     print(error_stats)
     
     # Log key error statistics as metrics with test prefix
-    mlflow.log_metric("test_mean_absolute_error", error_stats['mean'])
-    mlflow.log_metric("test_median_absolute_error", error_stats['50%'])
-    mlflow.log_metric("test_max_absolute_error", error_stats['max'])
-    mlflow.log_metric("test_std_absolute_error", error_stats['std'])
-    mlflow.log_metric("test_min_absolute_error", error_stats['min'])
-    mlflow.log_metric("test_25th_percentile_error", error_stats['25%'])
-    mlflow.log_metric("test_75th_percentile_error", error_stats['75%'])
+    if not use_wandb:
+        mlflow.log_metric("test_mean_absolute_error", error_stats['mean'])
+        mlflow.log_metric("test_median_absolute_error", error_stats['50%'])
+        mlflow.log_metric("test_max_absolute_error", error_stats['max'])
+        mlflow.log_metric("test_std_absolute_error", error_stats['std'])
+        mlflow.log_metric("test_min_absolute_error", error_stats['min'])
+        mlflow.log_metric("test_25th_percentile_error", error_stats['25%'])
+        mlflow.log_metric("test_75th_percentile_error", error_stats['75%'])
     
     # Additional test metrics
-    mlflow.log_metric("test_sample_count", len(comparison_df))
+    if not use_wandb:
+        mlflow.log_metric("test_sample_count", len(comparison_df))
 
     # Optionally, visualize the differences
     plt.figure(figsize=(10, 6))
@@ -934,7 +976,8 @@ def pretrain_model(
     plt.ylabel("Frequency", fontsize=12)
     plt.grid(axis="y", linestyle="--", alpha=0.7)
     plt.savefig('errors.png')
-    mlflow.log_artifact('errors.png')
+    if not use_wandb:
+        mlflow.log_artifact('errors.png')
     plt.show()
 
     print("Training complete. Final model saved.")
@@ -945,24 +988,70 @@ if "__main__" == __name__:
 
     parser.add_argument("--num-nodes", default=1, type=int)
     
-    experiment_name = "pretrained_12.5k_L2_3GAT_512"
+    experiment_name = "pretrained_12.5k_L2_3GIN_512" # modified this for testing
 
+    # New command-line arguments for pooling type, number of clusters, and SAG ratio
     parser.add_argument("--name", type=str, default=experiment_name)
+    parser.add_argument("--pool-type", type=str, default="global", choices=["global", "sag", "diff"], help="Type of pooling layer")
+    parser.add_argument("--num-clusters", type=int, default=10, help="Number of clusters for DiffPool")
+    parser.add_argument("--sag-ratio", type=float, default=0.5, help="Pooling ratio for SAGPool")
+    parser.add_argument("--num-epochs", type=int, default=2, help="Number of training epochs")
+    parser.add_argument("--num-workers", type=int, default=4, help="Number of workers for DataLoader")
+    parser.add_argument("--sweep", action="store_true", help="Run with wandb sweep")
+
 
     args = parser.parse_args()
-    print(f"Run Name: {args.name}")
+    
+
+    model_base = "gin"
+    args.name = f"{args.name}_{args.pool_type}"
 
     # Initialize dataset worker (assuming it's already set up correctly)
     record = []
     Config.init()
-    # Hyperparameters
-    num_updates = Config.config.hyperparameters.num_updates
-    batch_size = Config.config.hyperparameters.batch_size
-    mini_batch_size = Config.config.hyperparameters.mini_batch_size
-    # num_epochs = Config.config.hyperparameters.num_epochs
-    num_epochs = 2 # for testing purposes
-    total_steps = num_updates * batch_size
     
+    use_wandb = args.sweep
+    if use_wandb:
+        wandb.init()
+        
+        slurm_job_id = os.environ.get("SLURM_JOB_ID")
+        slurm_array_task_id = os.environ.get("SLURM_ARRAY_TASK_ID")
+        if slurm_job_id:
+            wandb.config.update({
+                "slurm_job_id": slurm_job_id,
+                "slurm_array_task_id": slurm_array_task_id
+            })
+
+        # Sync hyperparameters from wandb
+        Config.config.hyperparameters.batch_size = wandb.config.batch_size
+        Config.config.hyperparameters.lr = wandb.config.lr
+        model_config_updates = {
+            "hidden_size": wandb.config.hidden_size,
+            "num_gin_layers": wandb.config.num_gin_layers,
+        }
+
+        # run_name = f"{args.name}_W{args.num_workers}_EP{args.num_epochs}_B{Config.config.hyperparameters.batch_size}_LR{Config.config.hyperparameters.lr}_{wandb.run.sweep_id}-{wandb.run.id}"
+        # run_name = f"{args.name}_{wandb.run.sweep_id}-{wandb.run.id}"
+
+    else:
+        Config.config.hyperparameters.batch_size = 512 # fixed for testing purposes
+        model_config_updates = {}
+        # run_name = args.name + f"_B{Config.config.hyperparameters.batch_size}_LR{Config.config.hyperparameters.lr}"
+
+    # print(f"Run Name: {run_name}")
+
+    # Hyperparameters
+    # num_epochs = Config.config.hyperparameters.num_epochs
+    
+    num_epochs = args.num_epochs
+    num_workers = args.num_workers
+
+    batch_size = Config.config.hyperparameters.batch_size
+    num_updates = Config.config.hyperparameters.num_updates
+    total_steps = num_updates * batch_size
+    mini_batch_size = Config.config.hyperparameters.mini_batch_size
+    
+
     clip_epsilon = Config.config.hyperparameters.clip_epsilon
     gamma = Config.config.hyperparameters.gamma
     lambdaa = Config.config.hyperparameters.lambdaa
@@ -982,7 +1071,7 @@ if "__main__" == __name__:
     print(f"TRAINING DEVICE: {device}")
     
 
-    # Initialize GAT model
+    # Initialize GIN model
     if Config.config.pretrain.embed_access_matrices:
         input_size = 6 + get_embedding_size(Config.config.pretrain.embedding_type) + 9
     else:
@@ -990,46 +1079,86 @@ if "__main__" == __name__:
     
     model_config = {
         "input_size": input_size,
-        "hidden_size": 128, 
-        "num_heads": 4,
-        "num_outputs": 56
+        "hidden_size": 90,  # Optimal for GIN
+        "num_gin_layers": 3,  # Optimal for GIN
+        "num_outputs": 56,
+        "pooling_type": args.pool_type,
+        "num_clusters": args.num_clusters,
+        "sag_ratio": args.sag_ratio,
     }
-
-    model = GAT(**model_config).to(device)
-
-    # Pretrain the model
-    run_name = args.name
-
-    with mlflow.start_run(
-        run_name=run_name,
-    ) as run:
-        mlflow.log_params(
-            {
-                "total_steps": total_steps,
-                "num_updates": num_updates,
-                "num_epochs": num_epochs,
-                "batch_size": batch_size,
-                "mini_batch_size": mini_batch_size,
-                "lr": lr,
-                "gamma": gamma,
-                "lambdaa": lambdaa,
-                "weight_decay": weight_decay,
-                "clip_epsilon": clip_epsilon,
-                "max_grad_norm": max_grad_norm,
-                "value_coeff": value_coeff,
-                "entropy_coeff_start": entropy_coeff_start,
-                "entropy_coeff_finish": entropy_coeff_finish,
-            }
-        )
-        # pretrain_model(model, dataset_worker, device, Config.config, num_epochs=3000, batch_size=512, lr=lr)
-        pretrain_model(model, None, device, Config.config, num_epochs=200, batch_size=512, lr=lr)
-
-        # Log final model after training
-        mlflow.pytorch.log_model(model, "final_gat_model1", model_type="pytorch", metadata={"architecture": "GAT", **model_config})
-        mlflow.set_tag("architecture", "GAT")
     
-    # Save the pretrained model
-    torch.save(model.state_dict(), "pretrained_model_12.5k_L2_Regularization_3GAT_512.pt")
+    if use_wandb:
+        model_config.update(model_config_updates)
+
+    model = GIN(**model_config).to(device)
+
+    # set run name
+    if use_wandb:
+        # run_name = f"{args.name}_W{args.num_workers}_EP{args.num_epochs}_B{Config.config.hyperparameters.batch_size}_LR{Config.config.hyperparameters.lr}_{wandb.run.sweep_id}-{wandb.run.id}"
+        run_name = f"{args.name}_{wandb.run.sweep_id}-{wandb.run.id}"
+    else:
+        run_name = args.name + f"_B{batch_size}_LR{lr:.6f}"
+    print(f"Run Name: {run_name}")
+
+    # Pretrain the model    
+    if use_wandb:
+        pretrain_model(model, None, device, Config.config, num_epochs=num_epochs, batch_size=batch_size, lr=lr, num_workers=num_workers, use_wandb=True)
+        
+        # Create a wandb.Artifact for the model
+        print("Saving model as a wandb Artifact...")
+        artifact = wandb.Artifact(
+            name=f"{model_base}-{args.pool_type}-{wandb.run.id}",
+            type="model",
+            metadata=model_config
+        )
+
+        # Save model weights to a temporary file
+        model_path = f"pretrained_{model_base}_model_{wandb.run.sweep_id}_{wandb.run.id}.pt"
+        torch.save(model.state_dict(), model_path)
+
+        # Add the file to the artifact and log it
+        artifact.add_file(model_path)
+        wandb.log_artifact(artifact)
+        print("Model artifact logged successfully.")
+
+        # Clean up the local file
+        os.remove(model_path)
+    else:
+        with mlflow.start_run(
+            run_name=run_name,
+        ) as run:
+            mlflow.log_params(
+                {
+                    "total_steps": total_steps,
+                    "num_updates": num_updates,
+                    "num_epochs": num_epochs,
+                    "batch_size": batch_size,
+                    "num_workers": num_workers, # for dataloader
+                    "mini_batch_size": mini_batch_size,
+                    "lr": lr,
+                    "gamma": gamma,
+                    "lambdaa": lambdaa,
+                    "weight_decay": weight_decay,
+                    "clip_epsilon": clip_epsilon,
+                    "max_grad_norm": max_grad_norm,
+                    "value_coeff": value_coeff,
+                    "entropy_coeff_start": entropy_coeff_start,
+                    "entropy_coeff_finish": entropy_coeff_finish,
+                }
+            )
+                    
+            # pretrain_model(model, dataset_worker, device, Config.config, num_epochs=3000, batch_size=512, lr=lr)
+            pretrain_model(model, None, device, Config.config, num_epochs=num_epochs, batch_size=batch_size, lr=lr, num_workers=num_workers)
+
+            # Log the model config as a JSON artifact
+            mlflow.log_dict(model_config, "model_config.json")
+
+            # Log final model after training
+            mlflow.pytorch.log_model(model, f"final_{model_base}_model1", model_type="pytorch", metadata={"architecture": f"{model_base}_{args.pool_type}", **model_config})
+            mlflow.set_tag("architecture", f"{model_base}_{args.pool_type}")
+
+        # Save the pretrained model
+        torch.save(model.state_dict(), f"pretrained_model_12.5k_{run_name}.pt")
 
 ### for documentation purposes, I am listing all changes made to the original code below:
 
@@ -1059,5 +1188,35 @@ if "__main__" == __name__:
 # - added time related logging
 # - changed epoch logging to start from 1 instead of 0
 
+## Dataloader optimization - for better utilization of GPU
+# - added DataLoaders for efficient GPU memory usage and batching
+# - removed manual batching in favor of PyTorch DataLoader with progress bars
+# - added pin_memory=True for faster GPU transfers
+# - made num_workers configurable for DataLoader parallelism
+
 ## log best loss metrics
 # - created a best_loss_metrics dictionary to store best_val_loss, best_train_loss, best_val_loss_epoch, best_train_loss_epoch
+
+## Pooling layers   
+# - Added command-line arguments for selecting the pooling layer type and configuring its parameters.
+# - Changed training and validation loop to accommodate the new pooling layer options and the changed return signature of the model's forward method.
+# - Updated model logging to include the pooling layer type in the architecture metadata.
+# - Updated saving and loading model weights filename to include pooling type.
+# - Updated GCN model initialization to accept pooling type, number of clusters, and SAG ratio.
+
+## Model config
+# - log model config as a json artifact in mlflow
+
+## Argparse
+# - added num-epochs and num-workers arguments to argparse
+
+## Error reporting
+# - added MAPE
+
+## Hyperparameter tuning with wandb sweeps
+# - added --sweep argument to argparse
+# - added wandb initialization and hyperparameter syncing
+# - modified pretrain_model call to accept use_wandb argument
+# - integrated wandb logging into training loop
+# - modified model saving to include "sweep" in filename and architecture metadata if wandb sweep is used
+# - added wandb.config updates for hyperparameters
