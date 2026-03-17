@@ -1,3 +1,5 @@
+## Introduction
+
 - This repo contains code to run experiments with different GNN models on the PEARL pretraining task.
 
 - The neural_nets module implements GAT, GIN, and GCN. GIN and GCN are modular to allow switching pooling mechanisms. As for GAT, it's the original GAT implementation that was used in the paper. Pooling options are defined in pooling.py. Working implementations are present for Global Pooling and SAG Pooling.
@@ -17,3 +19,9 @@
   - mlruns/ contains run metadata for runs not using W&B
 
 This mostly covers what’s needed to add new architectures, update or create pretraining scripts, and run hyperparameter sweeps. README_OLD.md contains some general information related to the repo, but some of the information in it might be outdated and inaccurate.
+
+## License
+
+This project is released under the same license as the original Modern-Compilers-Lab/GNN_RL_Pretrain repository.
+
+Modifications in this fork are provided under the same terms.
