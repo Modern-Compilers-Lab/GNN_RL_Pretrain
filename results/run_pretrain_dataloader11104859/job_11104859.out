@@ -1,0 +1,38 @@
+TRAINING DEVICE: cuda:0
+finished preparing data
+Loading dataset from pretrain_dataset_12.5k_fixed_duplicates.pkl
+Loaded 412712 data objects.
+finished preparing data
+Epoch 1/20, Train Loss: 3.7128, Validation Loss: 2.1234
+Epoch 2/20, Train Loss: 1.7885, Validation Loss: 1.6201
+Epoch 3/20, Train Loss: 1.5858, Validation Loss: 1.6136
+Epoch 4/20, Train Loss: 1.3812, Validation Loss: 1.2514
+Epoch 5/20, Train Loss: 1.2671, Validation Loss: 1.2352
+Epoch 6/20, Train Loss: 1.2070, Validation Loss: 1.1994
+Epoch 7/20, Train Loss: 1.1204, Validation Loss: 1.0808
+Epoch 8/20, Train Loss: 1.0751, Validation Loss: 1.0124
+Epoch 9/20, Train Loss: 1.0337, Validation Loss: 1.2577
+Epoch 10/20, Train Loss: 0.9465, Validation Loss: 0.8757
+Epoch 11/20, Train Loss: 0.9367, Validation Loss: 0.8049
+Epoch 12/20, Train Loss: 0.9011, Validation Loss: 0.8074
+Epoch 13/20, Train Loss: 0.8419, Validation Loss: 1.0019
+Epoch 14/20, Train Loss: 0.8312, Validation Loss: 1.2781
+Epoch 15/20, Train Loss: 0.7760, Validation Loss: 0.9842
+Epoch 16/20, Train Loss: 0.7697, Validation Loss: 0.7785
+Epoch 17/20, Train Loss: 0.7423, Validation Loss: 0.8957
+Epoch 18/20, Train Loss: 0.7358, Validation Loss: 0.6375
+Epoch 19/20, Train Loss: 0.6948, Validation Loss: 1.0207
+Epoch 20/20, Train Loss: 0.6795, Validation Loss: 1.0156
+Time taken for training: 0-00:03:54
+Test Loss: 0.6442
+Error Statistics:
+count    4.127200e+04
+mean     7.796830e+02
+std      3.567828e+04
+min      2.276897e-05
+25%      2.203546e-01
+50%      1.648066e+00
+75%      2.432034e+01
+max      6.671154e+06
+Name: Absolute Error, dtype: float64
+Training complete. Final model saved.

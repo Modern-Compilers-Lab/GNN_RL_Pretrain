@@ -1,0 +1,58 @@
+TRAINING DEVICE: cuda:0
+finidhed preparing data
+Loading dataset from pretrain_dataset_12.5k_fixed_duplicates.pkl
+Loaded 412712 data objects.
+finidhed preparing data
+total_batches 644
+Epoch 1/20, Train Loss: 3.2919, Validation Loss: 1.8612
+total_batches 644
+Epoch 2/20, Train Loss: 1.8027, Validation Loss: 1.5151
+total_batches 644
+Epoch 3/20, Train Loss: 1.5091, Validation Loss: 1.6071
+total_batches 644
+Epoch 4/20, Train Loss: 1.4032, Validation Loss: 2.4252
+total_batches 644
+Epoch 5/20, Train Loss: 1.3677, Validation Loss: 1.0803
+total_batches 644
+Epoch 6/20, Train Loss: 1.3348, Validation Loss: 1.0395
+total_batches 644
+Epoch 7/20, Train Loss: 1.2125, Validation Loss: 1.1812
+total_batches 644
+Epoch 8/20, Train Loss: 1.2504, Validation Loss: 1.9570
+total_batches 644
+Epoch 9/20, Train Loss: 1.1508, Validation Loss: 1.6810
+total_batches 644
+Epoch 10/20, Train Loss: 1.1414, Validation Loss: 1.7280
+total_batches 644
+Epoch 11/20, Train Loss: 1.1470, Validation Loss: 0.9048
+total_batches 644
+Epoch 12/20, Train Loss: 1.1028, Validation Loss: 1.7488
+total_batches 644
+Epoch 13/20, Train Loss: 1.0824, Validation Loss: 1.9760
+total_batches 644
+Epoch 14/20, Train Loss: 1.0136, Validation Loss: 0.9673
+total_batches 644
+Epoch 15/20, Train Loss: 0.9978, Validation Loss: 1.0909
+total_batches 644
+Epoch 16/20, Train Loss: 0.9932, Validation Loss: 0.8805
+total_batches 644
+Epoch 17/20, Train Loss: 1.0091, Validation Loss: 0.9009
+total_batches 644
+Epoch 18/20, Train Loss: 0.9483, Validation Loss: 1.3076
+total_batches 644
+Epoch 19/20, Train Loss: 0.9593, Validation Loss: 0.8108
+total_batches 644
+Epoch 20/20, Train Loss: 0.9661, Validation Loss: 1.1740
+Time taken for training: 0h 9m 29.44s
+Test Loss: 0.8199
+Error Statistics:
+count     40960.000000
+mean        777.671875
+std       11163.800781
+min           0.000006
+25%           0.270609
+50%           2.399565
+75%          39.272780
+max      705398.062500
+Name: Absolute Error, dtype: float64
+Training complete. Final model saved.

@@ -1,0 +1,110 @@
+Waiting for sweep ID...
+Found Sweep ID: o2yj2zlq
+Starting wandb agent for sweep o2yj2zlq...
+TRAINING DEVICE: cpu
+Run Name: GCN_sag_hp_sweep_sag_o2yj2zlq-nbcu409d
+finidhed preparing data
+Loading dataset from pretrain_dataset_12.5k_fixed_duplicates.pkl
+Loaded 412712 data objects.
+finished preparing data
+Epoch 1/1000, Train Loss: 15.4835, Validation Loss: 6.3025
+Epoch 2/1000, Train Loss: 6.5233, Validation Loss: 6.4485
+Epoch 3/1000, Train Loss: 7.4253, Validation Loss: 6.0726
+Epoch 4/1000, Train Loss: 6.2712, Validation Loss: 6.2300
+Epoch 5/1000, Train Loss: 10919.3689, Validation Loss: 6.1204
+Epoch 6/1000, Train Loss: 7.0133, Validation Loss: 6.1716
+Epoch 7/1000, Train Loss: 27.2222, Validation Loss: 6.1077
+Epoch 8/1000, Train Loss: 20.0528, Validation Loss: 6.2896
+Epoch 9/1000, Train Loss: 6.2248, Validation Loss: 6.0725
+Epoch 10/1000, Train Loss: 6.5069, Validation Loss: 6.0750
+Epoch 11/1000, Train Loss: 15.5444, Validation Loss: 6.1967
+Epoch 12/1000, Train Loss: 6.3360, Validation Loss: 6.0975
+Epoch 13/1000, Train Loss: 44.1728, Validation Loss: 6.0710
+Epoch 14/1000, Train Loss: 6.3074, Validation Loss: 6.1442
+Epoch 15/1000, Train Loss: 7.0730, Validation Loss: 6.1541
+Epoch 16/1000, Train Loss: 7.2392, Validation Loss: 6.5942
+Epoch 17/1000, Train Loss: 8.3081, Validation Loss: 6.0721
+Epoch 18/1000, Train Loss: 9.7351, Validation Loss: 6.2025
+Epoch 19/1000, Train Loss: 6.8311, Validation Loss: 6.2474
+Epoch 20/1000, Train Loss: 6.3694, Validation Loss: 6.1547
+Epoch 21/1000, Train Loss: 6.3503, Validation Loss: 6.0705
+Epoch 22/1000, Train Loss: 6.3867, Validation Loss: 6.0703
+Epoch 23/1000, Train Loss: 6.3173, Validation Loss: 6.1110
+Epoch 24/1000, Train Loss: 9.4739, Validation Loss: 6.0702
+Epoch 25/1000, Train Loss: 6.4419, Validation Loss: 6.2002
+Epoch 26/1000, Train Loss: 6.2816, Validation Loss: 6.0959
+Epoch 27/1000, Train Loss: 6.3346, Validation Loss: 6.1433
+Epoch 28/1000, Train Loss: 27.8050, Validation Loss: 6.0786
+Epoch 29/1000, Train Loss: 7.1241, Validation Loss: 6.0788
+Epoch 30/1000, Train Loss: 6.2874, Validation Loss: 6.1478
+Epoch 31/1000, Train Loss: 6.3660, Validation Loss: 6.1730
+Epoch 32/1000, Train Loss: 6.5382, Validation Loss: 6.0994
+Epoch 33/1000, Train Loss: 6.8438, Validation Loss: 6.6534
+Epoch 34/1000, Train Loss: 7.5698, Validation Loss: 6.1464
+Epoch 35/1000, Train Loss: 6.2338, Validation Loss: 6.0710
+Epoch 36/1000, Train Loss: 6.3675, Validation Loss: 6.0714
+Epoch 37/1000, Train Loss: 30.0715, Validation Loss: 6.0704
+Epoch 38/1000, Train Loss: 6.3309, Validation Loss: 6.0702
+Epoch 39/1000, Train Loss: 15315.4386, Validation Loss: 6.0719
+Epoch 40/1000, Train Loss: 6.2722, Validation Loss: 6.2391
+Epoch 41/1000, Train Loss: 8.9773, Validation Loss: 6.3855
+Epoch 42/1000, Train Loss: 6.2643, Validation Loss: 6.0898
+Epoch 43/1000, Train Loss: 6.4698, Validation Loss: 6.0729
+Epoch 44/1000, Train Loss: 18.0118, Validation Loss: 6.0689
+Epoch 45/1000, Train Loss: 6.2670, Validation Loss: 6.1616
+Epoch 46/1000, Train Loss: 6.3384, Validation Loss: 6.5811
+Epoch 47/1000, Train Loss: 6.3809, Validation Loss: 6.0766
+Epoch 48/1000, Train Loss: 202.6065, Validation Loss: 6.0965
+Epoch 49/1000, Train Loss: 8.0454, Validation Loss: 6.3442
+Epoch 50/1000, Train Loss: 6.3502, Validation Loss: 6.4754
+Epoch 51/1000, Train Loss: 6.2270, Validation Loss: 6.1602
+Epoch 52/1000, Train Loss: 7.4082, Validation Loss: 6.3313
+Epoch 53/1000, Train Loss: 6.8738, Validation Loss: 6.4830
+Epoch 54/1000, Train Loss: 6.6536, Validation Loss: 6.0703
+Epoch 55/1000, Train Loss: 6.2482, Validation Loss: 6.1532
+Epoch 56/1000, Train Loss: 6.3507, Validation Loss: 6.0926
+Epoch 57/1000, Train Loss: 8.3901, Validation Loss: 6.1673
+Epoch 58/1000, Train Loss: 8.5980, Validation Loss: 6.2893
+Epoch 59/1000, Train Loss: 30.8137, Validation Loss: 6.4330
+Epoch 60/1000, Train Loss: 6.2872, Validation Loss: 6.8961
+Epoch 61/1000, Train Loss: 93.6076, Validation Loss: 6.1827
+Epoch 62/1000, Train Loss: 6.2364, Validation Loss: 6.6500
+Epoch 63/1000, Train Loss: 10.7786, Validation Loss: 6.1469
+Epoch 64/1000, Train Loss: 6.2549, Validation Loss: 6.0980
+Epoch 65/1000, Train Loss: 1311.7534, Validation Loss: 6.5588
+Epoch 66/1000, Train Loss: 6.4820, Validation Loss: 6.1118
+Epoch 67/1000, Train Loss: 6.3980, Validation Loss: 6.5589
+Epoch 68/1000, Train Loss: 6.3034, Validation Loss: 6.6636
+Epoch 69/1000, Train Loss: 80.1462, Validation Loss: 6.0688
+Epoch 70/1000, Train Loss: 6.2338, Validation Loss: 6.2447
+Epoch 71/1000, Train Loss: 161.6615, Validation Loss: 6.1270
+Epoch 72/1000, Train Loss: 11.8127, Validation Loss: 6.0752
+Epoch 73/1000, Train Loss: 711.7287, Validation Loss: 6.6206
+Epoch 74/1000, Train Loss: 6.3461, Validation Loss: 6.0778
+Epoch 75/1000, Train Loss: 6.2938, Validation Loss: 6.0833
+Epoch 76/1000, Train Loss: 6.3547, Validation Loss: 6.2924
+Epoch 77/1000, Train Loss: 132.2046, Validation Loss: 6.0739
+Epoch 78/1000, Train Loss: 6.3694, Validation Loss: 6.0970
+Epoch 79/1000, Train Loss: 6.2673, Validation Loss: 6.9524
+Epoch 80/1000, Train Loss: 6.2516, Validation Loss: 6.1943
+Epoch 81/1000, Train Loss: 6.2367, Validation Loss: 6.1074
+Epoch 82/1000, Train Loss: 8.3198, Validation Loss: 6.1084
+Epoch 83/1000, Train Loss: 6.5342, Validation Loss: 6.0790
+Epoch 84/1000, Train Loss: 19.0813, Validation Loss: 6.0740
+Epoch 85/1000, Train Loss: 6.4196, Validation Loss: 6.1544
+Epoch 86/1000, Train Loss: 6.3437, Validation Loss: 6.1740
+Epoch 87/1000, Train Loss: 6.5678, Validation Loss: 6.0688
+Epoch 88/1000, Train Loss: 8.8845, Validation Loss: 6.0698
+Epoch 89/1000, Train Loss: 6.2342, Validation Loss: 6.6875
+Epoch 90/1000, Train Loss: 71.3538, Validation Loss: 6.1291
+Epoch 91/1000, Train Loss: 6.2544, Validation Loss: 6.1828
+Epoch 92/1000, Train Loss: 6.2486, Validation Loss: 6.0738
+Epoch 93/1000, Train Loss: 8.4963, Validation Loss: 6.2024
+Epoch 94/1000, Train Loss: 21.5633, Validation Loss: 6.7628
+Epoch 95/1000, Train Loss: 8.7693, Validation Loss: 6.0692
+Epoch 96/1000, Train Loss: 7.5046, Validation Loss: 6.0744
+Epoch 97/1000, Train Loss: 6.2714, Validation Loss: 6.0766
+[1;34mwandb[0m: 
+[1;34mwandb[0m: 🚀 View run [33mdevoted-sweep-2[0m at: [34mhttps://wandb.ai/mk8737-new-york-university/rl_pretrain_hp_sweeps/runs/nbcu409d[0m
+[1;34mwandb[0m: Find logs at: [1;35mwandb/run-20251126_011606-nbcu409d/logs[0m
+Agent finished.

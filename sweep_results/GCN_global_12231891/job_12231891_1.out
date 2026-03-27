@@ -1,0 +1,20 @@
+Waiting for sweep ID...
+Found Sweep ID: zdqvly0w
+Starting wandb agent for sweep zdqvly0w...
+TRAINING DEVICE: cpu
+Run Name: GCN_global_hp_sweep_zdqvly0w-7dp1wmi9
+finidhed preparing data
+Loading dataset from pretrain_dataset_12.5k_fixed_duplicates.pkl
+Loaded 412712 data objects.
+finished preparing data
+Epoch 1/2, Train Loss: 5.8333, Validation Loss: 1.2534
+Epoch 2/2, Train Loss: 1.7936, Validation Loss: 5.5849
+Best Training Loss: 1.7936
+Best Training Loss Epoch: 2
+Best Validation Loss: 1.2534
+Best Validation Loss Epoch: 1
+Time taken for training: 0-00:02:54
+[1;34mwandb[0m: 
+[1;34mwandb[0m: 🚀 View run [33mfragrant-sweep-2[0m at: [34mhttps://wandb.ai/mk8737-new-york-university/rl_pretrain_hp_sweeps/runs/7dp1wmi9[0m
+[1;34mwandb[0m: Find logs at: [1;35mwandb/run-20251006_034154-7dp1wmi9/logs[0m
+Agent finished.

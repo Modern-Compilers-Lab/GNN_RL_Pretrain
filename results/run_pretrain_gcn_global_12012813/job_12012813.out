@@ -1,0 +1,25 @@
+Run Name: GCN_global_workers4_epochs2
+TRAINING DEVICE: cuda:0
+finidhed preparing data
+Loading dataset from pretrain_dataset_12.5k_fixed_duplicates.pkl
+Loaded 412712 data objects.
+finished preparing data
+Epoch 1/2, Train Loss: 2.8164, Validation Loss: 1.6348
+Epoch 2/2, Train Loss: 1.8211, Validation Loss: 1.5702
+Best Training Loss: 1.8211
+Best Training Loss Epoch: 2
+Best Validation Loss: 1.5702
+Best Validation Loss Epoch: 2
+Time taken for training: 0-00:00:25
+Test Loss: 1.6113
+Error Statistics:
+count    4.127200e+04
+mean     3.862871e+03
+std      6.317693e+05
+min      1.085997e-04
+25%      5.414588e-01
+50%      4.552486e+00
+75%      6.462575e+01
+max      1.283300e+08
+Name: Absolute Error, dtype: float64
+Training complete. Final model saved.

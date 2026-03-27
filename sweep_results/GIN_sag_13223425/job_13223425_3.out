@@ -1,0 +1,58 @@
+Waiting for sweep ID...
+Found Sweep ID: mof3aj3v
+Starting wandb agent for sweep mof3aj3v...
+TRAINING DEVICE: cpu
+Run Name: GIN_sag_hp_sweep_sag_mof3aj3v-916nvurz
+finidhed preparing data
+Loading dataset from pretrain_dataset_12.5k_fixed_duplicates.pkl
+Loaded 412712 data objects.
+finished preparing data
+Epoch 1/1000, Train Loss: 441.5519, Validation Loss: 6.5392
+Epoch 2/1000, Train Loss: 7.6727, Validation Loss: 6.1955
+Epoch 3/1000, Train Loss: 6.8753, Validation Loss: 6.3582
+Epoch 4/1000, Train Loss: 6.2941, Validation Loss: 6.0803
+Epoch 5/1000, Train Loss: 161.2586, Validation Loss: 6.0698
+Epoch 6/1000, Train Loss: 138.2719, Validation Loss: 6.1212
+Epoch 7/1000, Train Loss: 6.5782, Validation Loss: 6.0603
+Epoch 8/1000, Train Loss: 6.2926, Validation Loss: 6.2806
+Epoch 9/1000, Train Loss: 6.3585, Validation Loss: 6.0660
+Epoch 10/1000, Train Loss: 375.0718, Validation Loss: 6.4225
+Epoch 11/1000, Train Loss: 6.5365, Validation Loss: 6.7152
+Epoch 12/1000, Train Loss: 9.4098, Validation Loss: 6.1692
+Epoch 13/1000, Train Loss: 6.4900, Validation Loss: 6.5109
+Epoch 14/1000, Train Loss: 14.0603, Validation Loss: 6.0591
+Epoch 15/1000, Train Loss: 6.2375, Validation Loss: 6.1126
+Epoch 16/1000, Train Loss: 7.3378, Validation Loss: 6.2670
+Epoch 17/1000, Train Loss: 57.0882, Validation Loss: 6.1227
+Epoch 18/1000, Train Loss: 19.3890, Validation Loss: 6.1644
+Epoch 19/1000, Train Loss: 65.3626, Validation Loss: 6.0626
+Epoch 20/1000, Train Loss: 6.3633, Validation Loss: 6.5273
+Epoch 21/1000, Train Loss: 6.3986, Validation Loss: 6.1781
+Epoch 22/1000, Train Loss: 58.3245, Validation Loss: 6.2551
+Epoch 23/1000, Train Loss: 6.3053, Validation Loss: 6.2063
+Epoch 24/1000, Train Loss: 6.3187, Validation Loss: 6.4059
+Epoch 25/1000, Train Loss: 6.4212, Validation Loss: 6.5067
+Epoch 26/1000, Train Loss: 6.2466, Validation Loss: 6.2545
+Epoch 27/1000, Train Loss: 54.1066, Validation Loss: 6.0899
+Epoch 28/1000, Train Loss: 6.3160, Validation Loss: 6.2864
+Epoch 29/1000, Train Loss: 6.2701, Validation Loss: 6.1824
+Epoch 30/1000, Train Loss: 76.3065, Validation Loss: 6.8758
+Epoch 31/1000, Train Loss: 6.2810, Validation Loss: 6.2924
+Epoch 32/1000, Train Loss: 12.0367, Validation Loss: 6.1522
+Epoch 33/1000, Train Loss: 6.2584, Validation Loss: 6.9455
+Epoch 34/1000, Train Loss: 7.3244, Validation Loss: 6.5739
+Epoch 35/1000, Train Loss: 6.2863, Validation Loss: 6.2987
+Epoch 36/1000, Train Loss: 12267.7155, Validation Loss: 6.0568
+Epoch 37/1000, Train Loss: 6.3038, Validation Loss: 6.2242
+Epoch 38/1000, Train Loss: 2514.1163, Validation Loss: 6.2277
+Epoch 39/1000, Train Loss: 157713.5051, Validation Loss: 6.0720
+Epoch 40/1000, Train Loss: 12.3323, Validation Loss: 6.0566
+Epoch 41/1000, Train Loss: 9.6188, Validation Loss: 6.1179
+Epoch 42/1000, Train Loss: 6.3015, Validation Loss: 6.7926
+Epoch 43/1000, Train Loss: 11.5626, Validation Loss: 6.2138
+Epoch 44/1000, Train Loss: 6.4068, Validation Loss: 6.9769
+Epoch 45/1000, Train Loss: 6.2475, Validation Loss: 6.1801
+[1;34mwandb[0m: 
+[1;34mwandb[0m: 🚀 View run [33mnorthern-sweep-15[0m at: [34mhttps://wandb.ai/mk8737-new-york-university/rl_pretrain_hp_sweeps/runs/916nvurz[0m
+[1;34mwandb[0m: Find logs at: [1;35mwandb/run-20251126_204721-916nvurz/logs[0m
+Agent finished.

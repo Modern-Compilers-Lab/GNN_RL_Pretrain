@@ -1,0 +1,1222 @@
+# Standard library imports
+import argparse as arg
+import json
+import math
+import os
+import pickle
+import time
+from builtins import set
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from typing import List, Optional
+import re
+
+# Third-party imports
+import matplotlib.pyplot as plt
+import mlflow
+import numpy as np
+import pandas as pd
+import torch
+import torch.nn as nn
+import torch.optim as optim
+from sklearn.model_selection import train_test_split
+from torch_geometric.data import Data, Batch
+from torch_geometric.loader import DataLoader
+from torch.utils.data import Dataset
+import wandb
+
+try:
+    import ray
+except ImportError:
+    ray = None
+
+# Local imports
+from agent.graph_utils import *
+from neural_nets import GCN
+from config.config import Config
+from pretrain.embedding import get_embedding_size
+from agent.policy_value_nn import GAT
+
+# Commented out unused imports
+# from pretrain.lstm_autoencoder_modeling import encoder # NOT USED ANYWHERE
+# from agent.rollout_worker import RolloutWorker, Transition, apply_flattened_action # used inside PretrainDataset class
+# from utils.dataset_actor.dataset_actor import DatasetActor # used inside PretrainDataset class
+# from env_api.tiramisu_api import TiramisuEnvAPI # used inside PretrainDataset class
+
+# GLOBAL VARIABLES
+model_base = None
+run_name = None
+
+def get_action_number(transformation: str) -> Optional[int]:
+    """Convert a transformation string to its corresponding action number"""
+    match = re.match(r'([IPURTS]\d?)\((.*?)\)', transformation)
+
+    if not match:
+        return None
+        
+    trans_type, params = match.groups()
+    params = [p.strip() for p in params.split(',')]
+
+    # Interchange: actions 0-3
+    if trans_type == 'I':
+        level = int(params[0][1])  # L0 -> 0
+        if level < 4:
+            return level
+            
+    # Reversal: actions 4-8
+    elif trans_type == 'R':
+        level = int(params[0][1])  # L0 -> 0
+        if level < 5:
+            return level + 4
+            
+    # Skewing: actions 9-11
+    elif trans_type == 'S':
+        level = int(params[0][1])  # L0 -> 0
+        if level < 3:
+            return level + 9
+            
+    # Parallelization: actions 12-13
+    elif trans_type == 'P':
+        level = int(params[0][1])  # L0 -> 0
+        if level < 2:
+            return level + 12
+            
+    # Tiling: actions 14-49
+    elif trans_type == 'T2':
+        level = int(params[0][1])  # L0 -> 0
+        size_x = int(params[2])
+        size_y = int(params[3])
+        
+        size_mappings = [
+            (32, 32, 14),   # 14-17
+            (64, 64, 18),   # 18-21
+            (128, 128, 22), # 22-25
+            (32, 64, 26),   # 26-29
+            (32, 128, 30),  # 30-33
+            (64, 32, 34),   # 34-37
+            (64, 128, 38),  # 38-41
+            (128, 32, 42),  # 42-45
+            (128, 64, 46),  # 46-49
+        ]
+        
+        for sx, sy, base_action in size_mappings:
+            if size_x == sx and size_y == sy:
+                return base_action + level
+                
+    # Unrolling: actions 50-54
+    elif trans_type == 'U':
+        factor = int(params[1])
+        power = 0
+        while factor > 1:
+            factor //= 2
+            power += 1
+        return 49 + power if power <= 5 else None
+        
+    return None
+
+def parse_schedule_to_action_list(schedule_str: str) -> List[int]:
+    """
+    Parse schedule string and return a list of actions. For different schedules,
+    add action 55 but don't repeat common transformations from previous schedules.
+    Action 55 is added at the start if first schedule doesn't apply to comp00.
+    """
+    comp_pattern = r'{(.*?)}:(.*?)(?={|$)'
+    transform_pattern = r'([IPURTS]\d?\(.*?\))'
+    
+    action_list = []
+    seen_schedules = []
+    prev_transforms = set()
+    
+    matches = list(re.finditer(comp_pattern, schedule_str))
+    if matches and matches[0].groups()[0] != 'comp00':
+        action_list.append(55)
+    
+    for match in matches:
+        comp_name, schedule = match.groups()
+        
+        if schedule in seen_schedules:
+            continue
+        
+        transformations = re.findall(transform_pattern, schedule)
+        current_transforms = set(transformations)
+        
+        if seen_schedules:
+            action_list.append(55)
+            transformations = [t for t in transformations if t not in prev_transforms]
+        
+        actions = [get_action_number(t) for t in transformations]
+        action_list.extend([a for a in actions if a is not None])
+        
+        seen_schedules.append(schedule)
+        prev_transforms = current_transforms
+    
+    return action_list
+
+class GraphDataset(Dataset):
+    """Custom Dataset for Graph data compatible with PyTorch DataLoader"""
+    def __init__(self, data_list):
+        self.data_list = data_list
+    
+    def __len__(self):
+        return len(self.data_list)
+    
+    def __getitem__(self, idx):
+        return self.data_list[idx]
+
+class PretrainDataset:
+    def __init__(self, dataset_worker, config, save_path="pretrain_dataset_12.5k_fixed_duplicates.pkl"):
+        self.save_path = save_path
+        if not os.path.exists(self.save_path): # modification: made tiramisu api optional
+            from env_api.tiramisu_env_api import TiramisuEnvAPI
+            self.tiramisu_api = TiramisuEnvAPI(local_dataset=True)
+            self.dataset_worker = dataset_worker
+        self.data = {}  # Initialize as a dictionary
+        self.current_program = None
+        Config.config = config
+        self.y_mean = None
+        self.y_std = None
+        self.collected_programs = set()
+    # Normalize and denormalize target values with log transformation
+    def log_normalize_y(self,y):
+        return np.log(1 + y)
+
+    def log_denormalize_y(self,y_normalized):
+        return np.exp(y_normalized) - 1
+    
+    def normalize_y(self, y):
+        return (y - self.y_mean) / self.y_std
+
+    def denormalize_y(self, y_normalized):
+        return y_normalized * self.y_std + self.y_mean
+
+    def load_saved_data(self):
+        """Load the dataset from a saved file if it exists."""
+        if os.path.exists(self.save_path):
+            print(f"Loading dataset from {self.save_path}")
+            with open(self.save_path, "rb") as f:
+                self.data = pickle.load(f)
+            print(f"Loaded {len(self.data)} data objects.")
+            return True
+        return False
+
+    def save_data(self):
+        """Save the processed dataset to a file."""
+        print(f"Saving dataset to {self.save_path}")
+        with open(self.save_path, "wb") as f:
+            pickle.dump(self.data, f)
+        print(f"Saved {len(self.data)} data objects.")
+
+    def prepare_data(self, val_split=0.1, test_split=0.1, batch_size=128, num_workers=0):
+        
+        comp_pattern = r'{(.*?)}:(.*?)(?={|$)'
+        """Prepare and process data."""
+        # Try loading saved data
+        if self.load_saved_data():
+            self.y_mean = np.mean([data['y'] for data in self.data.values()])
+            self.y_std = np.std([data['y'] for data in self.data.values()])
+
+
+            for data in self.data.values():
+                data['y'] = float(self.log_normalize_y(data['y']))
+
+            graph_data = {}
+            for program_name, data in self.data.items():
+                node_feats = data["node_feats"]
+                edge_index = data["edge_index"]
+                y = data["y"]
+                # Create a PyTorch Geometric Data object
+                graph_data[program_name] = Data(
+                    x=torch.tensor(node_feats, dtype=torch.float32),
+                    edge_index=torch.tensor(edge_index, dtype=torch.long)
+                                    .transpose(0, 1)
+                                    .contiguous(),
+                    y = torch.tensor(y, dtype=torch.float32)
+                )
+            self.data = graph_data
+            self.split_data(val_split, test_split, batch_size, num_workers)
+            return
+        
+        # Replace the fixed num_functions with dynamic collection
+        data_collection_active = True
+
+        total_cases = 0  
+        try:
+            while data_collection_active:
+                start_e = time.time()
+                prog_infos = ray.get(self.dataset_worker.get_next_function.remote())
+                saved_prog_infos = prog_infos
+                end_e = time.time()
+                
+                # Skip if we can't get valid actions mask
+                actions_mask = None
+                attempts = 0
+                max_attempts = 3
+                while not isinstance(actions_mask, np.ndarray) and attempts < max_attempts: 
+                    actions_mask = self.tiramisu_api.set_program(*saved_prog_infos)
+                    attempts += 1
+                
+                if attempts == max_attempts:
+                    print("Failed to get valid actions mask, skipping program")
+                    continue
+                    
+                self.current_program = prog_infos[0]
+                
+                # Check for duplicates
+                if self.current_program in self.collected_programs:
+                    print(f"Duplicate function detected: {self.current_program}. Stopping data collection.")
+                    data_collection_active = False
+                    break
+                
+                self.collected_programs.add(self.current_program)
+                
+                y = self.tiramisu_api.scheduler_service.schedule_object.prog.get_execution_time(
+                    "initial_execution", Config.config.machine
+                )
+                
+                for config, execution_time in list(prog_infos[1]['execution_times']['jubail'].items()):
+                    if config == "initial_execution":
+                        print(f"Initial Configuration: {config}, Execution Time: {execution_time}, Current Program: {self.current_program}")
+                        if y is not None:
+                            annotations = (
+                                self.tiramisu_api.scheduler_service.schedule_object.prog.annotations
+                            )
+                            # Build graph based on annotations
+                            node_feats, edge_index, it_index, comp_index = build_graph(
+                                annotations,
+                                Config.config.pretrain.embed_access_matrices,
+                                Config.config.pretrain.embedding_type
+                            )
+                            
+                            node_feats = focus_on_iterators(
+                                self.tiramisu_api.scheduler_service.branches[0].common_it,
+                                node_feats,
+                                it_index
+                            )
+                            
+                            self.data[self.current_program] = {
+                                "node_feats": node_feats,
+                                "edge_index": edge_index,
+                                "it_index": it_index,
+                                "comp_index": comp_index,
+                                "y": y
+                            }
+                        else:
+                            print("Execution time is None. Skipping this data point.")
+                    else:
+                        print(f"Configuration: {config}, Execution Time: {execution_time}, Current Program: {self.current_program}")
+                        
+                        # Parse schedule actions
+                        actions = parse_schedule_to_action_list(config)
+                        
+                        if actions.count(55) >= len(self.tiramisu_api.scheduler_service.branches):
+                            print(f"Skipping configuration {config} due to excessive next actions.")
+                            continue
+                        
+                        actions_mask = None
+                        while not isinstance(actions_mask, np.ndarray): 
+                            actions_mask = self.tiramisu_api.set_program(*saved_prog_infos)
+                        
+                        programs_to_verify = []
+                        current_node_feats = np.copy(node_feats)
+                        current_edge_index = np.copy(edge_index)
+                        current_it_index = np.copy(it_index)
+                        for action in actions:
+                            if action is not None:
+                                (
+                                    total_speedup,
+                                    current_node_feats,
+                                    current_edge_index,
+                                    legality,
+                                    actions_mask,
+                                    done,
+                                    num_hits,
+                                ) = apply_flattened_action(
+                                    self.tiramisu_api,
+                                    action,
+                                    current_node_feats,
+                                    current_edge_index,
+                                    it_index,
+                                    worker_id="0",
+                                )
+                                
+                                program_with_history = f"{self.current_program}_{self.tiramisu_api.scheduler_service.schedule_object.schedule_str}"
+                                
+                        self.data[program_with_history] = {
+                            "node_feats": current_node_feats,
+                            "edge_index": current_edge_index,
+                            "it_index": it_index,
+                            "comp_index": comp_index,
+                            "y": execution_time
+                        }
+                        programs_to_verify.append(program_with_history)
+
+                        # After applying all actions, verify the final schedule matches the config
+                        final_schedule = self.tiramisu_api.scheduler_service.schedule_object.schedule_str
+                        if final_schedule != config:
+                            # Check for the special case where we need to reapply actions
+                            expected_parts = list(re.finditer(comp_pattern, config))
+                            generated_parts = list(re.finditer(comp_pattern, final_schedule))
+                            
+                            # Case 1: Same transformation needs to be repeated on multiple computations
+                            repeat_transformation = (len(generated_parts) == 1 and 
+                                                len(expected_parts) > 1 and
+                                                all(part.group(2) == expected_parts[0].group(2) for part in expected_parts) and
+                                                generated_parts[0].group(2) == expected_parts[0].group(2))
+                            
+                            # Case 2: Same transformation but wrong computation
+                            wrong_computation = (len(generated_parts) == 1 and 
+                                                len(expected_parts) == 1 and
+                                                generated_parts[0].group(2) == expected_parts[0].group(2) and
+                                                generated_parts[0].group(1) != expected_parts[0].group(1))
+                            
+                            if repeat_transformation or wrong_computation:
+                                print(f"Detected special case. Attempting to fix schedule...")
+                                print(f"Expected: {config}")
+                                print(f"Current: {final_schedule}")
+                                                        
+                                # Add next_computation action (55) and reapply the transformation
+                                actions_mask = None
+                                while not isinstance(actions_mask, np.ndarray):
+                                    actions_mask = self.tiramisu_api.set_program(*saved_prog_infos)
+                                
+                                if repeat_transformation:
+                                    current_node_feats = np.copy(node_feats)
+                                    current_edge_index = np.copy(edge_index)
+                                    # First apply all actions up to current point
+                                    for action in actions:  # Apply all but the last action
+                                        if action is not None:
+                                            (
+                                                total_speedup,
+                                                current_node_feats,
+                                                current_edge_index,
+                                                legality,
+                                                actions_mask,
+                                                done,
+                                                num_hits,
+                                            ) = apply_flattened_action(
+                                                self.tiramisu_api,
+                                                action,
+                                                np.copy(current_node_feats),
+                                                np.copy(current_edge_index),
+                                                it_index,
+                                                worker_id="0",
+                                            )
+                                
+                                # Apply next_computation action (55)
+                                (
+                                    total_speedup,
+                                    current_node_feats,
+                                    current_edge_index,
+                                    legality,
+                                    actions_mask,
+                                    done,
+                                    num_hits,
+                                ) = apply_flattened_action(
+                                    self.tiramisu_api,
+                                    55,  # next_computation action
+                                    np.copy(current_node_feats),
+                                    np.copy(current_edge_index),
+                                    it_index,
+                                    worker_id="0",
+                                )
+                                
+                                if repeat_transformation:
+                                    # Reapply the last transformation
+                                    (
+                                        total_speedup,
+                                        current_node_feats,
+                                        current_edge_index,
+                                        legality,
+                                        actions_mask,
+                                        done,
+                                        num_hits,
+                                    ) = apply_flattened_action(
+                                        self.tiramisu_api,
+                                        actions[-1],  # Reapply the last action
+                                        np.copy(current_node_feats),
+                                        np.copy(current_edge_index),
+                                        it_index,
+                                        worker_id="0",
+                                    )
+                                if wrong_computation:
+                                    # First apply all actions up to current point
+                                    for action in actions:  # Apply all but the last action
+                                        if action is not None:
+                                            (
+                                                total_speedup,
+                                                current_node_feats,
+                                                current_edge_index,
+                                                legality,
+                                                actions_mask,
+                                                done,
+                                                num_hits,
+                                            ) = apply_flattened_action(
+                                                self.tiramisu_api,
+                                                action,
+                                                np.copy(current_node_feats),
+                                                np.copy(current_edge_index),
+                                                it_index,
+                                                worker_id="0",
+                                            )
+                                    
+                                
+                                # Verify the final schedule matches the expected
+                                final_schedule = self.tiramisu_api.scheduler_service.schedule_object.schedule_str
+                                if final_schedule != config:
+                                    print(f"Warning: Generated schedule still doesn't match expected config!")
+                                    print(f"Expected: {config}")
+                                    print(f"Generated: {final_schedule}")
+                                    with open("./schedule_mismatch_log.txt", "a") as log_file:
+                                        log_file.write(f"Expected: {config}\n")
+                                        log_file.write(f"Generated: {final_schedule}\n")
+                                    
+                                    total_cases += 1
+                                    for program_id in programs_to_verify:
+                                        if program_id in self.data:
+                                            del self.data[program_id]
+                                            print(f"Removed invalid data point: {program_id}")
+                            else:
+                                # Handle original mismatch case
+                                print(f"Warning: Generated schedule doesn't match expected config!")
+                                print(f"Expected: {config}")
+                                print(f"Generated: {final_schedule}")
+                                with open("./schedule_mismatch_log.txt", "a") as log_file:
+                                    log_file.write(f"Expected: {config}\n")
+                                    log_file.write(f"Generated: {final_schedule}\n")
+                                
+                                total_cases += 1
+                                for program_id in programs_to_verify:
+                                    if program_id in self.data:
+                                        del self.data[program_id]
+                                        print(f"Removed invalid data point: {program_id}")
+                                                    
+                                    
+        except (KeyboardInterrupt, Exception) as e:
+            print(f"Data collection stopped: {str(e)}")
+            print(f"Total programs collected: {len(self.data)}")
+        
+        print(f"Total unique programs collected: {len(self.collected_programs)}")
+        print(f"Total programs collected: {len(self.data)}")
+        print(f"Total cases where generated schedule doesn't match expected config: {total_cases}")
+
+            
+            
+        # # Prepare graph data for pretraining
+        # num_functions = 22046
+
+        # # pbar = tqdm(total=num_functions - len(self.data))  # Initialize progress bar
+   
+        # while len(self.data) < num_functions:  # Set this limit based on the number of data samples
+        #     start_e = time.time()
+        #     prog_infos = ray.get(self.dataset_worker.get_next_function.remote())
+        #     saved_prog_infos = prog_infos
+        #     end_e = time.time()
+        #     actions_mask = None
+        #     while not isinstance(actions_mask, np.ndarray): 
+        #         actions_mask = self.tiramisu_api.set_program(*saved_prog_infos)
+            
+        #     self.current_program = prog_infos[0]
+
+        #     for config, execution_time in list(prog_infos[1]['execution_times']['jubail'].items()):
+        #         if config == "initial_execution":
+        #             print(f" ----------------------- Initial Configuration: {config}, Execution Time: {execution_time}, Current_program: {self.current_program} ---------------------------")
+        #             y = self.tiramisu_api.scheduler_service.schedule_object.prog.get_execution_time(
+        #                 "initial_execution", Config.config.machine
+        #             )
+        #             print("Slovers : ", self.tiramisu_api.scheduler_service.schedule_object.prog.schedules_solver)
+        #             if y is not None:
+        #                 annotations = (
+        #                     self.tiramisu_api.scheduler_service.schedule_object.prog.annotations
+        #                 )
+        #                 # Build graph based on annotations
+        #                 node_feats, edge_index, it_index, comp_index = build_graph(
+        #                     annotations,
+        #                     Config.config.pretrain.embed_access_matrices,
+        #                     Config.config.pretrain.embedding_type
+        #                 )
+                        
+        #                 node_feats = focus_on_iterators(
+        #                     self.tiramisu_api.scheduler_service.branches[0].common_it,
+        #                     node_feats,
+        #                     it_index
+        #                 )
+                        
+        #                 saved_node_feats, saved_edge_index, saved_it_index, saved_comp_index = node_feats, edge_index, it_index, comp_index
+        #                 self.data[self.current_program] = {
+        #                     "node_feats": node_feats,
+        #                     "edge_index": edge_index,
+        #                     "it_index": it_index,
+        #                     "comp_index": comp_index,
+        #                     "y": y
+        #                 }
+        #             else:
+        #                 num_functions-=1
+        #                 print("Execution time is None. Skipping this data point.")
+        #         else:
+        #             # print(f"Configuration: {config}, Execution Time: {execution_time}, Current_program: {self.current_program}")
+        #             # Parse the schedule string to get the actions
+        #             actions = parse_schedule_to_action_list(config)
+        #             actions_mask = None
+        #             while not isinstance(actions_mask, np.ndarray): 
+        #                 actions_mask = self.tiramisu_api.set_program(*saved_prog_infos)
+                    
+        #             # print(f"\t \t Actions: {actions}")
+        #             self.current_program = saved_prog_infos[0]
+                    
+        #             # Track programs created during this action sequence
+        #             programs_to_verify = []
+                    
+        #             for action in actions:
+        #                 if action is not None:            
+                            
+        #                     (
+        #                         total_speedup,
+        #                         new_node_feats,
+        #                         new_edge_index,
+        #                         legality,
+        #                         actions_mask,
+        #                         done,
+        #                         num_hits,
+        #                     ) = apply_flattened_action(
+        #                         self.tiramisu_api,
+        #                         action,
+        #                         np.copy(saved_node_feats),
+        #                         np.copy(saved_edge_index),
+        #                         saved_it_index,
+        #                         worker_id="0",
+        #                     )
+        #                     # print(f"\t \t \t Actions Sequence So far : {self.tiramisu_api.scheduler_service.schedule_object.schedule_str}")
+                            
+        #                     # Create the program identifier with full action history
+        #                     program_with_history = f"{self.current_program}_{self.tiramisu_api.scheduler_service.schedule_object.schedule_str}"
+                            
+        #                     self.data[program_with_history] = {
+        #                         "node_feats": new_node_feats,
+        #                         "edge_index": new_edge_index,
+        #                         "it_index": saved_it_index,
+        #                         "comp_index": saved_comp_index,
+        #                         "y": y
+        #                     }
+                            
+        #                     programs_to_verify.append(program_with_history)
+                    
+        #             # After applying all actions, verify the final schedule matches the config
+        #             final_schedule = self.tiramisu_api.scheduler_service.schedule_object.schedule_str
+        #             if final_schedule != config:
+        #                 print(f"Warning: Generated schedule doesn't match expected config!")
+        #                 print(f"\t \t Actions Applied: {actions}")
+        #                 print(f"Expected: {config}")
+        #                 print(f"Generated: {final_schedule}")
+                        
+        #                 # Remove all data points created during this action sequence
+        #                 for program_id in programs_to_verify:
+        #                     if program_id in self.data:
+        #                         del self.data[program_id]
+        #                         print(f"Removed invalid data point: {program_id}")
+                                
+                # pbar.update(1)
+            # print(len(self.data))
+            
+        # pbar.close()  # Close progress bar after loop finishes
+        print("finshed")
+
+        # tiramisu_program_dict = (
+        #     self.tiramisu_api.get_current_tiramisu_program_dict()
+        # )
+        # for current_program in self.data:
+        #     self.dataset_worker.update_dataset.remote(
+        #         current_program, tiramisu_program_dict
+        #     )
+        
+        
+        # Save the data after processing
+        self.save_data()
+
+        # Calculate mean and standard deviation for normalization
+        self.y_mean = np.mean([data['y'] for data in self.data.values()])
+        self.y_std = np.std([data['y'] for data in self.data.values()])
+
+
+        # Normalize target values
+        for data in self.data.values():
+            data['y'] = float(self.log_normalize_y(data['y']))
+        graph_data = {}
+        for program_name, data in self.data.items():
+            node_feats = data["node_feats"]
+            edge_index = data["edge_index"]
+            y = data["y"]
+            # Create a PyTorch Geometric Data object
+            graph_data[program_name] = Data(
+                x=torch.tensor(node_feats, dtype=torch.float32),
+                edge_index=torch.tensor(edge_index, dtype=torch.long)
+                                .transpose(0, 1)
+                                .contiguous(),
+                y = torch.tensor(y, dtype=torch.float32)
+            )
+        self.data = graph_data
+
+        # Split data into training, validation, and test sets
+        self.split_data(val_split, test_split, batch_size, num_workers)
+
+    def split_data(self, val_split, test_split, batch_size=128, num_workers=0):
+        """Split data into training, validation, and test sets and create DataLoaders."""
+        data_items = list(self.data.values())  # Get all data as a list
+        train_val_data, test_data = train_test_split(data_items, test_size=test_split, random_state=42)
+        train_data, val_data = train_test_split(train_val_data, test_size=val_split / (1 - test_split), random_state=42)
+
+        # Create Dataset objects
+        train_dataset = GraphDataset(train_data)
+        val_dataset = GraphDataset(val_data)
+        test_dataset = GraphDataset(test_data)
+
+        # Create DataLoaders with optimizations
+        self.train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, 
+                                     follow_batch=['x'], num_workers=num_workers, pin_memory=True)
+        self.val_loader = DataLoader(val_dataset, batch_size=batch_size, shuffle=False, 
+                                   follow_batch=['x'], num_workers=num_workers, pin_memory=True)
+        self.test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False, 
+                                    follow_batch=['x'], num_workers=num_workers, pin_memory=True)
+
+        # Keep the original data for backward compatibility
+        self.train_data = train_data
+        self.val_data = val_data
+        self.test_data = test_data
+
+
+    # #Spliting data with 95th percentile clipping
+    # def split_data(self, val_split, test_split):
+    #     """Split data into training, validation, and test sets with 95th percentile clipping."""
+    #     data_items = list(self.data.values())  # Get all data as a list
+        
+    #     # Split into train/val and test sets
+    #     train_val_data, test_data = train_test_split(data_items, test_size=test_split, random_state=42)
+    #     train_data, val_data = train_test_split(train_val_data, test_size=val_split / (1 - test_split), random_state=42)
+
+    #     # Extract execution times (y values) for each split
+    #     train_y = np.array([data.y for data in train_data])
+    #     val_y = np.array([data.y for data in val_data])
+    #     test_y = np.array([data.yy for data in test_data])
+
+    #     # Compute 95th percentile thresholds
+    #     train_threshold = np.percentile(train_y, 95)
+    #     val_threshold = np.percentile(val_y, 95)
+    #     test_threshold = np.percentile(test_y, 95)
+
+    #     # Apply clipping
+    #     for data in train_data:
+    #         data.y = min(data.y, train_threshold)
+    #     for data in val_data:
+    #         data.y = min(data.y, val_threshold)
+    #     for data in test_data:
+    #         data.y = min(data.y, test_threshold)
+
+    #     # Store the clipped data
+    #     self.train_data = train_data
+    #     self.val_data = val_data
+    #     self.test_data = test_data
+
+    # Note: get_batch method removed as we now use DataLoaders
+
+def pretrain_model(
+    model, dataset_worker, device, config, num_epochs=1000, batch_size=128, lr=1e-3, num_workers=0, use_wandb=False
+):
+     # L2 Regularization (Weight Decay)
+    optimizer = optim.Adam(model.parameters(), lr=lr, weight_decay=1e-5)
+    model.to(device)
+    # optimizer = optim.Adam(model.parameters(), lr=lr)
+    criterion = nn.MSELoss()
+
+    dataset = PretrainDataset(dataset_worker, config)
+    
+    print("finidhed preparing data")
+    dataset.prepare_data(batch_size=batch_size, num_workers=num_workers)
+
+    # best_loss_metrics obj to store best_val_loss, best_train_loss, best_val_loss_epoch, best_train_loss_epoch
+    best_loss_metrics = {
+        "best_val_loss": float("inf"),
+        "best_train_loss": float("inf"),
+        "best_val_loss_epoch": 0,
+        "best_train_loss_epoch": 0
+    }
+    
+    # Initialize lists to track losses for plotting
+    train_losses = []
+    val_losses = []
+    epochs = []
+    
+    # Start timing the training process
+    training_start_time = time.time()
+    print("finished preparing data")
+    
+    for epoch in range(num_epochs):
+        model.train()
+        total_train_loss = 0
+        num_train_batches = 0
+        
+        # Use DataLoader for training
+        for batch in dataset.train_loader:
+            optimizer.zero_grad()
+            batch = batch.to(device)
+            
+            # The model forward pass returns value AND action probabilities
+            _, _, _, predicted_y, pooling_loss = model(batch) # We are not using any of the other return values
+            
+            loss = criterion(predicted_y.squeeze(), batch.y)
+            if pooling_loss is not None and pooling_loss != 0:
+                loss += pooling_loss
+            
+            loss.backward()
+
+            torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
+
+            optimizer.step()
+            
+            total_train_loss += loss.item()
+            num_train_batches += 1
+
+        avg_train_loss = total_train_loss / num_train_batches
+
+        # Validation phase
+        model.eval()
+        total_val_loss = 0
+        num_val_batches = 0
+
+        with torch.no_grad():
+            for batch in dataset.val_loader:
+                batch = batch.to(device)
+
+                # The model forward pass returns value AND action probabilities
+                _, _, _, predicted_y, pooling_loss = model(batch)
+
+                # Compute validation loss
+                val_loss = criterion(predicted_y.squeeze(), batch.y)
+                if pooling_loss is not None and pooling_loss != 0:
+                    val_loss += pooling_loss
+
+                total_val_loss += val_loss.item()
+                num_val_batches += 1
+
+        avg_val_loss = total_val_loss / num_val_batches
+
+        print(
+            f"Epoch {epoch + 1}/{num_epochs}, "
+            f"Train Loss: {avg_train_loss:.4f}, "
+            f"Validation Loss: {avg_val_loss:.4f}"
+        )
+
+        # Store losses for plotting
+        train_losses.append(avg_train_loss)
+        val_losses.append(avg_val_loss)
+        epochs.append(epoch + 1)
+
+        if use_wandb:
+            wandb.log({"train_loss": avg_train_loss, "val_loss": avg_val_loss, "epoch": epoch + 1})
+        else:
+            mlflow.log_metric("train_loss", avg_train_loss, step=epoch + 1)
+            mlflow.log_metric("val_loss", avg_val_loss, step=epoch + 1)
+
+        # Save the value of best_train_loss
+        if avg_train_loss < best_loss_metrics["best_train_loss"]:
+            best_loss_metrics["best_train_loss"] = avg_train_loss
+            best_loss_metrics["best_train_loss_epoch"] = epoch + 1
+
+        # Save the model if validation loss improves AND save the value of the best_val_loss
+        if avg_val_loss < best_loss_metrics["best_val_loss"]:
+            best_loss_metrics["best_val_loss"] = avg_val_loss
+            best_loss_metrics["best_val_loss_epoch"] = epoch + 1
+            torch.save(model.state_dict(), f"saved_weights/pretrained_model_12.5k_{run_name}.pt")
+
+    # After training loop ends, log the best metrics
+    print(f"Best Training Loss: {best_loss_metrics['best_train_loss']:.4f}")
+    print(f"Best Training Loss Epoch: {best_loss_metrics['best_train_loss_epoch']}")
+    if not use_wandb:
+        mlflow.log_metric("best_train_loss", best_loss_metrics["best_train_loss"])
+        mlflow.log_metric("best_train_loss_epoch", best_loss_metrics["best_train_loss_epoch"])
+
+    print(f"Best Validation Loss: {best_loss_metrics['best_val_loss']:.4f}")
+    print(f"Best Validation Loss Epoch: {best_loss_metrics['best_val_loss_epoch']}")
+    if not use_wandb:
+        mlflow.log_metric("best_val_loss", best_loss_metrics["best_val_loss"])
+        mlflow.log_metric("best_val_loss_epoch", best_loss_metrics["best_val_loss"])
+
+    # End timing and calculate training duration
+    training_end_time = time.time()
+    total_training_time = training_end_time - training_start_time
+    
+    total_training_time_formatted = f"{int(total_training_time)//86400}-{(int(total_training_time)%86400)//3600:02d}:{(int(total_training_time)%3600)//60:02d}:{int(total_training_time)%60:02d}"
+    
+    print(f"Time taken for training: {total_training_time_formatted}")    
+    
+    # Log training time metrics
+    if not use_wandb:
+        mlflow.log_metric("total_training_time_seconds", total_training_time)
+        mlflow.set_tag("total_training_time_formatted", total_training_time_formatted)
+        mlflow.log_metric("average_training_time_per_epoch", total_training_time / num_epochs) # in seconds
+        # num_epochs already saved under params inside mlflow
+
+    # Testing phase
+    model.load_state_dict(torch.load(f"saved_weights/pretrained_model_12.5k_{run_name}.pt"))
+    model.eval()
+
+    criterion = nn.MSELoss()
+    total_test_loss = 0
+    num_test_batches = 0
+
+    real_times = []
+    predicted_times = []
+
+    with torch.no_grad():
+        for batch in dataset.test_loader:
+            batch = batch.to(device)
+            _, _, _, execution_time_preds, _ = model(batch)
+            execution_time_preds = execution_time_preds.squeeze(-1)
+            
+            # Collect predictions and ground truth
+            real_times.extend(dataset.log_denormalize_y(batch.y.cpu().numpy()))
+            predicted_times.extend(dataset.log_denormalize_y(execution_time_preds.cpu().numpy()))
+            
+            test_loss = criterion(execution_time_preds, batch.y)
+            total_test_loss += test_loss.item()
+            num_test_batches += 1
+
+    # Calculate average loss
+    avg_test_loss = total_test_loss / num_test_batches
+    print(f"Test Loss: {avg_test_loss:.4f}")
+    if use_wandb:
+        wandb.log({"test_loss": avg_test_loss})
+    else:
+        mlflow.log_metric("test_loss", avg_test_loss)
+
+    # Create training curves plot
+    plt.figure(figsize=(12, 5))
+    
+    # Plot 1: Training and Validation Loss
+    plt.subplot(1, 2, 1)
+    plt.plot(epochs, train_losses, label='Training Loss', color='blue', linewidth=2)
+    plt.plot(epochs, val_losses, label='Validation Loss', color='red', linewidth=2)
+    plt.axhline(y=avg_test_loss, color='green', linestyle='--', linewidth=2, label=f'Test Loss ({avg_test_loss:.4f})')
+    plt.xlabel('Epoch', fontsize=12)
+    plt.ylabel('Loss (MSE)', fontsize=12)
+    plt.title('Training, Validation, and Test Loss', fontsize=14)
+    plt.legend()
+    plt.grid(True, alpha=0.3)
+    
+    # Plot 2: Log scale version for better visualization if losses vary greatly
+    plt.subplot(1, 2, 2)
+    plt.plot(epochs, train_losses, label='Training Loss', color='blue', linewidth=2)
+    plt.plot(epochs, val_losses, label='Validation Loss', color='red', linewidth=2)
+    plt.axhline(y=avg_test_loss, color='green', linestyle='--', linewidth=2, label=f'Test Loss ({avg_test_loss:.4f})')
+    plt.xlabel('Epoch', fontsize=12)
+    plt.ylabel('Loss (MSE) - Log Scale', fontsize=12)
+    plt.title('Training, Validation, and Test Loss (Log Scale)', fontsize=14)
+    plt.yscale('log')
+    plt.legend()
+    plt.grid(True, alpha=0.3)
+    
+    plt.tight_layout()
+    plt.savefig('training_curves.png', dpi=300, bbox_inches='tight')
+    if not use_wandb:
+        mlflow.log_artifact('training_curves.png')
+    plt.show()
+
+    # Create the DataFrame
+    comparison_df = pd.DataFrame({
+        "Real Execution Time": real_times,
+        "Predicted Execution Time": predicted_times
+    })
+    # Add a column for the absolute difference
+    comparison_df["Difference"] = (comparison_df["Real Execution Time"] - comparison_df["Predicted Execution Time"])
+
+    # Add a column for the absolute error
+    comparison_df["Absolute Error"] = comparison_df["Difference"].abs()
+
+    # Calculate Mean Absolute Percentage Error (MAPE)
+    real_times_np = np.array(real_times)
+    predicted_times_np = np.array(predicted_times)
+    
+    # Avoid division by zero for MAPE calculation
+    non_zero_mask = real_times_np != 0
+    mape = np.mean(np.abs((real_times_np[non_zero_mask] - predicted_times_np[non_zero_mask]) / real_times_np[non_zero_mask])) * 100
+    
+    print(f"Test MAPE: {mape:.4f}%")
+    if use_wandb:
+        wandb.log({"test_mape": mape})
+    else:
+        mlflow.log_metric("test_mean_absolute_percentage_error", mape)
+
+    # Save comparison DataFrame as MLflow artifact
+    comparison_csv_path = "test_predictions_comparison.csv"
+    # comparison_df.to_csv(comparison_csv_path, index=False)
+    if not use_wandb:
+        mlflow.log_artifact(comparison_csv_path)
+    
+    # Display basic statistics about the differences
+    error_stats = comparison_df["Absolute Error"].describe()
+    print("Error Statistics:")
+    print(error_stats)
+    
+    # Log key error statistics as metrics with test prefix
+    if not use_wandb:
+        mlflow.log_metric("test_mean_absolute_error", error_stats['mean'])
+        mlflow.log_metric("test_median_absolute_error", error_stats['50%'])
+        mlflow.log_metric("test_max_absolute_error", error_stats['max'])
+        mlflow.log_metric("test_std_absolute_error", error_stats['std'])
+        mlflow.log_metric("test_min_absolute_error", error_stats['min'])
+        mlflow.log_metric("test_25th_percentile_error", error_stats['25%'])
+        mlflow.log_metric("test_75th_percentile_error", error_stats['75%'])
+    
+    # Additional test metrics
+    if not use_wandb:
+        mlflow.log_metric("test_sample_count", len(comparison_df))
+
+    # Optionally, visualize the differences
+    plt.figure(figsize=(10, 6))
+    plt.hist(comparison_df["Absolute Error"], bins=20, color="skyblue", edgecolor="black")
+    plt.title("Distribution of Absolute Errors", fontsize=14)
+    plt.xlabel("Absolute Error", fontsize=12)
+    plt.ylabel("Frequency", fontsize=12)
+    plt.grid(axis="y", linestyle="--", alpha=0.7)
+    plt.savefig('errors.png')
+    if not use_wandb:
+        mlflow.log_artifact('errors.png')
+    plt.show()
+
+    print("Training complete. Final model saved.")
+
+# Example usage
+if "__main__" == __name__:
+    parser = arg.ArgumentParser() 
+
+    parser.add_argument("--num-nodes", default=1, type=int)
+    
+    experiment_name = "pretrained_12.5k_L2_3GCN_512" # modified this for testing
+
+    # New command-line arguments for pooling type, number of clusters, and SAG ratio
+    parser.add_argument("--name", type=str, default=experiment_name)
+    parser.add_argument("--pool-type", type=str, default="global", choices=["global", "sag", "diff"], help="Type of pooling layer")
+    parser.add_argument("--num-clusters", type=int, default=10, help="Number of clusters for DiffPool")
+    parser.add_argument("--sag-ratio", type=float, default=0.5, help="Pooling ratio for SAGPool")
+    parser.add_argument("--num-epochs", type=int, default=2, help="Number of training epochs")
+    parser.add_argument("--num-workers", type=int, default=4, help="Number of workers for DataLoader")
+    parser.add_argument("--sweep", action="store_true", help="Run with wandb sweep")
+
+
+    args = parser.parse_args()
+    
+
+    model_base = "gcn"
+    args.name = f"{args.name}_{args.pool_type}"
+
+    # Initialize dataset worker (assuming it's already set up correctly)
+    record = []
+    Config.init()
+    
+    use_wandb = args.sweep
+    if use_wandb:
+        wandb.init()
+        
+        slurm_job_id = os.environ.get("SLURM_JOB_ID")
+        slurm_array_task_id = os.environ.get("SLURM_ARRAY_TASK_ID")
+        if slurm_job_id:
+            wandb.config.update({
+                "slurm_job_id": slurm_job_id,
+                "slurm_array_task_id": slurm_array_task_id
+            })
+
+        # Sync hyperparameters from wandb
+        Config.config.hyperparameters.batch_size = wandb.config.batch_size
+        Config.config.hyperparameters.lr = wandb.config.lr
+        model_config_updates = {
+            "hidden_size": wandb.config.hidden_size,
+            "num_gcn_layers": wandb.config.num_gcn_layers,
+        }
+
+        # run_name = f"{args.name}_W{args.num_workers}_EP{args.num_epochs}_B{Config.config.hyperparameters.batch_size}_LR{Config.config.hyperparameters.lr}_{wandb.run.sweep_id}-{wandb.run.id}"
+        # run_name = f"{args.name}_{wandb.run.sweep_id}-{wandb.run.id}"
+
+    else:
+        Config.config.hyperparameters.batch_size = 512 # fixed for testing purposes
+        model_config_updates = {}
+        # run_name = args.name + f"_B{Config.config.hyperparameters.batch_size}_LR{Config.config.hyperparameters.lr}"
+
+    # print(f"Run Name: {run_name}")
+
+    # Hyperparameters
+    # num_epochs = Config.config.hyperparameters.num_epochs
+    
+    num_epochs = args.num_epochs
+    num_workers = args.num_workers
+
+    batch_size = Config.config.hyperparameters.batch_size
+    num_updates = Config.config.hyperparameters.num_updates
+    total_steps = num_updates * batch_size
+    mini_batch_size = Config.config.hyperparameters.mini_batch_size
+    
+
+    clip_epsilon = Config.config.hyperparameters.clip_epsilon
+    gamma = Config.config.hyperparameters.gamma
+    lambdaa = Config.config.hyperparameters.lambdaa
+    
+    value_coeff = Config.config.hyperparameters.value_coeff
+    entropy_coeff_start = Config.config.hyperparameters.entropy_coeff_start
+    entropy_coeff_finish = Config.config.hyperparameters.entropy_coeff_finish
+    max_grad_norm = Config.config.hyperparameters.max_grad_norm
+    lr = Config.config.hyperparameters.lr
+    start_lr = Config.config.hyperparameters.start_lr
+    final_lr = Config.config.hyperparameters.final_lr
+    weight_decay = Config.config.hyperparameters.weight_decay
+    tag = "12.5k"
+    Config.config.dataset.tags = [tag]
+    # dataset_worker = DatasetActor.remote(Config.config.dataset)
+    device = "cuda:0" if torch.cuda.is_available() else "cpu"
+    print(f"TRAINING DEVICE: {device}")
+    
+
+    # Initialize GCN model
+    if Config.config.pretrain.embed_access_matrices:
+        input_size = 6 + get_embedding_size(Config.config.pretrain.embedding_type) + 9
+    else:
+        input_size = 718
+    
+    model_config = {
+        "input_size": input_size,
+        "hidden_size": 90,  # Optimal for GCN
+        "num_gcn_layers": 3,  # Optimal for GCN
+        "num_outputs": 56,
+        "pooling_type": args.pool_type,
+        "num_clusters": args.num_clusters,
+        "sag_ratio": args.sag_ratio,
+    }
+    
+    if use_wandb:
+        model_config.update(model_config_updates)
+
+    model = GCN(**model_config).to(device)
+
+    # set run name
+    if use_wandb:
+        # run_name = f"{args.name}_W{args.num_workers}_EP{args.num_epochs}_B{Config.config.hyperparameters.batch_size}_LR{Config.config.hyperparameters.lr}_{wandb.run.sweep_id}-{wandb.run.id}"
+        run_name = f"{args.name}_{wandb.run.sweep_id}-{wandb.run.id}"
+    else:
+        run_name = args.name + f"_B{batch_size}_LR{lr:.6f}"
+    print(f"Run Name: {run_name}")
+
+    # Pretrain the model    
+    if use_wandb:
+        pretrain_model(model, None, device, Config.config, num_epochs=num_epochs, batch_size=batch_size, lr=lr, num_workers=num_workers, use_wandb=True)
+        
+        # Create a wandb.Artifact for the model
+        print("Saving model as a wandb Artifact...")
+        artifact = wandb.Artifact(
+            name=f"{model_base}-{args.pool_type}-{wandb.run.id}",
+            type="model",
+            metadata=model_config
+        )
+
+        # Save model weights to a temporary file
+        model_path = f"pretrained_{model_base}_model_{wandb.run.sweep_id}_{wandb.run.id}.pt"
+        torch.save(model.state_dict(), model_path)
+
+        # Add the file to the artifact and log it
+        artifact.add_file(model_path)
+        wandb.log_artifact(artifact)
+        print("Model artifact logged successfully.")
+
+        # Clean up the local file
+        os.remove(model_path)
+    else:
+        with mlflow.start_run(
+            run_name=run_name,
+        ) as run:
+            mlflow.log_params(
+                {
+                    "total_steps": total_steps,
+                    "num_updates": num_updates,
+                    "num_epochs": num_epochs,
+                    "batch_size": batch_size,
+                    "num_workers": num_workers, # for dataloader
+                    "mini_batch_size": mini_batch_size,
+                    "lr": lr,
+                    "gamma": gamma,
+                    "lambdaa": lambdaa,
+                    "weight_decay": weight_decay,
+                    "clip_epsilon": clip_epsilon,
+                    "max_grad_norm": max_grad_norm,
+                    "value_coeff": value_coeff,
+                    "entropy_coeff_start": entropy_coeff_start,
+                    "entropy_coeff_finish": entropy_coeff_finish,
+                }
+            )
+                    
+            # pretrain_model(model, dataset_worker, device, Config.config, num_epochs=3000, batch_size=512, lr=lr)
+            pretrain_model(model, None, device, Config.config, num_epochs=num_epochs, batch_size=batch_size, lr=lr, num_workers=num_workers)
+
+            # Log the model config as a JSON artifact
+            mlflow.log_dict(model_config, "model_config.json")
+
+            # Log final model after training
+            mlflow.pytorch.log_model(model, f"final_{model_base}_model1", model_type="pytorch", metadata={"architecture": f"{model_base}_{args.pool_type}", **model_config})
+            mlflow.set_tag("architecture", f"{model_base}_{args.pool_type}")
+
+        # Save the pretrained model
+        torch.save(model.state_dict(), f"pretrained_model_12.5k_{run_name}.pt")
+
+### for documentation purposes, I am listing all changes made to the original code below:
+
+# - changes GAT_SCALED TO GAT
+# - added from agent.policy_value_nn import GAT
+# - replaced dataset_worker with None in pretrain_model call AND hardcoded 3000 for num_epochs with num_epochs
+
+## All of the following are used inside PretrainDataset class which I am not currently using:
+# - moved tiramisu_api initialization to PretrainDataset class and made it optional
+# - made ray import optional by putting it inside a try-except block
+# - commented out DatasetActor object creation inside if __name__ == "__main__" block
+# - commented out DatasetActor and RolloutWorker imports; used inside PretrainDataset class
+# - commented out some unused imports, put # NOT USED ANYWHERE next to them
+
+## Log test loss
+# - log test_loss using mlflow
+# - log other test metrics using mlflow
+# - log the errors.png using mlflow
+# - log test_predictions_comparison.csv using mlflow
+
+## log model metadata
+# - added model_type and architecture:GAT metadata to mlflow.pytorch.log_model call
+# - created model_config dictionary to pass to GAT model initialization inside main block
+
+# - create plots: validation and training loss VS epoch, and store them as artifacts in mlflow
+# - removed duplicate imports, grouped imports together
+# - added time related logging
+# - changed epoch logging to start from 1 instead of 0
+
+## Dataloader optimization - for better utilization of GPU
+# - added DataLoaders for efficient GPU memory usage and batching
+# - removed manual batching in favor of PyTorch DataLoader with progress bars
+# - added pin_memory=True for faster GPU transfers
+# - made num_workers configurable for DataLoader parallelism
+
+## log best loss metrics
+# - created a best_loss_metrics dictionary to store best_val_loss, best_train_loss, best_val_loss_epoch, best_train_loss_epoch
+
+## Pooling layers   
+# - Added command-line arguments for selecting the pooling layer type and configuring its parameters.
+# - Changed training and validation loop to accommodate the new pooling layer options and the changed return signature of the model's forward method.
+# - Updated model logging to include the pooling layer type in the architecture metadata.
+# - Updated saving and loading model weights filename to include pooling type.
+# - Updated GCN model initialization to accept pooling type, number of clusters, and SAG ratio.
+
+## Model config
+# - log model config as a json artifact in mlflow
+
+## Argparse
+# - added num-epochs and num-workers arguments to argparse
+
+## Error reporting
+# - added MAPE
+
+## Hyperparameter tuning with wandb sweeps
+# - added --sweep argument to argparse
+# - added wandb initialization and hyperparameter syncing
+# - modified pretrain_model call to accept use_wandb argument
+# - integrated wandb logging into training loop
+# - modified model saving to include "sweep" in filename and architecture metadata if wandb sweep is used
+# - added wandb.config updates for hyperparameters

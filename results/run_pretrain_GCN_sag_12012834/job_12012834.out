@@ -1,0 +1,25 @@
+Run Name: GCN_sag_workers4_epochs2
+TRAINING DEVICE: cuda:0
+finidhed preparing data
+Loading dataset from pretrain_dataset_12.5k_fixed_duplicates.pkl
+Loaded 412712 data objects.
+finished preparing data
+Epoch 1/2, Train Loss: 2.9280, Validation Loss: 1.9944
+Epoch 2/2, Train Loss: 1.9105, Validation Loss: 1.6066
+Best Training Loss: 1.9105
+Best Training Loss Epoch: 2
+Best Validation Loss: 1.6066
+Best Validation Loss Epoch: 2
+Time taken for training: 0-00:00:36
+Test Loss: 1.6314
+Error Statistics:
+count    4.127200e+04
+mean     1.579715e+03
+std      1.387487e+05
+min      8.487701e-05
+25%      5.004918e-01
+50%      3.734742e+00
+75%      5.292936e+01
+max      2.196446e+07
+Name: Absolute Error, dtype: float64
+Training complete. Final model saved.

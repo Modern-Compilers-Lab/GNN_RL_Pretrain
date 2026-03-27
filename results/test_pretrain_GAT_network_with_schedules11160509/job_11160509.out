@@ -1,0 +1,423 @@
+Run Name: GAT_nondataloader_epochs200
+TRAINING DEVICE: cuda:0
+finidhed preparing data
+Loading dataset from pretrain_dataset_12.5k_fixed_duplicates.pkl
+Loaded 412712 data objects.
+finidhed preparing data
+total_batches 644
+Epoch 1/200, Train Loss: 3.8060, Validation Loss: 1.9334
+total_batches 644
+Epoch 2/200, Train Loss: 1.8587, Validation Loss: 1.6488
+total_batches 644
+Epoch 3/200, Train Loss: 1.6490, Validation Loss: 1.8594
+total_batches 644
+Epoch 4/200, Train Loss: 1.5884, Validation Loss: 1.2039
+total_batches 644
+Epoch 5/200, Train Loss: 1.5971, Validation Loss: 1.3391
+total_batches 644
+Epoch 6/200, Train Loss: 1.4600, Validation Loss: 1.1880
+total_batches 644
+Epoch 7/200, Train Loss: 1.3832, Validation Loss: 1.1960
+total_batches 644
+Epoch 8/200, Train Loss: 1.5667, Validation Loss: 1.0857
+total_batches 644
+Epoch 9/200, Train Loss: 1.3515, Validation Loss: 1.1015
+total_batches 644
+Epoch 10/200, Train Loss: 1.3469, Validation Loss: 1.3895
+total_batches 644
+Epoch 11/200, Train Loss: 1.3229, Validation Loss: 1.9446
+total_batches 644
+Epoch 12/200, Train Loss: 1.2147, Validation Loss: 0.8869
+total_batches 644
+Epoch 13/200, Train Loss: 1.1726, Validation Loss: 0.9184
+total_batches 644
+Epoch 14/200, Train Loss: 1.0909, Validation Loss: 0.9192
+total_batches 644
+Epoch 15/200, Train Loss: 1.0724, Validation Loss: 1.1921
+total_batches 644
+Epoch 16/200, Train Loss: 1.1663, Validation Loss: 1.1165
+total_batches 644
+Epoch 17/200, Train Loss: 1.0761, Validation Loss: 1.0735
+total_batches 644
+Epoch 18/200, Train Loss: 1.0111, Validation Loss: 1.0048
+total_batches 644
+Epoch 19/200, Train Loss: 0.9985, Validation Loss: 0.9261
+total_batches 644
+Epoch 20/200, Train Loss: 1.0090, Validation Loss: 0.8232
+total_batches 644
+Epoch 21/200, Train Loss: 0.9227, Validation Loss: 1.3187
+total_batches 644
+Epoch 22/200, Train Loss: 1.0697, Validation Loss: 0.7507
+total_batches 644
+Epoch 23/200, Train Loss: 0.9039, Validation Loss: 0.8132
+total_batches 644
+Epoch 24/200, Train Loss: 0.9767, Validation Loss: 1.1292
+total_batches 644
+Epoch 25/200, Train Loss: 0.9478, Validation Loss: 0.8226
+total_batches 644
+Epoch 26/200, Train Loss: 0.8846, Validation Loss: 0.9119
+total_batches 644
+Epoch 27/200, Train Loss: 0.8990, Validation Loss: 0.8112
+total_batches 644
+Epoch 28/200, Train Loss: 0.8904, Validation Loss: 0.8025
+total_batches 644
+Epoch 29/200, Train Loss: 0.8227, Validation Loss: 0.9348
+total_batches 644
+Epoch 30/200, Train Loss: 0.7856, Validation Loss: 1.5142
+total_batches 644
+Epoch 31/200, Train Loss: 0.8579, Validation Loss: 0.6316
+total_batches 644
+Epoch 32/200, Train Loss: 0.8434, Validation Loss: 0.8344
+total_batches 644
+Epoch 33/200, Train Loss: 0.8005, Validation Loss: 0.8684
+total_batches 644
+Epoch 34/200, Train Loss: 0.8208, Validation Loss: 0.7981
+total_batches 644
+Epoch 35/200, Train Loss: 0.7804, Validation Loss: 0.6720
+total_batches 644
+Epoch 36/200, Train Loss: 0.7621, Validation Loss: 0.6694
+total_batches 644
+Epoch 37/200, Train Loss: 0.7321, Validation Loss: 0.6682
+total_batches 644
+Epoch 38/200, Train Loss: 0.8916, Validation Loss: 0.7121
+total_batches 644
+Epoch 39/200, Train Loss: 0.7502, Validation Loss: 0.5839
+total_batches 644
+Epoch 40/200, Train Loss: 0.7356, Validation Loss: 0.6982
+total_batches 644
+Epoch 41/200, Train Loss: 0.7478, Validation Loss: 0.6387
+total_batches 644
+Epoch 42/200, Train Loss: 0.7299, Validation Loss: 0.6614
+total_batches 644
+Epoch 43/200, Train Loss: 0.7440, Validation Loss: 0.6192
+total_batches 644
+Epoch 44/200, Train Loss: 0.7133, Validation Loss: 0.6046
+total_batches 644
+Epoch 45/200, Train Loss: 0.7188, Validation Loss: 0.6290
+total_batches 644
+Epoch 46/200, Train Loss: 0.7397, Validation Loss: 0.6488
+total_batches 644
+Epoch 47/200, Train Loss: 0.7051, Validation Loss: 0.9936
+total_batches 644
+Epoch 48/200, Train Loss: 0.6786, Validation Loss: 0.5691
+total_batches 644
+Epoch 49/200, Train Loss: 0.6897, Validation Loss: 1.5962
+total_batches 644
+Epoch 50/200, Train Loss: 0.7042, Validation Loss: 0.6911
+total_batches 644
+Epoch 51/200, Train Loss: 0.6352, Validation Loss: 0.6390
+total_batches 644
+Epoch 52/200, Train Loss: 0.6808, Validation Loss: 0.5464
+total_batches 644
+Epoch 53/200, Train Loss: 0.6618, Validation Loss: 0.6705
+total_batches 644
+Epoch 54/200, Train Loss: 0.6967, Validation Loss: 0.8463
+total_batches 644
+Epoch 55/200, Train Loss: 0.6846, Validation Loss: 1.2020
+total_batches 644
+Epoch 56/200, Train Loss: 0.6688, Validation Loss: 0.5811
+total_batches 644
+Epoch 57/200, Train Loss: 0.6746, Validation Loss: 0.6561
+total_batches 644
+Epoch 58/200, Train Loss: 0.6281, Validation Loss: 0.5697
+total_batches 644
+Epoch 59/200, Train Loss: 0.6607, Validation Loss: 0.5745
+total_batches 644
+Epoch 60/200, Train Loss: 0.5965, Validation Loss: 1.0038
+total_batches 644
+Epoch 61/200, Train Loss: 0.6492, Validation Loss: 0.4969
+total_batches 644
+Epoch 62/200, Train Loss: 0.6545, Validation Loss: 0.8171
+total_batches 644
+Epoch 63/200, Train Loss: 0.6551, Validation Loss: 0.6671
+total_batches 644
+Epoch 64/200, Train Loss: 0.6064, Validation Loss: 0.5070
+total_batches 644
+Epoch 65/200, Train Loss: 0.6473, Validation Loss: 0.5832
+total_batches 644
+Epoch 66/200, Train Loss: 0.6604, Validation Loss: 0.5248
+total_batches 644
+Epoch 67/200, Train Loss: 0.6158, Validation Loss: 0.5239
+total_batches 644
+Epoch 68/200, Train Loss: 0.6273, Validation Loss: 0.5201
+total_batches 644
+Epoch 69/200, Train Loss: 0.6146, Validation Loss: 0.5875
+total_batches 644
+Epoch 70/200, Train Loss: 0.6154, Validation Loss: 0.5719
+total_batches 644
+Epoch 71/200, Train Loss: 0.5645, Validation Loss: 0.7176
+total_batches 644
+Epoch 72/200, Train Loss: 0.6268, Validation Loss: 0.6936
+total_batches 644
+Epoch 73/200, Train Loss: 0.6089, Validation Loss: 1.0038
+total_batches 644
+Epoch 74/200, Train Loss: 0.5683, Validation Loss: 0.6489
+total_batches 644
+Epoch 75/200, Train Loss: 0.5762, Validation Loss: 0.6153
+total_batches 644
+Epoch 76/200, Train Loss: 0.5685, Validation Loss: 0.6462
+total_batches 644
+Epoch 77/200, Train Loss: 0.6325, Validation Loss: 0.5407
+total_batches 644
+Epoch 78/200, Train Loss: 0.5871, Validation Loss: 0.6270
+total_batches 644
+Epoch 79/200, Train Loss: 0.5601, Validation Loss: 0.8156
+total_batches 644
+Epoch 80/200, Train Loss: 0.5765, Validation Loss: 0.5877
+total_batches 644
+Epoch 81/200, Train Loss: 0.5999, Validation Loss: 0.5004
+total_batches 644
+Epoch 82/200, Train Loss: 0.6259, Validation Loss: 0.5800
+total_batches 644
+Epoch 83/200, Train Loss: 0.5567, Validation Loss: 0.5735
+total_batches 644
+Epoch 84/200, Train Loss: 0.5300, Validation Loss: 0.5346
+total_batches 644
+Epoch 85/200, Train Loss: 0.6176, Validation Loss: 0.5883
+total_batches 644
+Epoch 86/200, Train Loss: 0.5524, Validation Loss: 0.5341
+total_batches 644
+Epoch 87/200, Train Loss: 0.5632, Validation Loss: 0.5986
+total_batches 644
+Epoch 88/200, Train Loss: 0.5835, Validation Loss: 0.4575
+total_batches 644
+Epoch 89/200, Train Loss: 0.5346, Validation Loss: 0.7774
+total_batches 644
+Epoch 90/200, Train Loss: 0.5652, Validation Loss: 0.6486
+total_batches 644
+Epoch 91/200, Train Loss: 0.5423, Validation Loss: 0.5801
+total_batches 644
+Epoch 92/200, Train Loss: 0.5595, Validation Loss: 0.9960
+total_batches 644
+Epoch 93/200, Train Loss: 0.5197, Validation Loss: 0.7808
+total_batches 644
+Epoch 94/200, Train Loss: 0.5855, Validation Loss: 0.5172
+total_batches 644
+Epoch 95/200, Train Loss: 0.5408, Validation Loss: 0.6644
+total_batches 644
+Epoch 96/200, Train Loss: 0.5390, Validation Loss: 0.5261
+total_batches 644
+Epoch 97/200, Train Loss: 0.5841, Validation Loss: 0.6168
+total_batches 644
+Epoch 98/200, Train Loss: 0.5548, Validation Loss: 0.5320
+total_batches 644
+Epoch 99/200, Train Loss: 0.5736, Validation Loss: 0.5156
+total_batches 644
+Epoch 100/200, Train Loss: 0.5141, Validation Loss: 0.5377
+total_batches 644
+Epoch 101/200, Train Loss: 0.5658, Validation Loss: 0.7041
+total_batches 644
+Epoch 102/200, Train Loss: 0.5067, Validation Loss: 0.4698
+total_batches 644
+Epoch 103/200, Train Loss: 0.4969, Validation Loss: 0.4466
+total_batches 644
+Epoch 104/200, Train Loss: 0.4984, Validation Loss: 0.5556
+total_batches 644
+Epoch 105/200, Train Loss: 0.5177, Validation Loss: 0.5158
+total_batches 644
+Epoch 106/200, Train Loss: 0.5103, Validation Loss: 1.0612
+total_batches 644
+Epoch 107/200, Train Loss: 0.5219, Validation Loss: 0.8070
+total_batches 644
+Epoch 108/200, Train Loss: 0.5356, Validation Loss: 0.4838
+total_batches 644
+Epoch 109/200, Train Loss: 0.5035, Validation Loss: 0.4864
+total_batches 644
+Epoch 110/200, Train Loss: 0.4971, Validation Loss: 0.5390
+total_batches 644
+Epoch 111/200, Train Loss: 0.5415, Validation Loss: 1.6741
+total_batches 644
+Epoch 112/200, Train Loss: 0.5261, Validation Loss: 0.4944
+total_batches 644
+Epoch 113/200, Train Loss: 0.5171, Validation Loss: 0.5307
+total_batches 644
+Epoch 114/200, Train Loss: 0.4922, Validation Loss: 0.5530
+total_batches 644
+Epoch 115/200, Train Loss: 0.4911, Validation Loss: 0.6753
+total_batches 644
+Epoch 116/200, Train Loss: 0.5308, Validation Loss: 0.5224
+total_batches 644
+Epoch 117/200, Train Loss: 0.4871, Validation Loss: 0.4697
+total_batches 644
+Epoch 118/200, Train Loss: 0.4704, Validation Loss: 0.6222
+total_batches 644
+Epoch 119/200, Train Loss: 0.4918, Validation Loss: 0.4903
+total_batches 644
+Epoch 120/200, Train Loss: 0.5037, Validation Loss: 0.5292
+total_batches 644
+Epoch 121/200, Train Loss: 0.4894, Validation Loss: 0.5109
+total_batches 644
+Epoch 122/200, Train Loss: 0.4795, Validation Loss: 0.4909
+total_batches 644
+Epoch 123/200, Train Loss: 0.4847, Validation Loss: 0.6150
+total_batches 644
+Epoch 124/200, Train Loss: 0.4834, Validation Loss: 0.6691
+total_batches 644
+Epoch 125/200, Train Loss: 0.4827, Validation Loss: 0.5956
+total_batches 644
+Epoch 126/200, Train Loss: 0.4742, Validation Loss: 0.5862
+total_batches 644
+Epoch 127/200, Train Loss: 0.4747, Validation Loss: 0.4611
+total_batches 644
+Epoch 128/200, Train Loss: 0.4748, Validation Loss: 0.5100
+total_batches 644
+Epoch 129/200, Train Loss: 0.5209, Validation Loss: 0.4944
+total_batches 644
+Epoch 130/200, Train Loss: 0.4854, Validation Loss: 0.4634
+total_batches 644
+Epoch 131/200, Train Loss: 0.4681, Validation Loss: 0.4817
+total_batches 644
+Epoch 132/200, Train Loss: 0.4861, Validation Loss: 0.5099
+total_batches 644
+Epoch 133/200, Train Loss: 0.4794, Validation Loss: 0.4804
+total_batches 644
+Epoch 134/200, Train Loss: 0.4841, Validation Loss: 0.4632
+total_batches 644
+Epoch 135/200, Train Loss: 0.4523, Validation Loss: 0.5528
+total_batches 644
+Epoch 136/200, Train Loss: 0.4766, Validation Loss: 0.5659
+total_batches 644
+Epoch 137/200, Train Loss: 0.4606, Validation Loss: 0.6541
+total_batches 644
+Epoch 138/200, Train Loss: 0.4629, Validation Loss: 0.6345
+total_batches 644
+Epoch 139/200, Train Loss: 0.4603, Validation Loss: 0.4497
+total_batches 644
+Epoch 140/200, Train Loss: 0.4449, Validation Loss: 0.5043
+total_batches 644
+Epoch 141/200, Train Loss: 0.4839, Validation Loss: 0.4738
+total_batches 644
+Epoch 142/200, Train Loss: 0.4444, Validation Loss: 0.4689
+total_batches 644
+Epoch 143/200, Train Loss: 0.4549, Validation Loss: 0.6268
+total_batches 644
+Epoch 144/200, Train Loss: 0.4639, Validation Loss: 0.5082
+total_batches 644
+Epoch 145/200, Train Loss: 0.4873, Validation Loss: 0.5815
+total_batches 644
+Epoch 146/200, Train Loss: 0.4669, Validation Loss: 0.4726
+total_batches 644
+Epoch 147/200, Train Loss: 0.4241, Validation Loss: 0.5084
+total_batches 644
+Epoch 148/200, Train Loss: 0.4730, Validation Loss: 0.4992
+total_batches 644
+Epoch 149/200, Train Loss: 0.4542, Validation Loss: 0.4279
+total_batches 644
+Epoch 150/200, Train Loss: 0.4426, Validation Loss: 0.4952
+total_batches 644
+Epoch 151/200, Train Loss: 0.4539, Validation Loss: 0.4299
+total_batches 644
+Epoch 152/200, Train Loss: 0.4277, Validation Loss: 0.4719
+total_batches 644
+Epoch 153/200, Train Loss: 0.4392, Validation Loss: 0.4898
+total_batches 644
+Epoch 154/200, Train Loss: 0.4902, Validation Loss: 0.5674
+total_batches 644
+Epoch 155/200, Train Loss: 0.4337, Validation Loss: 0.7486
+total_batches 644
+Epoch 156/200, Train Loss: 0.4568, Validation Loss: 0.7111
+total_batches 644
+Epoch 157/200, Train Loss: 0.4806, Validation Loss: 0.5800
+total_batches 644
+Epoch 158/200, Train Loss: 0.4432, Validation Loss: 0.4403
+total_batches 644
+Epoch 159/200, Train Loss: 0.4237, Validation Loss: 0.4108
+total_batches 644
+Epoch 160/200, Train Loss: 0.4404, Validation Loss: 0.5483
+total_batches 644
+Epoch 161/200, Train Loss: 0.4279, Validation Loss: 0.4130
+total_batches 644
+Epoch 162/200, Train Loss: 0.4206, Validation Loss: 1.0820
+total_batches 644
+Epoch 163/200, Train Loss: 0.4215, Validation Loss: 0.4480
+total_batches 644
+Epoch 164/200, Train Loss: 0.4257, Validation Loss: 0.4358
+total_batches 644
+Epoch 165/200, Train Loss: 0.4373, Validation Loss: 0.4134
+total_batches 644
+Epoch 166/200, Train Loss: 0.4243, Validation Loss: 1.4337
+total_batches 644
+Epoch 167/200, Train Loss: 0.4457, Validation Loss: 0.6391
+total_batches 644
+Epoch 168/200, Train Loss: 0.4194, Validation Loss: 0.4508
+total_batches 644
+Epoch 169/200, Train Loss: 0.4804, Validation Loss: 0.4582
+total_batches 644
+Epoch 170/200, Train Loss: 0.4439, Validation Loss: 0.5261
+total_batches 644
+Epoch 171/200, Train Loss: 0.4401, Validation Loss: 0.5191
+total_batches 644
+Epoch 172/200, Train Loss: 0.4057, Validation Loss: 0.4771
+total_batches 644
+Epoch 173/200, Train Loss: 0.4170, Validation Loss: 0.4666
+total_batches 644
+Epoch 174/200, Train Loss: 0.4577, Validation Loss: 0.4821
+total_batches 644
+Epoch 175/200, Train Loss: 0.4207, Validation Loss: 0.6345
+total_batches 644
+Epoch 176/200, Train Loss: 0.4108, Validation Loss: 0.4583
+total_batches 644
+Epoch 177/200, Train Loss: 0.4260, Validation Loss: 0.4646
+total_batches 644
+Epoch 178/200, Train Loss: 0.4218, Validation Loss: 0.5609
+total_batches 644
+Epoch 179/200, Train Loss: 0.4145, Validation Loss: 0.4517
+total_batches 644
+Epoch 180/200, Train Loss: 0.3978, Validation Loss: 0.4514
+total_batches 644
+Epoch 181/200, Train Loss: 0.4094, Validation Loss: 0.3972
+total_batches 644
+Epoch 182/200, Train Loss: 0.4372, Validation Loss: 0.4117
+total_batches 644
+Epoch 183/200, Train Loss: 0.4098, Validation Loss: 0.4201
+total_batches 644
+Epoch 184/200, Train Loss: 0.4482, Validation Loss: 0.4112
+total_batches 644
+Epoch 185/200, Train Loss: 0.4058, Validation Loss: 0.4997
+total_batches 644
+Epoch 186/200, Train Loss: 0.4292, Validation Loss: 0.4319
+total_batches 644
+Epoch 187/200, Train Loss: 0.4390, Validation Loss: 0.3983
+total_batches 644
+Epoch 188/200, Train Loss: 0.4095, Validation Loss: 0.5949
+total_batches 644
+Epoch 189/200, Train Loss: 0.3923, Validation Loss: 0.4452
+total_batches 644
+Epoch 190/200, Train Loss: 0.4345, Validation Loss: 0.7130
+total_batches 644
+Epoch 191/200, Train Loss: 0.4033, Validation Loss: 0.4300
+total_batches 644
+Epoch 192/200, Train Loss: 0.4180, Validation Loss: 0.5978
+total_batches 644
+Epoch 193/200, Train Loss: 0.3873, Validation Loss: 0.4545
+total_batches 644
+Epoch 194/200, Train Loss: 0.4176, Validation Loss: 0.4839
+total_batches 644
+Epoch 195/200, Train Loss: 0.4076, Validation Loss: 0.6334
+total_batches 644
+Epoch 196/200, Train Loss: 0.4044, Validation Loss: 0.5309
+total_batches 644
+Epoch 197/200, Train Loss: 0.4136, Validation Loss: 0.4422
+total_batches 644
+Epoch 198/200, Train Loss: 0.4263, Validation Loss: 0.3857
+total_batches 644
+Epoch 199/200, Train Loss: 0.3985, Validation Loss: 0.4955
+total_batches 644
+Epoch 200/200, Train Loss: 0.3966, Validation Loss: 0.4324
+Best Training Loss: 0.3873
+Best Training Loss Epoch: 193
+Best Validation Loss: 0.3857
+Best Validation Loss Epoch: 198
+Time taken for training: 0-01:33:14
+Test Loss: 0.4073
+Error Statistics:
+count    4.096000e+04
+mean     9.198999e+02
+std      1.424079e+04
+min      2.741814e-06
+25%      1.249127e-01
+50%      1.348389e+00
+75%      2.231554e+01
+max      1.385167e+06
+Name: Absolute Error, dtype: float64
+Training complete. Final model saved.

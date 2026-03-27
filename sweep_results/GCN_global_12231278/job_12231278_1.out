@@ -1,0 +1,19 @@
+Waiting for sweep ID...
+Found Sweep ID: squckx19
+Starting wandb agent for sweep squckx19...
+Run Name: GCN_global-ojkp4xx2
+TRAINING DEVICE: cpu
+finidhed preparing data
+Loading dataset from pretrain_dataset_12.5k_fixed_duplicates.pkl
+Loaded 412712 data objects.
+finished preparing data
+Epoch 1/2, Train Loss: 4.5812, Validation Loss: 2.1556
+Epoch 2/2, Train Loss: 1.3789, Validation Loss: 2.0662
+Best Training Loss: 1.3789
+Best Training Loss Epoch: 2
+Best Validation Loss: 2.0662
+Best Validation Loss Epoch: 2
+[1;34mwandb[0m: 
+[1;34mwandb[0m: 🚀 View run [33msummer-sweep-2[0m at: [34mhttps://wandb.ai/mk8737-new-york-university/rl_pretrain_hp_sweeps/runs/ojkp4xx2[0m
+[1;34mwandb[0m: Find logs at: [1;35mwandb/run-20251006_010819-ojkp4xx2/logs[0m
+Agent finished.
